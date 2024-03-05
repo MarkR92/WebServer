@@ -192,7 +192,7 @@ public class Main {
 						
 				}
 				}
-				else if(method.equals("DELTE"))
+				else if(method.equals("DELETE"))
 				{
 					//TO DO
 				}
