@@ -190,11 +190,20 @@ public class Main {
 							
 							
 						
-				}
+					}
+
 				}
 				else if(method.equals("DELETE"))
 				{
-					//TO DO
+					if(resource.equals("/people"))
+					{
+						people.clear();//TO DO
+
+						OutputStream clientOutput=client.getOutputStream();//output all responses
+						clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+						clientOutput.write(("\r\n").getBytes());//blank line
+						clientOutput.flush();//empty the built up buffer
+					}
 				}
 				else if(method.equals("PUT"))
 				{
