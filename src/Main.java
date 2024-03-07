@@ -89,9 +89,9 @@ public class Main {
 				/*when the method in the header is a GET we retrieve the resource. 
 				 * the GET method may have an optional body but we ignore for now 
 				*/
-				if(method.equals("GET"))
+				if(method.equalsIgnoreCase("GET"))
 				{
-					if(resource.equals("/people"))//check the resource we are looking for
+					if(resource.equalsIgnoreCase("/people"))//check the resource we are looking for
 					{
 						OutputStream clientOutput=client.getOutputStream();//output all responses
 						
@@ -131,10 +131,10 @@ public class Main {
 				/*if the method is post we need to get the info stored in the body. The body comes after the header. W
 				 * we need to check the content length to know when we are done and we need to check content type so we know 
 				 * which parser to use. currently only Content-Type: application/x-www-form-urlencoded . is supported but need to look into this more*/
-				else if(method.equals("POST"))
+				else if(method.equalsIgnoreCase("POST"))
 				{
 									
-					if(resource.equals("/people"))
+					if(resource.equalsIgnoreCase("/people"))
 					{
 						int contentLength=0;
 						//parse out content length using the much beloved regex
@@ -193,9 +193,9 @@ public class Main {
 					}
 
 				}
-				else if(method.equals("DELETE"))
+				else if(method.equalsIgnoreCase("DELETE"))
 				{
-					if(resource.equals("/people"))
+					if(resource.equalsIgnoreCase("/people"))
 					{
 						people.clear();//TO DO
 
