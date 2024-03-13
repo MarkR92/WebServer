@@ -743,6 +743,71 @@
                   
                     
                     }
+                    else if(resource.equals("/login")) {
+					
+                        int contentLength=0;
+                        
+                        Pattern pattern = Pattern.compile("Content-Length: (\\d+)");
+                        Matcher matcher = pattern.matcher(header);
+    
+                        // Check if the pattern is found
+                        if (matcher.find()) {
+                          
+                            contentLength= Integer.parseInt(matcher.group(1));
+                           
+                        } else {
+                            System.out.println("Content-Length not found in the headers.");
+                        }
+                        
+                        String body="";
+                    
+                        while (contentLength > 0)  {
+                            
+                        
+                            contentLength--;
+                            
+                            body+=""+(char)in.read();//check the next char
+                            
+                            //System.out.println(body);
+                        }
+                        //System.out.println(body+"out");
+                         pattern = Pattern.compile("username=([^&]+)&password=([^&]+)");
+    
+                        // Create a matcher with the input string
+                         matcher = pattern.matcher(body);
+                         String username="";
+                         String pwd ="";
+                        // Find the names this only works for the following format person1=mark&person2=rob&person3=khate&person4=dan&person5=dorian
+                        while (matcher.find()) {
+                            username = matcher.group(1);
+                            //System.out.println(username);
+                            pwd = matcher.group(2);
+                           // System.out.println(pwd);
+                            
+                        }
+                        if(username.equals("admin")&pwd.equals("admin"))
+                        {
+                            //System.out.println("here");
+                            clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+                            clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+                            clientOutput.write(("\r\n").getBytes());//blank line
+                            clientOutput.write(("200").getBytes());
+                            clientOutput.flush();//empty the built up buffer
+                            
+                        }
+                        else
+                        {
+                            //OutputStream clientOutput=socket.getOutputStream();//output all responses
+                            clientOutput.write(("HTTP/1.1 401 OK\r\n").getBytes());//encode to bytes
+                            clientOutput.write(("Login for "+username+" failed. Invalid user name or password\r\n").getBytes());//encode to bytes
+                            clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+                            clientOutput.write(("\r\n").getBytes());//blank line
+                            
+                            
+                            clientOutput.flush();//empty the built up buffer
+                        }
+                    
+                    }
                     }
     //
                     
