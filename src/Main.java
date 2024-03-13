@@ -18,6 +18,12 @@ public class Main {
 	 * curl localhost:8097/people -v 
 	 * POST:
 	 * curl -d "person1=mark&person2=rob&person3=khate&person4=dan&person5=dorian" http://localhost:8097/people 
+	 * curl.exe -d "person1=mark&person2=rob&person3=khate&person4=dan&person5=dorian" localhost:8097/people 
+	 * 
+	 * curl -d "job1=mime&job2=janitor&job3=gangam styler&job4=krusty krab chef&job5=bee keeper" http://localhost:8097/people/jobs
+	 *  
+	 * curl.exe -X PUT -d "person1=bark&person2=rob&person3=khate&person4=dan&person5=dorian" localhost:8097/people
+	 * 
 	 * 
 	 */
 	public static void main(String[] args) {
