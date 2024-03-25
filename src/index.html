@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .container {
+        width: 300px;
+        height: 300px;
+        outline: solid 1px black;
+        margin: 0 auto;
+        z-index: 0;
+    }
+    /* .container2 {
+        width: 300px;
+        height: 300px;
+        outline: solid 1px red;
+        margin: 0 auto;
+        z-index: 0;
+        display:none;
+    } */
+    /* main container we stick all div's onto */
+    
+.container2 {
+    display:none;
+    width: 300px;
+    height: 300px;
+
+    margin: 0 auto;
+    z-index: 0;
+}
+/* info container describing whats happening i.e waiting  */
+.infocontainer {
+    display: none;
+  width: 300px;
+  height: 22px;
+  /* outline: solid 1px black; */
+  margin: 0 auto;
+  z-index: 0;
+}
+/* creates coloured shapes */
+.greenpad{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: green;
+    border-radius:50px;
+    left: 5px;
+    top: 5px;
+    
+}
+.redpad{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: rgb(127, 0, 0);
+    border-radius:50px;
+    left: 5px;
+    top: 5px;
+  
+}
+.yellowpad{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: #8B8000;
+    border-radius:50px;
+ 
+    left: 5px;
+    top: 5px;
+}
+.bluepad{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: rgb(0, 0, 128);
+    border-radius:50px;
+ 
+    left: 5px;
+    top: 5px;
+  
+}
+.startbutton{
+    position: relative;
+    
+    width: 80px;
+    height: 25px;
+    
+    left: 74px;
+    top: -110px;
+  
+}
+
+/*top score display*/
+.leftbox{
+    position: relative;
+    font-family: "Kimberley", sans-serif ;
+    width: 35px;
+    height: 25px;
+    text-align: center;
+    left: 74px;
+    top: -110px;
+  
+}
+/*current score display*/
+.rightbox{
+    position: relative;
+    
+    width: 35px;
+    height: 25px;
+    text-align: center;
+    left: 74px;
+    top: -110px;
+  
+}
+.led{
+    position: relative;
+    width: 8px;
+    height: 8px;
+    background: red;
+    border-radius:50px;
+ 
+    left: 148px;
+    top: -105px;
+  
+}
+
+
+/* creates black background for each shape */
+.greencontainer{
+
+    position: relative;
+    
+    height:110px;
+    
+    width: 110px;
+    
+    z-index: 1;
+    margin-left: 0px;
+    margin-top:0px;
+    border-radius:55px;
+    background: black;
+    
+    }
+.redcontainer{
+
+  position: relative;
+        
+  height:110px;
+    
+  width:110px;
+        
+  z-index:1;
+  border-radius:55px;
+  background: black;
+        
+  margin-left: 190px;
+  margin-top:-110px;
+
+        }
+.yellowcontainer{
+
+  position: relative;
+  
+  height:110px;
+
+  width: 110px;
+  
+  z-index: 1;
+  border-radius:55px;
+  background: black;
+  
+  margin-left: 0px;
+  margin-top:80px;
+  
+  }
+.bluecontainer{
+
+  position: relative;
+    
+  height:110px;
+
+  width: 110px;
+    
+  z-index: 1;
+  background: black;
+  border-radius:55px;
+  margin-left: 190px;
+  margin-top:-110px;
+
+    
+    }
+
+  /* center shape contains scores and start button etc*/
+.center{
+
+  position: relative;
+  
+  width: 200px;
+  border: 2px solid gray;
+  height: 200px;
+  
+  z-index: -3;
+  
+  background: black;
+  
+  margin-left: 50px;
+  margin-top:-250px;
+  border-radius:100px;
+    }
+       
+
+ 
+
+</style>
+</head>
+<body>
+    <div class ="infocontainer" id="infocon" >
+        <p style="text-align: center; font-family: Orbitron"  id="info">Press start to begin</p>
+      </div>
+  
+      <div class ="container2" id="container2">
+  
+      <div class ="greencontainer">
+      <input type="button" class="greenpad" id="green" />
+      </div>
+  
+     <div class ="redcontainer">
+     <input type="button" class="redpad" id ="red"  />
+     </div>
+  
+     <div class ="yellowcontainer">
+     <input type="button" class="yellowpad" id="yellow"  />
+     </div>
+  
+     <div class ="bluecontainer">
+     <input type="button" class="bluepad" id="blue" />
+     </div>
+  
+     <div class ="center"></div>
+     <input type="button" style="font-family: Orbitron" class="leftbox" value="0" id="top"/>
+     <input type="button" style="font-family: Orbitron" class="startbutton" id="startbutton" value="Start"  />
+     <input type="button" style="font-family: Orbitron"  class="rightbox" id="current"value="0"/>
+  
+    <div class="led" id ="led"></div>
+     </div>
+     
+      
+  </div>
+   <div class ="container"  id="logincontainer">
+   <div>
+     <form>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="pwd">Password:</label><br>
+        <input type="password" id="pwd" name="pwd">
+      </form>
+    <input type="button" value="Login" id ="login" onclick="login(document.getElementById('username').value,document.getElementById('pwd').value)"/></div>
+  
+    </div>
+    <script>
+             const Http = new XMLHttpRequest();
+
+        function login(user ,pwd)
+        {
+           
+            const url ='http://20.24.89.246:8080/login';
+            Http.open("POST",url);
+            Http.send("username="+user+"&password="+pwd);
+            
+       Http.onreadystatechange=(e)=>{
+        console.log(Http.responseText);
+
+        if(Http.responseText==200)
+        {
+            var x = document.getElementById("logincontainer");
+            if (x.style.display === "none") {
+             x.style.display = "block";
+            } else {
+              x.style.display = "none";
+            }
+            var x = document.getElementById("container2");
+            
+             x.style.display = "block";
+             var x = document.getElementById("infocon");
+            
+            x.style.display = "block";
+
+             
+            
+            
+        }
+       }
+        }
+    //    const Http = new XMLHttpRequest();
+    //    const url ='http://localhost:8097/people';
+    //    Http.open("GET",url);
+    //    Http.send();
+
+        // function login(user,pwd)
+        // {
+        //     const ws=new WebSocket("wss://localhost:8097/");
+
+        //     ws.addEventListener("open", ()=>{
+        //         console.log("Connected");
+        //     });
+        //     console.log(user);
+        //     console.log(pwd);
+
+        //     ws.send(user);
+        // }
+
+        
+
+//tested with Win10 Chrome
+
+//get refercences to html elements. 
+//This means we don't have to use OnClick in the html doc
+const startButton = document.querySelector(".startbutton");
+const scoreDisplay = document.querySelector("#current");
+const topScoreDisplay = document.querySelector("#top");
+const green = document.querySelector("#green");
+const red = document.querySelector("#red");
+const yellow = document.querySelector("#yellow");
+const blue = document.querySelector("#blue");
+const info = document.querySelector("#info");
+
+//This is a general wait delay which allows us to wait when the start button is pressed
+// as well as wait for flashes see https://www.sitepoint.com/delay-sleep-pause-wait/ for more details
+const delay = (delay) => new Promise((resolve) => setTimeout(resolve, delay))//creats a delay
+
+let computerSequence=[];   //stores the randomly generated computer sequence (sequence = flash of a light) during computer phase of game
+let userSequence=[];       //stores which button is pressed by the user during the userpick phase of gams
+let playingGame;           // when true we ae in the game loop playing the game
+let score=0;               //current user score for "that" game loop. Resets every game loop
+let topScore=0;            //highest score acheived from all game loops . Resets when browers is refreshed.
+let level=1;               //keep track of what level we are on. Timer will decreases at certain levels
+let timer=1000;            //this is how fast the lights will flash. Over the levels it will decrese. This is an input parameter to the delay.
+
+
+//listen for the start button to be clicked
+ startButton.addEventListener('click',async(event)=>{
+   document.getElementById("led").style.background="green";
+   info.innerHTML="Waiting...."
+   startButton.disabled=true;  //disable the start button
+   await delay(3000) ;         //wait 3s after the start button is pressed
+   info.innerHTML="Computers turn"
+   playingGame=true;           //we are playing the game
+   
+   startGame();                //start the game
+
+  
+ })
+
+
+async function endGame()
+{
+
+   info.innerHTML="Game Over" //display game over
+   document.getElementById("led").style.background="red"; //change led to red
+   computerSequence=[];//reset the comp sequence
+   userSequence=[];
+   playingGame=false;
+   level=0;
+   timer=1000;
+   score=0;
+   scoreDisplay.value=score;
+
+   for(let i=0;i<5;i++)//flasg buttons 5 times
+   {
+   flashColor();
+   await delay(500);
+   clearColor(); 
+   await delay(500);
+  
+}
+startButton.disabled=false;
+info.innerHTML="Press start to begin"
+
+}
+  function flashColor() {
+  green.style.backgroundColor = "#AAFF00";
+  red.style.backgroundColor = "#FF5733";
+  yellow.style.backgroundColor = "#FFFF00";
+  blue.style.backgroundColor = "#0096FF";
+  
+}
+function clearColor() {
+      green.style.backgroundColor = "green";
+      red.style.backgroundColor =  "darkred"
+      yellow.style.backgroundColor = "#8B8000";
+      blue.style.backgroundColor =  "darkblue";
+   }
+async function startGame()
+{
+   while(playingGame) //game loop
+   {
+
+      var rand=Math.floor(Math.random() * 4); //generate a random number 0-green,1-red,2-yellow,3-blue
+      computerSequence.push(rand);//add to computerSequence
+      //increase the flash speed at level 5,9 and 13
+      if(level==5)
+      {
+         timer=timer-200;
+      }
+      else if(level==9)
+      {
+         timer=timer-300;
+      }
+       else  if(level==13)
+      {
+         timer=timer-400;
+      }
+     //This for loop represents the computers turn. Goes thru comp sequence and flashes buttons
+     info.innerHTML="Computers turn";
+      for (let i = 0; i < computerSequence.length; i++) {
+         
+         if(computerSequence[i]==0){
+            document.getElementById("green").style.background="#AAFF00";
+            await delay(timer);
+            document.getElementById("green").style.background="green";
+         }
+         else if(computerSequence[i]==1)
+         {
+            document.getElementById("red").style.background="#FF5733";
+            await delay(timer);
+            document.getElementById("red").style.background="darkred";
+         }
+         else if(computerSequence[i]==2)
+         {
+            document.getElementById("yellow").style.background="#FFFF00";
+            await delay(timer);
+            document.getElementById("yellow").style.background="#8B8000";
+         }
+         else if(computerSequence[i]==3)
+         {
+            document.getElementById("blue").style.background="#0096FF";
+            await delay(timer);
+            document.getElementById("blue").style.background="darkblue";
+           
+         }
+            await delay(timer/2);
+      }
+      //After the computer is done we start the user phase here
+      //Every user phase we clear the user sequence
+      userSequence=[];
+      
+    
+         myVar = setTimeout( endGame, 5000);//start a global 5s timer
+         info.innerHTML="Users turn"
+         await userPicks();//wait for the user to pick 
+         clearTimeout(myVar);//restart the timer
+         
+      level++; 
+    
+   }
+
+}
+
+
+async function userPicks() {
+   // this function listens for which button is pressed and waits until the user has pressed enough buttons to match the current
+   // sequence.
+   green.addEventListener('click',btnResolverGreen);
+   red.addEventListener('click',btnResolverRed);
+   yellow.addEventListener('click',btnResolverYellow);
+   blue.addEventListener('click',btnResolverBlue);
+
+   for (let c = 0; c < computerSequence.length; c ++) {
+    
+    
+      await waitForPress();//wait for user press to match comp 
+    }
+
+
+   green.removeEventListener('click', btnResolverGreen);
+   red.removeEventListener('click', btnResolverRed);
+   yellow.removeEventListener('click', btnResolverYellow);
+   blue.removeEventListener('click', btnResolverBlue);
+  
+ }
+
+ //adapted from https://stackoverflow.com/questions/65915371/how-do-i-make-the-program-wait-for-a-button-click-to-go-to-the-next-loop-iterati
+let waitForPressResolve;
+
+function waitForPress() {
+   
+         return new Promise(resolve => waitForPressResolve = resolve); 
+}
+
+
+//if green has been pressed store this in the sequence array and check if the user made a mistake with the input sequence
+async function btnResolverGreen() {
+   userSequence.push(0);
+   document.getElementById("green").style.background="#AAFF00";
+   await delay(50);
+   document.getElementById("green").style.background="green";
+   await delay(50);
+   check();
+   if (waitForPressResolve) waitForPressResolve();
+ }
+ //if red has been pressed store this in the sequence array and check if the user made a mistake with the input sequence
+ async function btnResolverRed() {
+   userSequence.push(1);
+   document.getElementById("red").style.background="#FF5733";
+   await delay(50);
+   document.getElementById("red").style.background="darkred";
+   await delay(50);
+   check();
+   if (waitForPressResolve) waitForPressResolve();
+ }
+ //if yellow has been pressed store this in the sequence array and check if the user made a mistake with the input sequence
+ async function btnResolverYellow() {
+   userSequence.push(2);
+   document.getElementById("yellow").style.background="#FFFF00";
+   await delay(50);
+   document.getElementById("yellow").style.background="#8B8000";
+   await delay(50);
+   check();
+   if (waitForPressResolve) waitForPressResolve();
+ }
+ //if blue has been pressed store this in the sequence array and check if the user made a mistake with the input sequence
+ async function btnResolverBlue() {
+   userSequence.push(3);
+   document.getElementById("blue").style.background="#0096FF";
+   await delay(50);
+   document.getElementById("blue").style.background="darkblue";
+   await delay(50);
+   check();
+   if (waitForPressResolve) waitForPressResolve();
+ }
+
+ 
+ function check()
+ {
+   //checks if the user has inputed a matching sequence if so we increase the score else we end the game
+   let pass=true;
+   for (let i = 0; i < userSequence.length; i ++) {
+
+      if(computerSequence[i]!=userSequence[i])
+      {
+         endGame();
+         pass=false;
+      }
+      
+    }
+    //keeping track of the score
+    if(pass)
+    {
+      score++;
+      if(topScore<score)
+      {
+         topScore=score;
+      }
+    }
+   scoreDisplay.value=score;//display current score
+   topScoreDisplay.value=topScore;//display top socre
+ }
+ //END of Assignment
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    
+
+
+ 
+
+    </script>
+</body>
+</html>
