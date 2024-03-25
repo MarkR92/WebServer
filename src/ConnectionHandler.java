@@ -92,10 +92,11 @@ import java.io.IOException;
                             
                             clientOutput.flush();//empty the built up buffer
                         }
+                        //I did something here
                         else if(resource.equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                               StringBuilder htmlContent = new StringBuilder();
-                        try(BufferedReader reader = new BufferedReader(new FileReader("index.html")))
+                        try(BufferedReader reader = new BufferedReader(new FileReader("index.html"))) 
                         {
                             String htmlLine;
                             while((htmlLine = reader.readLine()) != null)
