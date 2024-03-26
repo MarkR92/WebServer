@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .container {
+        width: 300px;
+        height: 300px;
+        outline: solid 1px black;
+        margin: 0 auto;
+        z-index: 0;
+    }
+    
+</style>
+</head>
+<body>
+      
+   <div class ="container"  id="logincontainer">
+   <div>
+     <form>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="pwd">Password:</label><br>
+        <input type="password" id="pwd" name="pwd">
+      </form>
+    <input type="button" value="Login" id ="login" onclick="login(document.getElementById('username').value,document.getElementById('pwd').value)"/>
+    </div>
+  
+    </div>
+
+
+    <script>
+             const Http = new XMLHttpRequest();
+
+        function login(user ,pwd)
+        {
+           
+            const url ='http://localhost:8180/login';
+            Http.open("POST",url);
+            Http.send("username="+user+"&password="+pwd);
+            
+       Http.onreadystatechange=(e)=>{
+        console.log(Http.responseText);
+       
+
+        if(Http.readyState==4 &&Http.status==200)
+        {
+           window.location.href="Simon";
+            // var Str =  
+            //     '<!DOCTYPE HTML><html><head><title>Check if an element is a div'+ 
+            //     ' in JavaScript.</title></head><body style = "text-align:center;">'+ 
+            //     '<h2 style = "color:green;">GeeksForGeeks</h2><p>'+ 
+            //     'This is replaced element.</p></body>  </html>'; 
+
+            // var Str=''
+            // var newHTML = document.open("text/html", "replace"); 
+            // newHTML.write(Str); 
+            // newHTML.close(); 
+            //window.location.href = "Simon.html";
+            //location.assign("Simon");
+            // document.open();
+            // document.write(
+                
+            // );
+          
+            // document.close();
+           // container.innerHTML=Http.responseText;
+            //container.appendChild(div2);
+            // if (x.style.display === "none") {
+            //  x.style.display = "block";
+            // } else {
+            //   x.style.display = "none";
+            // }
+            // var x = document.getElementById("container2");
+            
+            //  x.style.display = "block";
+            //  var x = document.getElementById("infocon");
+            
+            // x.style.display = "block";
+//console.log(location.href);
+         //reloadPage();
+             
+            
+            
+        }
+       }
+        }
+        function reloadPage()
+         {
+            //location.replace(location.href);
+            location.reload(true);
+        }
+   
+
+        
+</script>
+</body>
+</html>
