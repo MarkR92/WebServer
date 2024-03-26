@@ -80,7 +80,7 @@ import java.io.IOException;
                             //OutputStream clientOutput=socket.getOutputStream();//output all responses
                             
                             clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-                            clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+                            clientOutput.write(("Access-Control-Allow-Origin: http://20.84.89.246:8080\r\n").getBytes());
                             clientOutput.write(("\r\n").getBytes());//blank line
                             //people are contained in an arraylist. So when queried we output everyone in the list
                             for(int i=0;i<people.size();i++)
@@ -232,7 +232,7 @@ import java.io.IOException;
                         {
                             //System.out.println("here");
                             clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-                            clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+                            clientOutput.write(("Access-Control-Allow-Origin: http://20.84.89.246:8080\r\n").getBytes());
                             clientOutput.write(("\r\n").getBytes());//blank line
                             clientOutput.write(("200").getBytes());
                             clientOutput.flush();//empty the built up buffer
@@ -243,7 +243,7 @@ import java.io.IOException;
                             //OutputStream clientOutput=socket.getOutputStream();//output all responses
                             clientOutput.write(("HTTP/1.1 401 OK\r\n").getBytes());//encode to bytes
                             clientOutput.write(("Login for "+username+" failed. Invalid user name or password\r\n").getBytes());//encode to bytes
-                            clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+                            clientOutput.write(("Access-Control-Allow-Origin: http://20.84.89.246:8080\r\n").getBytes());
                             clientOutput.write(("\r\n").getBytes());//blank line
                             
                             
