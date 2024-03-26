@@ -3,27 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<style>
-    .container {
-        width: 300px;
-        height: 300px;
-        outline: solid 1px black;
-        margin: 0 auto;
-        z-index: 0;
-    }
-    /* .container2 {
-        width: 300px;
-        height: 300px;
-        outline: solid 1px red;
-        margin: 0 auto;
-        z-index: 0;
-        display:none;
-    } */
-    /* main container we stick all div's onto */
-    
-.container2 {
-    display:none;
+    <title>Simon</title>
+
+    <style>
+        .container2 {
+ 
     width: 300px;
     height: 300px;
 
@@ -32,7 +16,7 @@
 }
 /* info container describing whats happening i.e waiting  */
 .infocontainer {
-    display: none;
+   
   width: 300px;
   height: 22px;
   /* outline: solid 1px black; */
@@ -209,13 +193,11 @@
   margin-top:-250px;
   border-radius:100px;
     }
-       
-
- 
-
-</style>
+    </style>
 </head>
 <body>
+   
+
     <div class ="infocontainer" id="infocon" >
         <p style="text-align: center; font-family: Orbitron"  id="info">Press start to begin</p>
       </div>
@@ -245,75 +227,12 @@
   
     <div class="led" id ="led"></div>
      </div>
+
+
      
-      
-  </div>
-   <div class ="container"  id="logincontainer">
-   <div>
-     <form>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="pwd">Password:</label><br>
-        <input type="password" id="pwd" name="pwd">
-      </form>
-    <input type="button" value="Login" id ="login" onclick="login(document.getElementById('username').value,document.getElementById('pwd').value)"/></div>
-  
-    </div>
-    <script>
-             const Http = new XMLHttpRequest();
-
-        function login(user ,pwd)
-        {
-           
-            const url ='http://20.84.89.246:8080/login';
-            Http.open("POST",url);
-            Http.send("username="+user+"&password="+pwd);
-            
-       Http.onreadystatechange=(e)=>{
-        console.log(Http.responseText);
-
-        if(Http.responseText==200)
-        {
-            var x = document.getElementById("logincontainer");
-            if (x.style.display === "none") {
-             x.style.display = "block";
-            } else {
-              x.style.display = "none";
-            }
-            var x = document.getElementById("container2");
-            
-             x.style.display = "block";
-             var x = document.getElementById("infocon");
-            
-            x.style.display = "block";
-
-             
-            
-            
-        }
-       }
-        }
-    //    const Http = new XMLHttpRequest();
-    //    const url ='http://localhost:8097/people';
-    //    Http.open("GET",url);
-    //    Http.send();
-
-        // function login(user,pwd)
-        // {
-        //     const ws=new WebSocket("wss://localhost:8097/");
-
-        //     ws.addEventListener("open", ()=>{
-        //         console.log("Connected");
-        //     });
-        //     console.log(user);
-        //     console.log(pwd);
-
-        //     ws.send(user);
-        // }
-
-        
-
-//tested with Win10 Chrome
+</body>
+<script>
+    //tested with Win10 Chrome
 
 //get refercences to html elements. 
 //This means we don't have to use OnClick in the html doc
@@ -560,11 +479,5 @@ async function btnResolverGreen() {
  //END of Assignment
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    
-
-
- 
-
-    </script>
-</body>
+</script>
 </html>

@@ -80,7 +80,7 @@ import java.io.IOException;
                             //OutputStream clientOutput=socket.getOutputStream();//output all responses
                             
                             clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-                            clientOutput.write(("Access-Control-Allow-Origin: http://20.84.89.246:8080\r\n").getBytes());
+                            clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
                             clientOutput.write(("\r\n").getBytes());//blank line
                             //people are contained in an arraylist. So when queried we output everyone in the list
                             for(int i=0;i<people.size();i++)
@@ -95,8 +95,28 @@ import java.io.IOException;
                         //I did something here
                         else if(resource.equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
-                              StringBuilder htmlContent = new StringBuilder();
-                        try(BufferedReader reader = new BufferedReader(new FileReader("index.html"))) 
+                        StringBuilder htmlContent = new StringBuilder();
+                        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\login.html"))) 
+                        {
+                            String htmlLine;
+                            while((htmlLine = reader.readLine()) != null)
+                            {
+                                htmlContent.append(htmlLine).append("\n");
+                            }
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    // Write the HTML content to the output stream
+                    clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());
+                    clientOutput.write(("\r\n").getBytes());
+                    clientOutput.write(htmlContent.toString().getBytes());
+                    clientOutput.flush();
+                        }
+                        else if(resource.equals("/Simon"))//the root doesnt do anything rn. Just a "welcome page"
+                        {
+                        StringBuilder htmlContent = new StringBuilder();
+                        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\simon.html"))) 
                         {
                             String htmlLine;
                             while((htmlLine = reader.readLine()) != null)
@@ -231,11 +251,26 @@ import java.io.IOException;
                         if(username.equals("admin")&pwd.equals("admin"))
                         {
                             //System.out.println("here");
-                            clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-                            clientOutput.write(("Access-Control-Allow-Origin: http://20.84.89.246:8080\r\n").getBytes());
-                            clientOutput.write(("\r\n").getBytes());//blank line
-                            clientOutput.write(("200").getBytes());
-                            clientOutput.flush();//empty the built up buffer
+
+                            // StringBuilder htmlContent = new StringBuilder();
+                            // try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\simon.html"))) 
+                            // {
+                            //     String htmlLine;
+                            //     while((htmlLine = reader.readLine()) != null)
+                            //     {
+                            //         htmlContent.append(htmlLine).append("\n");
+                            //     }
+                            // } catch (IOException e)
+                            // {
+                            //     e.printStackTrace();
+                            // }
+                        // Write the HTML content to the output stream
+                        clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());
+                        clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+                        clientOutput.write(("\r\n").getBytes());
+                       // clientOutput.write(htmlContent.toString().getBytes());
+                        clientOutput.flush();
+                            
                             
                         }
                         else
@@ -243,7 +278,7 @@ import java.io.IOException;
                             //OutputStream clientOutput=socket.getOutputStream();//output all responses
                             clientOutput.write(("HTTP/1.1 401 OK\r\n").getBytes());//encode to bytes
                             clientOutput.write(("Login for "+username+" failed. Invalid user name or password\r\n").getBytes());//encode to bytes
-                            clientOutput.write(("Access-Control-Allow-Origin: http://20.84.89.246:8080\r\n").getBytes());
+                            clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
                             clientOutput.write(("\r\n").getBytes());//blank line
                             
                             
