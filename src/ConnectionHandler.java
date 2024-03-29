@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Models.HttpRequestModel;
 import Services.DefaultHttpParser;
 import Services.IHttpRequestParser;
 
@@ -27,6 +28,7 @@ public class ConnectionHandler implements Runnable {
     @Override
     public void run() {
 
+
         BufferedReader in = null;
         OutputStream clientOutput = null;
 
@@ -35,17 +37,16 @@ public class ConnectionHandler implements Runnable {
             clientOutput = socket.getOutputStream();
             StringBuilder header = new StringBuilder();
 
-            String line = "";// temp holding one line of our message
-            line = in.readLine();// gives us the first line
+            String line = "";//temp holding one line of our message
+            line = in.readLine();//gives us the first line
             if (!line.isEmpty()) {
-                while (!line.isBlank())// while the line is not blank continue to read headers end with a blank line
+                while (!line.isBlank())//while the line is not blank continue to read headers end with a blank line
                 {
-                    header.append(line + "\r\n");// add line to request
-                    line = in.readLine();// check the next line
+                    header.append(line + "\r\n");//add line to request
+                    line = in.readLine();//check the next line
 
                 }
             }
-
             System.out.println();
             System.out.println("--REQUEST--");
 
@@ -56,10 +57,11 @@ public class ConnectionHandler implements Runnable {
             String host = request.Host; //Host: localhost:8180
             String method = request.RequestType; //GET, PUT, POST, DELETE
             String connection = request.Connection; //keep-alive
-            String path  = request.Path; // "/whatever.type" the route
+            String path = request.Path; // "/whatever.type" the route
 
             //the rest are put into "headers" which is a list of KeyValue Pairs
             List<Map.Entry<String, String>> headers = request.headers;
+            //if you want a specific header
             /*
                   KEY     : VALUE
             Sec-Fetch-Site: none
@@ -67,14 +69,12 @@ public class ConnectionHandler implements Runnable {
             Sec-Fetch-Dest: document
 
             */
+
             //Printing the request, use for testing
             System.out.println(header);
 
             // //send back appropriate content
-            //
-            // /*when the method in the header is a GET we retrieve the resource.
-            // * the GET method may have an optional body but we ignore for now
-            // */
+
             if (method.equals("GET")) {
                 if (path.equals("/people"))// check the resource we are looking for
                 {
@@ -127,9 +127,7 @@ public class ConnectionHandler implements Runnable {
                     clientOutput.write(("\r\n").getBytes());
                     clientOutput.write(htmlContent.toString().getBytes());
                     clientOutput.flush();
-                }
-
-                else {
+                } else {
                     // if the resource is not found output 404
                     // OutputStream clientOutput=socket.getOutputStream();//output all responses
                     clientOutput.write(("HTTP/1.1 404 Not Found\r\n").getBytes());// encode to bytes
@@ -269,8 +267,8 @@ public class ConnectionHandler implements Runnable {
                         clientOutput.write(("HTTP/1.1 401 OK\r\n").getBytes());// encode to bytes
                         clientOutput.write(
                                 ("Login for " + username + " failed. Invalid user name or password\r\n").getBytes());// encode
-                                                                                                                     // to
-                                                                                                                     // bytes
+                        // to
+                        // bytes
                         clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
                         clientOutput.write(("\r\n").getBytes());// blank line
 
@@ -279,7 +277,6 @@ public class ConnectionHandler implements Runnable {
 
                 }
             }
-            //
 
             socket.close();
             // get the first line of the request
@@ -288,6 +285,5 @@ public class ConnectionHandler implements Runnable {
         } catch (IOException e) {
 
         }
-
     }
 }
