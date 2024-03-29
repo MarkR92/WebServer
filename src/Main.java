@@ -30,7 +30,7 @@ public class Main {
 		
 		
 		try (//	try (//pick a port to connect and listen to.
-					ServerSocket socket = new ServerSocket(8180)) {
+					ServerSocket socket = new ServerSocket(8080)) {
 						System.out.println("Listening");
 						 Socket client;
 						
