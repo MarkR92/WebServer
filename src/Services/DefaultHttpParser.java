@@ -28,19 +28,17 @@ public class DefaultHttpParser implements IHttpRequestParser{
         model.Path = lineOneParts[1];// /path/to/file
         model.Connection = extractValue(lines, "Connection");
 
+        for (String line : lines) {
+            String[] parts = line.split(":", 2);
+            if (parts.length == 2) {
+                model.addHeader(parts[0].trim(), parts[1].trim());
+            } else if (parts.length > 2) {
+                String key = parts[0].trim();
+                String value = String.join(":", parts[1].trim(), parts[2].trim());
+                model.addHeader(key, value);
+            }
+        }
 
-//        for (String line : lines) {
-//
-//            String[] parts = line.split(":", 2);
-//            if (parts.length == 2) {
-//                model.getHeaders().put(parts[0].trim(), parts[1].trim());
-//            }
-//            else if (parts.length > 2) {
-//                String key = parts[0].trim();
-//                String value = parts[1].trim();
-//                model.getHeaders().put(key, value);
-//            }
-//        }
 
 
         return model;
