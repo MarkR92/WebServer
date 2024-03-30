@@ -92,7 +92,7 @@ public class ConnectionHandler implements Runnable {
         String methodType = method;
 
         if (fileName == null || fileName.equals("/")) {
-            fileName = "index.html";
+            fileName = "index.html"; //default page to return of websites, can make this configurable..
         } else if (fileName.startsWith("/")) {
             fileName = fileName.substring(1);
         }
