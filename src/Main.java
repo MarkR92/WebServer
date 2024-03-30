@@ -35,8 +35,7 @@ public class Main {
 	public static void main(String[] args) {
 
 
-		try (// try (//pick a port to connect and listen to.
-				ServerSocket socket = new ServerSocket(8180)) {
+		try (ServerSocket socket = new ServerSocket(8180)) {
 			System.out.println("Listening");
 			Socket client;
 

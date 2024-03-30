@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  /* main box location */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4070f4;
+}
+.wrapper {
+  /* main box looks */
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  padding: 34px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.wrapper h2 {
+  /* Registration word */
+  position: relative;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+
+.wrapper form {
+  /* Registration word location */
+  margin-top: 30px;
+}
+.wrapper form .input-box {
+  /* spacing between all parts */
+  height: 52px;
+  margin: 18px 0;
+}
+form .input-box input {
+  /* input box sizing */
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  border: 1.5px solid #c7bebe;
+  border-bottom-width: 2.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+form h3 {
+  /* already have an account */
+  color: #707070;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.input-box.button input {
+  /* register now */
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: #4070f4;
+  cursor: pointer;
+}
+.input-box.button input:hover {
+  /* register now gets darker */
+  background: #0e4bf1;
+}
+form .text h3 {
+  /* already have an account */
+  color: #333;
+  width: 100%;
+  text-align: center;
+}
+form .text h3 a {
+  /* Login now highlight */
+  color: #4070f4;
+  text-decoration: none;
+}
+form .text h3 a:hover {
+  /* underline Login now */
+  text-decoration: underline;
+}
