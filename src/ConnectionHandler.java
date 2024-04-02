@@ -51,15 +51,15 @@ import java.net.Socket;
                         if(request.getResource().equals("/people"))//check the resource we are looking for
                         {
                            
-                            response.sendResponseOk();
-                            //people are contained in an arraylist. So when queried we output everyone in the list
-                            for(int i=0;i<people.size();i++)
-                            {
-                                clientOutput.write((people.get(i)+" \r\n").getBytes());//encode to bytes
+                            // response.sendResponseOk();
+                            // //people are contained in an arraylist. So when queried we output everyone in the list
+                            // for(int i=0;i<people.size();i++)
+                            // {
+                            //     clientOutput.write((people.get(i)+" \r\n").getBytes());//encode to bytes
                                 
-                            }
+                            // }
                                            
-                            clientOutput.flush();//empty the built up buffer
+                            // clientOutput.flush();//empty the built up buffer
                         }
                         //I did something here
                         else if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
@@ -80,13 +80,18 @@ import java.net.Socket;
     //				 * which parser to use. currently only Content-Type: application/x-www-form-urlencoded . is supported but need to look into this more*/
                     else if(request.getMethod().equals("POST"))
                     {
-                        if(request.getResource().equals("/upload"))//check the resource we are looking for
-                        {
+                        // if(request.getResource().equals("/upload"))//check the resource we are looking for
+                        // {
+                            //response.sendResponseOk();
+
                            
-                           StaticWebPage webpage= new StaticWebPage();
-                          
-                           webpage.createStaticWebPage(request.getBody());  
-                        }
+                            
+                           StaticWebPage webpage= new StaticWebPage(request.getBody());
+                           Thread t = new Thread(webpage);
+                           t.start();
+                           response.findResource2();
+                         
+                        //}
                
                     
                     

@@ -5,20 +5,21 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class StaticWebPage {
+public class StaticWebPage implements Runnable{
 
     private static int port=9000;
+    private String body;
     
 
-    public StaticWebPage()
+    public StaticWebPage(String body)
     {
         
-       
+       this.body=body;
         port++;
         System.out.println("port "+port);
     }
 
-    public void createStaticWebPage(String body) throws IOException
+    public void createStaticWebPage() throws IOException
     {
             try (ServerSocket serverSocket2 = new ServerSocket(port))
                         {
@@ -57,8 +58,9 @@ public class StaticWebPage {
 
                                     clientOutput2.write(("HTTP/1.1 200 OK\r\n").getBytes());
                                     clientOutput2.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-                                    clientOutput2.write(("\r\n").getBytes());
+                                  
                                     clientOutput2.write(body.getBytes());
+                                    clientOutput2.write(("\r\n").getBytes());
                                     clientOutput2.flush();
                                                   
                                     client2.close();
@@ -71,6 +73,17 @@ public class StaticWebPage {
                         {              
                             System.out.println(e);
                         }    
+    }
+
+    @Override
+    public void run() {
+      try {
+        createStaticWebPage();
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+      //  throw new UnsupportedOperationException("Unimplemented method 'run'");
     }
     
 }
