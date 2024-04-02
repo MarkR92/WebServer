@@ -37,7 +37,13 @@ using ajax to request for a webpage to be made -->
                 alert("New Website");
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost:8080'
+                    url: 'http://localhost:8080',
+                    CORS: true ,
+                    contentType:'application/json',
+                    secure: true,
+                    headers: {
+                    'Access-Control-Allow-Origin': '*',
+                        },
                 }) 
                 e.preventDefault();     
                 });
