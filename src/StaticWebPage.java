@@ -7,22 +7,24 @@ import java.net.Socket;
 
 public class StaticWebPage {
 
-    private static int port;
+    private static int port=9001;
+    
 
     public StaticWebPage()
     {
-        port=9000;
+        
+       
         port++;
         System.out.println("port "+port);
     }
 
     public void createStaticWebPage() throws IOException
     {
-            try (ServerSocket serverSocket2 = new ServerSocket(port++))
+            try (ServerSocket serverSocket2 = new ServerSocket(port))
                         {
                             
                             System.out.println("Website hosted on port "+port);
-                            port++;
+                        
                 
                             while(true){
                 
