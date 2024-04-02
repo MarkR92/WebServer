@@ -1,5 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
@@ -52,6 +55,58 @@ public class Request implements HttpHandler {
 
         return resource;
 
+    }
+    public int getContentLength()
+    {
+        int contentLength=0;
+                                //parse out content length using the much beloved regex
+            // Define the pattern to match "Content-Length: value"
+        Pattern pattern = Pattern.compile("Content-Length: (\\d+)");
+
+        // Create a matcher with the input headers
+        Matcher matcher = pattern.matcher(header);
+
+        // Check if the pattern is found
+        if (matcher.find()) {
+            // Get the matched content length value
+            contentLength= Integer.parseInt(matcher.group(1));
+            System.out.println("Content-Length: " + contentLength);
+        } else {
+            System.out.println("Content-Length not found in the headers.");
+        }
+        return contentLength;
+    }
+    public String getBody() throws IOException
+    {
+        String body="";
+        int contentLength=getContentLength();
+        //System.out.println("h");
+//						int bytesRemaining = 38;
+        
+        //while we still have content to take in to build the body
+        while (contentLength > 0)  {
+            
+        
+            contentLength--;
+            
+            body+=""+(char)reader.read();//check the next char
+            
+            //System.out.println(body);
+        }
+       // System.out.println(body+"out");
+
+
+          // Split the input into lines
+        String[] lines = body.split("\n");
+
+        // Exclude the first 3 lines and the last line
+        String[] result = Arrays.copyOfRange(lines, 3, lines.length - 1);
+
+        // Join the lines back into a single string
+        String output = String.join("\n", result);
+
+       // System.out.println(output);
+        return output;
     }
 
     @Override

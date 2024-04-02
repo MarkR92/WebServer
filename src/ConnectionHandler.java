@@ -50,11 +50,7 @@ import java.net.Socket;
                     {
                         if(request.getResource().equals("/people"))//check the resource we are looking for
                         {
-                            //OutputStream clientOutput=socket.getOutputStream();//output all responses
-                            
-                            // clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-                            // clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-                            // clientOutput.write(("\r\n").getBytes());//blank line
+                           
                             response.sendResponseOk();
                             //people are contained in an arraylist. So when queried we output everyone in the list
                             for(int i=0;i<people.size();i++)
@@ -71,34 +67,10 @@ import java.net.Socket;
                             response.findResource();
                         }
 
-                    //     else if(resource.equals("/Simon"))//the root doesnt do anything rn. Just a "welcome page"
-                    //     {
-                    //     StringBuilder htmlContent = new StringBuilder();
-                    //     try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\simon.html"))) 
-                    //     {
-                    //         String htmlLine;
-                    //         while((htmlLine = reader.readLine()) != null)
-                    //         {
-                    //             htmlContent.append(htmlLine).append("\n");
-                    //         }
-                    //     } catch (IOException e)
-                    //     {
-                    //         e.printStackTrace();
-                    //     }
-                    // // Write the HTML content to the output stream
-                    // clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());
-                    // clientOutput.write(("\r\n").getBytes());
-                    // clientOutput.write(htmlContent.toString().getBytes());
-                    // clientOutput.flush();
-                    //     }
+                   
 
                         else {
-                            //if the resource is not found output 404
-                            //OutputStream clientOutput=socket.getOutputStream();//output all responses
-                            // clientOutput.write(("HTTP/1.1 404 Not Found\r\n").getBytes());//encode to bytes
-                            // clientOutput.write(("\r\n").getBytes());//blank line
-                            // clientOutput.write(("404").getBytes());//encode to bytes
-                            // clientOutput.flush();//empty the built up buffer
+                   
                             response.sendResponseNotFound();
                         }
                         
@@ -108,47 +80,24 @@ import java.net.Socket;
     //				 * which parser to use. currently only Content-Type: application/x-www-form-urlencoded . is supported but need to look into this more*/
                     else if(request.getMethod().equals("POST"))
                     {
-                        System.out.println("here create");
-                        //Increment the port:
-                        StaticWebPage webpage= new StaticWebPage();
-                        
+                        if(request.getResource().equals("/upload"))//check the resource we are looking for
+                        {
+                           
+                           StaticWebPage webpage= new StaticWebPage();
+                          
+                           webpage.createStaticWebPage(request.getBody());  
+                        }
+               
+                    
+                    
 
-                        //Create new server on specified port:
-                       webpage.createStaticWebPage();              
+
+
     //                     if(resource.equals("/people"))
     //                     {
-    //                         int contentLength=0;
-    //                         //parse out content length using the much beloved regex
-    //                            // Define the pattern to match "Content-Length: value"
-    //                         Pattern pattern = Pattern.compile("Content-Length: (\\d+)");
-    
-    //                         // Create a matcher with the input headers
-    //                         Matcher matcher = pattern.matcher(header);
-    
-    //                         // Check if the pattern is found
-    //                         if (matcher.find()) {
-    //                             // Get the matched content length value
-    //                             contentLength= Integer.parseInt(matcher.group(1));
-    //                             System.out.println("Content-Length: " + contentLength);
-    //                         } else {
-    //                             System.out.println("Content-Length not found in the headers.");
-    //                         }
+    //                        
                             
-    //                         String body="";
-    //                         //System.out.println("h");
-    // //						int bytesRemaining = 38;
-                            
-    //                         //while we still have content to take in to build the body
-    //                         while (contentLength > 0)  {
-                                
-                            
-    //                             contentLength--;
-                                
-    //                             body+=""+(char)in.read();//check the next char
-                                
-    //                             //System.out.println(body);
-    //                         }
-    //                         System.out.println(body+"out");
+    //                        
     //                         Pattern pattern2 = Pattern.compile("person\\d=([^&]+)");
     
     //                         // Create a matcher with the input string
