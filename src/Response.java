@@ -44,14 +44,14 @@ public class Response {
       output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
       output.write(("\r\n").getBytes());
       output.write(htmlContent.toString().getBytes());
-        output.flush();
+      output.flush();
     }
-   public void findResource2() throws IOException{
+   public void findResource2(int port) throws IOException{
 
         output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-        output.write(("url:localhost:port").getBytes());//blank line
         output.write(("\r\n").getBytes());//blank line
+        output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
         output.flush();
     }
   

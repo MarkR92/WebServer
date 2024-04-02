@@ -3,16 +3,16 @@
 
 import java.io.IOException;
     import java.io.InputStreamReader;
-    import java.io.OutputStream;
+  
 
 import java.net.Socket;
-    import java.util.ArrayList;
+ //   import java.util.ArrayList;
     //import java.util.regex.Matcher;
     //import java.util.regex.Pattern;
     
     public class ConnectionHandler implements Runnable  {
     
-        private static ArrayList<String> people= new ArrayList<>();
+       // private static ArrayList<String> people= new ArrayList<>();
         private Socket socket;
 
         public ConnectionHandler(Socket socket )
@@ -24,7 +24,7 @@ import java.net.Socket;
         public void run() {
             
              BufferedReader in = null;
-             OutputStream clientOutput = null;
+          //   OutputStream clientOutput = null;
              
              try
              {
@@ -32,7 +32,7 @@ import java.net.Socket;
                   Request request = new Request(in);//create a new request from the buffer
                   request.readHeader();//each HTTP request has a header
 
-                  clientOutput = socket.getOutputStream();
+                 // clientOutput = socket.getOutputStream();
 
                   Response response= new Response(socket.getOutputStream());
                     /*the first part of the response is the header. the first line of the header contains info such 
@@ -80,131 +80,19 @@ import java.net.Socket;
     //				 * which parser to use. currently only Content-Type: application/x-www-form-urlencoded . is supported but need to look into this more*/
                     else if(request.getMethod().equals("POST"))
                     {
-                        // if(request.getResource().equals("/upload"))//check the resource we are looking for
-                        // {
+                        if(request.getResource().equals("/upload"))//check the resource we are looking for
+                        {
                             //response.sendResponseOk();
 
                            
                             
                            StaticWebPage webpage= new StaticWebPage(request.getBody());
+                           int port=webpage.getPort();
                            Thread t = new Thread(webpage);
                            t.start();
-                           response.findResource2();
-                         
-                        //}
-               
-                    
-                    
+                           response.findResource2(port);
+                        }
 
-
-
-    //                     if(resource.equals("/people"))
-    //                     {
-    //                        
-                            
-    //                        
-    //                         Pattern pattern2 = Pattern.compile("person\\d=([^&]+)");
-    
-    //                         // Create a matcher with the input string
-    //                         Matcher matcher2 = pattern2.matcher(body);
-    
-    //                         // Find the names this only works for the following format person1=mark&person2=rob&person3=khate&person4=dan&person5=dorian
-    //                         while (matcher2.find()) {
-    //                             String name = matcher2.group(1);
-    //                             System.out.println(name);
-    //                             people.add(name);
-    //                             people.size();
-    //                         }
-    //                         //OutputStream clientOutput=socket.getOutputStream();//output all responses
-    //                         clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-    //                         clientOutput.write(("\r\n").getBytes());//blank line
-                            
-                            
-    //                         clientOutput.flush();//empty the built up buffer
-            
-                  
-                    
-    //                 }
-    //                 else if(resource.equals("/login")) {
-					
-    //                     int contentLength=0;
-                        
-    //                     Pattern pattern = Pattern.compile("Content-Length: (\\d+)");
-    //                     Matcher matcher = pattern.matcher(header);
-    
-    //                     // Check if the pattern is found
-    //                     if (matcher.find()) {
-                          
-    //                         contentLength= Integer.parseInt(matcher.group(1));
-                           
-    //                     } else {
-    //                         System.out.println("Content-Length not found in the headers.");
-    //                     }
-                        
-    //                     String body="";
-                    
-    //                     while (contentLength > 0)  {
-                            
-                        
-    //                         contentLength--;
-                            
-    //                         body+=""+(char)in.read();//check the next char
-                            
-    //                         //System.out.println(body);
-    //                     }
-    //                     //System.out.println(body+"out");
-    //                      pattern = Pattern.compile("username=([^&]+)&password=([^&]+)");
-    
-    //                     // Create a matcher with the input string
-    //                      matcher = pattern.matcher(body);
-    //                      String username="";
-    //                      String pwd ="";
-    //                     // Find the names this only works for the following format person1=mark&person2=rob&person3=khate&person4=dan&person5=dorian
-    //                     while (matcher.find()) {
-    //                         username = matcher.group(1);
-    //                         //System.out.println(username);
-    //                         pwd = matcher.group(2);
-    //                        // System.out.println(pwd);
-                            
-    //                     }
-    //                     if(username.equals("admin")&pwd.equals("admin"))
-    //                     {
-    //                         //System.out.println("here");
-
-    //                         // StringBuilder htmlContent = new StringBuilder();
-    //                         // try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\simon.html"))) 
-    //                         // {
-    //                         //     String htmlLine;
-    //                         //     while((htmlLine = reader.readLine()) != null)
-    //                         //     {
-    //                         //         htmlContent.append(htmlLine).append("\n");
-    //                         //     }
-    //                         // } catch (IOException e)
-    //                         // {
-    //                         //     e.printStackTrace();
-    //                         // }
-    //                     // Write the HTML content to the output stream
-    //                     clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());
-    //                     clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-    //                     clientOutput.write(("\r\n").getBytes());
-    //                    // clientOutput.write(htmlContent.toString().getBytes());
-    //                     clientOutput.flush();
-                            
-                            
-    //                     }
-    //                     else
-    //                     {
-    //                         //OutputStream clientOutput=socket.getOutputStream();//output all responses
-    //                         clientOutput.write(("HTTP/1.1 401 OK\r\n").getBytes());//encode to bytes
-    //                         clientOutput.write(("Login for "+username+" failed. Invalid user name or password\r\n").getBytes());//encode to bytes
-    //                         clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-    //                         clientOutput.write(("\r\n").getBytes());//blank line
-                            
-                            
-    //                         clientOutput.flush();//empty the built up buffer
-    //                     }
-                    
-    //                 }
                     }
     //
                     

@@ -18,7 +18,10 @@ public class StaticWebPage implements Runnable{
         port++;
         System.out.println("port "+port);
     }
-
+    public int getPort()
+    {
+        return port;
+    }
     public void createStaticWebPage() throws IOException
     {
             try (ServerSocket serverSocket2 = new ServerSocket(port))
@@ -38,21 +41,6 @@ public class StaticWebPage implements Runnable{
                                     System.out.println("--REQUEST--");
                                     System.out.println(request2);
 
-
-                                    // StringBuilder htmlContent2 = new StringBuilder();
-
-                                    // //Read in a HTML file:
-                                    // try(BufferedReader br2 = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\simon.html"))) 
-                                    // {
-                                    //     String htmlLine2;
-                                    //     while((htmlLine2 = br2.readLine()) != null)
-                                    //     {
-                                    //         htmlContent2.append(htmlLine2).append("\n");
-                                    //     }
-                                    // } catch (IOException e)
-                                    // {
-                                    //     e.printStackTrace();
-                                    // }
                                     // Write the HTML content to the output stream
                                     OutputStream clientOutput2 = client2.getOutputStream();
 
@@ -80,7 +68,7 @@ public class StaticWebPage implements Runnable{
       try {
         createStaticWebPage();
     } catch (IOException e) {
-        // TODO Auto-generated catch block
+      
         e.printStackTrace();
     }
       //  throw new UnsupportedOperationException("Unimplemented method 'run'");
