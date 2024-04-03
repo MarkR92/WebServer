@@ -12,6 +12,7 @@ import java.io.IOException;
     public class ConnectionHandler implements Runnable  {
     
         private static ArrayList<String> people= new ArrayList<>();
+        private static ArrayList<Users> userList= new ArrayList<>();
         private Socket socket;
         public ConnectionHandler(Socket socket )
         {
@@ -96,7 +97,7 @@ import java.io.IOException;
                         else if(resource.equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                         StringBuilder htmlContent = new StringBuilder();
-                        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\login.html"))) 
+                        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\khate\\Desktop\\WebServer\\src\\login2.html"))) 
                         {
                             String htmlLine;
                             while((htmlLine = reader.readLine()) != null)
@@ -116,7 +117,7 @@ import java.io.IOException;
                         else if(resource.equals("/Simon"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                         StringBuilder htmlContent = new StringBuilder();
-                        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\simon.html"))) 
+                        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\khate\\Desktop\\WebServer\\src\\simon.html"))) 
                         {
                             String htmlLine;
                             while((htmlLine = reader.readLine()) != null)
@@ -149,7 +150,15 @@ import java.io.IOException;
     //				 * which parser to use. currently only Content-Type: application/x-www-form-urlencoded . is supported but need to look into this more*/
                     else if(method.equals("POST"))
                     {
-                                        
+                        if(resource.equals("/Users"))
+                        {
+                            //i put in code here
+                            //Pattern pattern2 = Pattern.compile("person\\d=([^&]+)");
+                            //user=khate&pwd=random&email=" "
+                            //userList.add(new Users(username, pwd, email));
+
+
+                        }                
                         if(resource.equals("/people"))
                         {
                             int contentLength=0;
@@ -194,6 +203,7 @@ import java.io.IOException;
                                 String name = matcher2.group(1);
                                 System.out.println(name);
                                 people.add(name);
+                                //userList.add(new Users(username, pwd, email));
                                 people.size();
                             }
                             //OutputStream clientOutput=socket.getOutputStream();//output all responses
