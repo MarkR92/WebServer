@@ -28,7 +28,7 @@ public class Response {
     public void findResource() throws IOException
     {
      StringBuilder htmlContent = new StringBuilder();
-        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\upload.html"))) 
+        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\rootadmin\\Desktop\\Web Server Folder\\WebServer\\src\\upload.html"))) 
          {
             String htmlLine;
             while((htmlLine = reader.readLine()) != null)
@@ -51,7 +51,7 @@ public class Response {
         output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
         output.write(("\r\n").getBytes());//blank line
-        output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
+        output.write(("<h1>url:20.84.89.246:"+port+"</h1>").getBytes());//blank line
         output.flush();
     }
   
