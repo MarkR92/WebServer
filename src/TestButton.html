@@ -35,14 +35,18 @@ using ajax to request for a webpage to be made -->
                 $('.buttons').click(function(e) {
                 
                 alert("New Website");
+                
+
                 $.ajax({
                     type: 'POST',
                     url: 'http://localhost:8080',
                     CORS: true ,
                     contentType:'application/json',
                     secure: true,
+                    data: file,
                     headers: {
                     'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
                         },
                 }) 
                 e.preventDefault();     

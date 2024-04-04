@@ -96,7 +96,7 @@ public class Request implements HttpHandler {
        // System.out.println(body+"out");
 
 
-          // Split the input into lines
+        //Split the input into lines
         String[] lines = body.split("\n");
 
         // Exclude the first 3 lines and the last line
@@ -105,7 +105,7 @@ public class Request implements HttpHandler {
         // Join the lines back into a single string
         String output = String.join("\n", result);
 
-       // System.out.println(output);
+        // System.out.println(body);
         return output;
     }
 

@@ -28,7 +28,7 @@ public class Response {
     public void findResource() throws IOException
     {
      StringBuilder htmlContent = new StringBuilder();
-        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\upload.html"))) 
+        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\src\\upload.html")))
          {
             String htmlLine;
             while((htmlLine = reader.readLine()) != null)
@@ -42,6 +42,7 @@ public class Response {
 
       output.write(("HTTP/1.1 200 OK\r\n").getBytes());
       output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+      output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
       output.write(("\r\n").getBytes());
       output.write(htmlContent.toString().getBytes());
       output.flush();
@@ -50,10 +51,32 @@ public class Response {
 
         output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+        output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
         output.write(("\r\n").getBytes());//blank line
         output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
         output.flush();
-    }
+
+    } 
+   public void findResource3(String body) throws IOException{
+     
+        output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+        output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+        output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+
+
+        output.write(body.getBytes());
+        output.write(("\r\n").getBytes());
+        output.flush();
+ 
+
+    } 
+   public void findResource4(String body) throws IOException{
+     
+    output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+    output.write(("\r\n").getBytes());//blank line
+    output.flush();
+    } 
+
   
     
 }

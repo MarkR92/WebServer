@@ -6,11 +6,13 @@ import java.io.IOException;
   
 
 import java.net.Socket;
- //   import java.util.ArrayList;
+    import java.util.ArrayList;
     //import java.util.regex.Matcher;
     //import java.util.regex.Pattern;
     
     public class ConnectionHandler implements Runnable  {
+
+        private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
     
        // private static ArrayList<String> people= new ArrayList<>();
         private Socket socket;
@@ -87,10 +89,48 @@ import java.net.Socket;
                            
                             
                            StaticWebPage webpage= new StaticWebPage(request.getBody());
+                           webPageList.add(webpage);
+
                            int port=webpage.getPort();
                            Thread t = new Thread(webpage);
                            t.start();
+                           
                            response.findResource2(port);
+                        }
+
+                    }
+                    else if(request.getMethod().equals("PUT"))
+                    {
+                        if(request.getResource().equals("/update"))//check the resource we are looking for
+                        {
+                            // System.out.println("hello!!!!!!");
+                            // request.getBody();
+
+                            for (StaticWebPage staticWebPage : webPageList) {
+                                System.out.println(staticWebPage.getPort());
+
+                                if(staticWebPage.getPort() == 9001){
+                                    staticWebPage.updateStaticWebpage(request.getBody());
+                                }
+                            }
+                            
+
+                            //response.sendResponseOk();
+
+                           //Port 8001
+
+                           //Update exisitng webpage
+                           //Pass in port and new html file
+                           //Search static webpage arraylist for port
+                           //webpage.getPort()
+                           //webpage.updateStaticWebpage();
+
+                            // .write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+                            // output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+                            // output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+                            // output.write(("\r\n").getBytes());//blank line
+                            // output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
+                            // output.flush();
                         }
 
                     }
