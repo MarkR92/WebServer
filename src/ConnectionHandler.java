@@ -84,7 +84,7 @@ import java.net.Socket;
                         {
                             //response.sendResponseOk();
 
-                           
+                           System.out.println("here upload");
                             
                            StaticWebPage webpage= new StaticWebPage(request.getBody());
                            int port=webpage.getPort();
