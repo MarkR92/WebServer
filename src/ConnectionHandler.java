@@ -50,21 +50,7 @@ import java.net.Socket;
     //				*/
                     if(request.getMethod().equals("GET"))
                     {
-                        if(request.getResource().equals("/people"))//check the resource we are looking for
-                        {
-                           
-                            // response.sendResponseOk();
-                            // //people are contained in an arraylist. So when queried we output everyone in the list
-                            // for(int i=0;i<people.size();i++)
-                            // {
-                            //     clientOutput.write((people.get(i)+" \r\n").getBytes());//encode to bytes
-                                
-                            // }
-                                           
-                            // clientOutput.flush();//empty the built up buffer
-                        }
-                        //I did something here
-                        else if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
+                        if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                             response.findResource();
                         }
@@ -110,7 +96,15 @@ import java.net.Socket;
                                 System.out.println(staticWebPage.getPort());
 
                                 if(staticWebPage.getPort() == 9001){
-                                    staticWebPage.updateStaticWebpage(request.getBody());
+                                    staticWebPage.kill();
+                                    StaticWebPage webpage= new StaticWebPage(request.getBody(),9000);
+                                    webPageList.add(webpage);
+         
+                                    int port=9000;
+                                    Thread t = new Thread(webpage);
+                                    t.start();
+                                    
+                                    response.findResource2(port+1);
                                 }
                             }
                             
