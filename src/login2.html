@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Login Page/ Signup page</title>
-    <style>
+
+       <!-- START OF INTERNAL CSS CODE -->
+       <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
         /* default style for everything */
@@ -212,6 +214,8 @@
             transform: translateX(200%);
         }
     </style>
+
+
 </head>
 
 <body>
@@ -233,10 +237,12 @@
             <form>
                 <h1>Sign In</h1>
                 <input id="username" type="text" placeholder="Username">
-                <input id="pwd" type="password" placeholder="Password">
-                <!-- <a href="#">Forget Your Password?</a> -->
+                <input id="password" type="password" placeholder="Password">
+                <a href="#">Forget Your Password?</a>
                 <!-- button that operate function to sign in -->
-                <input type="button" value="Login" id ="login" onclick="test(document.getElementById('username').value,document.getElementById('pwd').value)" />
+                <!-- <button onclick="checkData()">Sign In</button> -->
+                <input type="button" value="Login" id ="login" onclick="login(document.getElementById('username').value,document.getElementById('pwd').value)"/>
+
             </form>
         </div>
         <!-- THE CONTAINER WITH MESSAGE FOR CREATE -->
@@ -257,11 +263,23 @@
         </div>
     </div>
 
-    <!-- START OF INTERNAL CSS CODE -->
-
 
     <!--START OF INTERNAL JS CODE -->
     <script>
+        // decalring vars
+        const container = document.getElementById('container');
+        const registerBtn = document.getElementById('register');
+        const loginBtn = document.getElementById('login');
+
+        // the function for the create account/log into account button
+        registerBtn.addEventListener('click', () => {
+            container.classList.add("active");
+        });
+
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove("active");
+        });
+
 
 const Http = new XMLHttpRequest();
 
@@ -285,42 +303,25 @@ if(Http.readyState==4 &&Http.status==200)
 
 }
 
-function test(user, pwd, email)
-{
-    //console.log(user+ " " + pwd);
-    const url ='http://localhost:8180/people'; 
-    Http.open("POST",url);
-    Http.send("username="+user+"&password="+pwd);
+// function test(user, pwd, email)
+// {
+//     console.log(user+ " " + pwd);
+//     const url ='http://localhost:8180/people'; 
+//     Http.open("POST",url);
+//     Http.send("username="+user+"&password="+pwd);
     
-Http.onreadystatechange=(e)=>{
-console.log(Http.responseText);
+// Http.onreadystatechange=(e)=>{
+// console.log(Http.responseText);
 
 
-if(Http.readyState==4 &&Http.status==200)
-{
-    //console.log("here");
-    //location.href='Simon';
-}
-}
+// if(Http.readyState==4 &&Http.status==200)
+// {
+//     //console.log("here");
+//     //location.href='Simon';
+// }
+// }
 
-}
-
-        // decalring vars
-        const container = document.getElementById('container');
-        const registerBtn = document.getElementById('register');
-        const loginBtn = document.getElementById('login');
-
-        // the function for the create account/log into account button
-        registerBtn.addEventListener('click', () => {
-            container.classList.add("active");
-        });
-
-        loginBtn.addEventListener('click', () => {
-            container.classList.remove("active");
-        });
-
-
-        //insert work for logging in function here cuz I tried ://
+// }
 
     </script>
     </body>

@@ -31,7 +31,7 @@ public class Main {
 		
 		try (//	try (//pick a port to connect and listen to.
 					ServerSocket socket = new ServerSocket(8180)) {
-						System.out.println("Listening");
+						System.out.println("Listening on port: " +socket);
 						 Socket client;
 						
 						 while((client=socket.accept())!=null)//while connected (forever)
