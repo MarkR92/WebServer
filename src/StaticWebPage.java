@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class StaticWebPage implements Runnable{
 
-    private static int port=9000;
+    private static int port=8000;
     private int currentPort;
     private String body;
     //private static Response clientOutput2;

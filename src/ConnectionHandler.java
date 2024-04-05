@@ -95,12 +95,12 @@ import java.net.Socket;
                             for (StaticWebPage staticWebPage : webPageList) {
                                 System.out.println(staticWebPage.getPort());
 
-                                if(staticWebPage.getPort() == 9001){
+                                if(staticWebPage.getPort() == 8001){
                                     staticWebPage.kill();
                                     StaticWebPage webpage= new StaticWebPage(request.getBody(),9000);
                                     webPageList.add(webpage);
          
-                                    int port=9000;
+                                    int port=8000;
                                     Thread t = new Thread(webpage);
                                     t.start();
                                     

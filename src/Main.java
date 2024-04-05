@@ -8,6 +8,7 @@ import java.net.Socket;
 public class Main {
 
 	private static int port=8000;
+	
 	public static void main(String[] args) {
 		
 		
@@ -29,7 +30,6 @@ public class Main {
 						e.printStackTrace();
 					}
 					}
-
 	
 
 
