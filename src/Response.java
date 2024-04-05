@@ -6,54 +6,63 @@ import java.io.OutputStream;
 public class Response {
     private OutputStream output;
 
-    public Response(OutputStream output) 
-    {
+    public Response(OutputStream output) {
         this.output = output;
     }
 
-    public void sendResponseOk() throws IOException
-    {
-        output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+    public void sendResponseOk() throws IOException {
+        output.write(("HTTP/1.1 200 OK\r\n").getBytes());// encode to bytes
         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-        output.write(("\r\n").getBytes());//blank line
-        output.flush();//empty the built up buffer
+        output.write(("\r\n").getBytes());// blank line
+        output.flush();// empty the built up buffer
     }
-    public void sendResponseNotFound() throws IOException
-    {
-        output.write(("HTTP/1.1 404 Not Found\r\n").getBytes());//encode to bytes
-        output.write(("\r\n").getBytes());//blank line
-        output.flush();//empty the built up buffer
+
+    public void sendResponseNotFound() throws IOException {
+        output.write(("HTTP/1.1 404 Not Found\r\n").getBytes());// encode to bytes
+        output.write(("\r\n").getBytes());// blank line
+        output.flush();// empty the built up buffer
     }
-    
-    public void findResource() throws IOException
-    {
-     StringBuilder htmlContent = new StringBuilder();
-        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\upload.html"))) 
-         {
+
+    public void findResource() throws IOException {
+        StringBuilder htmlContent = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(
+                "/Users/mehir/Library/Mobile Documents/com~apple~CloudDocs/GitHub/WebServerJava/src/upload.html"))) {
             String htmlLine;
-            while((htmlLine = reader.readLine()) != null)
-             {
-            htmlContent.append(htmlLine).append("\n");
-             }
-         } catch (IOException e)
-         {
+            while ((htmlLine = reader.readLine()) != null) {
+                htmlContent.append(htmlLine).append("\n");
+            }
+        } catch (IOException e) {
             e.printStackTrace();
-         }
+        }
 
-      output.write(("HTTP/1.1 200 OK\r\n").getBytes());
-      output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-      output.write(("\r\n").getBytes());
-      output.write(htmlContent.toString().getBytes());
-      output.flush();
-    }
-   public void findResource2(int port) throws IOException{
-
-        output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+        output.write(("HTTP/1.1 200 OK\r\n").getBytes());
         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-        output.write(("\r\n").getBytes());//blank line
-        output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
+        output.write(("\r\n").getBytes());
+        output.write(htmlContent.toString().getBytes());
         output.flush();
     }
-  
-    
+
+    public void findResource2(int port) throws IOException {
+
+        output.write(("HTTP/1.1 200 OK\r\n").getBytes());// encode to bytes
+        output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+        output.write(("\r\n").getBytes());// blank line
+        output.write(("<h1>url:localhost:" + port + "</h1>").getBytes());// blank line
+        output.flush();
+    }
+
+    public String findResource3() throws IOException {
+        StringBuilder htmlContent = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(
+                "/Users/mehir/Desktop/rootnames/content.html"))) {
+            String htmlLine;
+            while ((htmlLine = reader.readLine()) != null) {
+                htmlContent.append(htmlLine).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return htmlContent.toString();
+    }
 }
