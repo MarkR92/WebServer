@@ -72,7 +72,6 @@ import java.net.Socket;
                         {
                             //response.sendResponseOk();
 
-                           
                             
                            StaticWebPage webpage= new StaticWebPage(request.getBody());
                            webPageList.add(webpage);
@@ -83,62 +82,56 @@ import java.net.Socket;
                            
                            response.findResource2(port);
                         }
-
                     }
                     else if(request.getMethod().equals("PUT"))
                     {
-                        if(request.getResource().equals("/update"))//check the resource we are looking for
-                        {
-                            // System.out.println("hello!!!!!!");
-                            // request.getBody();
+                        // System.out.println(request.getResource());
+                        //System.out.println(request.getBody());
+                        // //if(request.getResource().equals("/update"))//check the resource we are looking for
+                        // //{
+                            int port = Integer.parseInt(request.getResource().split("/")[2]);
+                            //System.out.println(port);
 
                             for (StaticWebPage staticWebPage : webPageList) {
                                 System.out.println(staticWebPage.getPort());
 
-                                if(staticWebPage.getPort() == 8001){
+                                if(staticWebPage.getPort() == port){
                                     staticWebPage.kill();
-                                    StaticWebPage webpage= new StaticWebPage(request.getBody(),9000);
+                                    StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
                                     webPageList.add(webpage);
-         
-                                    int port=8000;
+            
                                     Thread t = new Thread(webpage);
                                     t.start();
                                     
-                                    response.findResource2(port+1);
+                                    response.findResource2(port);
                                 }
-                            }
-                            
-
-                            //response.sendResponseOk();
-
-                           //Port 8001
-
-                           //Update exisitng webpage
-                           //Pass in port and new html file
-                           //Search static webpage arraylist for port
-                           //webpage.getPort()
-                           //webpage.updateStaticWebpage();
-
-                            // .write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-                            // output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-                            // output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
-                            // output.write(("\r\n").getBytes());//blank line
-                            // output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
-                            // output.flush();
-                        }
+                            }     
+                        
 
                     }
-    //
-                    
-                    
-                    
+                    else if(request.getMethod().equals("DELETE"))
+                    {
+                        int port = Integer.parseInt(request.getResource().split("/")[2]);
+                        //System.out.println(port);
+
+                        for (StaticWebPage staticWebPage : webPageList) {
+                            System.out.println(staticWebPage.getPort());
+
+                            if(staticWebPage.getPort() == port){
+                                staticWebPage.kill();
+                                
+                                System.out.println("Website deleted on port "+port);
+                            }
+                        }     
+                    }                              
                     socket.close();
                     //get the first line of the request
                     //String firstLine=header.toString().split("\n")[0];
                   
              }
              catch (IOException e) 
-             {              
+             {   
+                         
                  
              }  
     

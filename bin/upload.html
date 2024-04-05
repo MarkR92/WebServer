@@ -18,6 +18,7 @@
         <input id="file" name="file" type="file"/>
         <button type="submit">Upload</button>
     </form>
+    <input type="number" id="quantity" name="quantity" min="1" max="10000"/>
 
     <form class = "submit2">
         <label for="file">Put</label>
@@ -25,52 +26,76 @@
         <button type="submit">Upload</button>
     </form>
 
+    <form class = "submit3">
+        <label for="quantity">Delete</label>  
+        <button type="submit">Upload</button>
+    </form>
+
       <script>
             $(document).ready(function(){
-                
+
                 $('.submit').unbind('submit').submit(function (e) {
                     
-                $.ajax({
-                    type: "POST",
-                    url: "http://20.84.89.246:8000/upload",
-                    crossDomain: true,
-                    data: new FormData(this),
-                    dataType: "json",
-                    contentType: "multipart/form-data",
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                    "Accept": "application/json"
-                    }
-                })
-                .done(function (data) {
-                    alert("poop");
-                    $('input[name=title]').val('');
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8000/upload",
+                        crossDomain: true,
+                        data:  new FormData(this),
+                        dataType: "json",
+                        contentType: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        headers: {
+                        "Accept": "application/json"
+                        }
+                    })
+                    .done(function (data) {
+                        alert("poop");
+                        $('input[name=title]').val('');
+                    });
+                    e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                        // meand that clicked submit button will not take the browser to a new URL.
                 });
-                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
-                                    // meand that clicked submit button will not take the browser to a new URL.
-                });
-                $('.submit2').unbind('submit').submit(function (e) {
+                
 
-                $.ajax({
-                    type: "PUT",
-                    url: "http://20.84.89.246:8000/update",
-                    crossDomain: true,
-                    data: new FormData(this),
-                    dataType: "json",
-                    contentType: "multipart/form-data",
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                    "Accept": "application/json"
-                    }
-                })
-                .done(function (data) {
-                    alert("poop");
-                    $('input[name=title]').val('');
-                });
-                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                $('.submit2').unbind('submit').submit(function (e) {
+                    $.ajax({
+                        type: "PUT",
+                        url: "http://localhost:8000/update/"+($('#quantity').val()),
+                        crossDomain: true,
+                        data: ((new FormData(this))),
+                        dataType: "json",
+                        contentType: "multipart/form-data",
+                        processData: false,
+                        contentType: undefined,
+                        headers: {
+                        "Accept": "application/json"
+                        }
+                    })
+                    .done(function (data) {
+                        alert("poop");
+                        $('input[name=title]').val('');
+                    });
+                    e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                                     // meand that clicked submit button will not take the browser to a new URL.
+                });
+
+
+                $('.submit3').unbind('submit').submit(function (e) {
+
+                    var port = $('input[name=quantity]').val();
+                    var myUrl = "http://localhost:8000/delete/"+port;
+
+                    $.ajax({
+                        type: "DELETE",
+                        url: myUrl,
+                    })
+                    .done(function (data) {
+                        alert("poop");
+                        $('input[name=title]').val('');
+                    });
+                    e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                        // meand that clicked submit button will not take the browser to a new URL.
                 });
 
             });
