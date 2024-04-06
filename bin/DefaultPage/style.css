@@ -1,0 +1,91 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(153deg, #bdc1d1 0%, #4b9ba2 100%);
+  margin: 0;
+  padding: 40px 0;
+  color: #333;
+  text-align: center;
+}
+
+#uploadForm {
+  background-color: #abcace;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  max-width: 600px;
+  margin: auto;
+  transform: translateY(0);
+  transition: transform 0.5s ease-out;
+}
+
+#uploadForm:hover {
+  transform: translateY(-5px);
+}
+
+/* Main form area */
+#uploadForm label {
+  display: block;
+  margin: 20px 0 10px;
+  color: #6a6f8c;
+  font-size: 16px;
+  font-weight: 00;
+}
+
+/* input area, smooth out edges */
+#uploadForm input[type="text"],
+#uploadForm input[type="file"] {
+  width: calc(100%);
+  padding: 12px 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+#uploadForm input[type="text"]:focus,
+#uploadForm input[type="file"]:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 8px rgba(102, 126, 234, 0.6);
+}
+
+/* upload button */
+#uploadForm button {
+  background-color: #57b6a5; /* Blue gradient */
+  color: white;
+  padding: 14px 20px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  width: calc(100% - 20px);
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#uploadForm button:hover {
+  background-color: #3ddfc4;
+}
+
+@media (max-width: 600px) {
+  #uploadForm {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+/* fade the form when you load the page */
+@keyframes fadeForm {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  animation: fadeForm 1.2s ease-out;
+}

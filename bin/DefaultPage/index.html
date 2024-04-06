@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folder Upload</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <form id="uploadForm">
+        <label text="folderName">Folder Name:</label>
+        <input type="text" id="folderName" name="folderName" required><br><br>
+
+        <label text="defaultPage">Default Page:</label>
+        <input type="text" id="defaultPage" name="defaultPage" placeholder="index.html" required><br><br>
+
+        <label text="folderInput">Select Folder:</label>
+        <input type="file" id="folderInput" name="files" webkitdirectory directory multiple required><br><br>
+
+        <button type="submit">Upload</button>
+    </form>
+
+    <script src="upload.js"></script>
+</body>
+
+</html>
+
+// the box area below im hoping we can get the new port number that will be assigned once the files are uploaded to
+appear below instead of a new page loading up

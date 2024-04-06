@@ -120,19 +120,19 @@ public class Request implements HttpHandler {
             contentLength--;
             body += "" + (char) reader.read();
         }
-      //  System.out.println("body = " + body);
+        // System.out.println("body = " + body);
         // String output = body;
 
-                // Split the input into lines
-    String[] lines = body.split("\n");
+        // Split the input into lines
+        String[] lines = body.split("\n");
 
-    // Exclude the first 3 lines and the last line
-    String[] result = Arrays.copyOfRange(lines, 3, lines.length - 1);
+        // Exclude the first 3 lines and the last line
+        String[] result = Arrays.copyOfRange(lines, 3, lines.length - 1);
 
-    // Join the lines back into a single string
-    String output = String.join("\n", result);
+        // Join the lines back into a single string
+        String output = String.join("\n", result);
 
-        String desktopPath = System.getProperty("user.home") + "/Desktop/rootnames"; 
+        String desktopPath = System.getProperty("user.home") + "/Desktop/rootnames";
         String filename = "content.html";
 
         File directory = new File(desktopPath);
