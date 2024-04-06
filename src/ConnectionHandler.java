@@ -97,7 +97,7 @@ import java.net.Socket;
 
                                 if(staticWebPage.getPort() == 8001){
                                     staticWebPage.kill();
-                                    StaticWebPage webpage= new StaticWebPage(request.getBody(),9000);
+                                    StaticWebPage webpage= new StaticWebPage(request.getBody(),8000);
                                     webPageList.add(webpage);
          
                                     int port=8000;
