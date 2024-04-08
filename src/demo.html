@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <button type="button" onClick="clickME()">Click me</button>
+    <p>Clicks: <a id="clicks">0</a></p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var clicks = 0;
+
+function clickME() {
+  clicks += 1;
+  document.getElementById("clicks").innerHTML = clicks;
+  let buttons = document.getElementsByClassName("button").length;
+  var btn = document.createElement("BUTTON");
+  var t = document.createTextNode(buttons + 1);
+
+  btn.setAttribute("id", buttons + 1);
+  btn.setAttribute("class", "button");
+  btn.appendChild(t);
+  document.body.appendChild(btn);
+  var p = "Clicks for button " + (buttons + 1) + ": <a id='clicks_" + (buttons + 1) + "'>0</a>";
+  document.body.insertAdjacentHTML("beforeend", p);
+}
+
+function clickButton(element) {
+  let id = element.id;
+  let buttonClicks = document.getElementById(id).getAttribute("data-count");
+}
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.getAttribute("class") == 'button') {
+    let id = e.target.id;
+    let buttonClicks = document.getElementById("clicks_" + id).textContent;
+    buttonClicks = parseInt(buttonClicks) + 1;
+    document.getElementById("clicks_" + id).textContent = buttonClicks;
+    let buttons = document.getElementsByClassName("button").length;
+    var btn = document.createElement("BUTTON");
+    var t = document.createTextNode(buttons + 1);
+
+    btn.setAttribute("id", buttons + 1);
+    btn.setAttribute("class", "button");
+    btn.appendChild(t);
+    document.body.appendChild(btn);
+    
+    var p = "Clicks for button " + (buttons + 1) + ": <a id='clicks_" + (buttons + 1) + "'>0</a>";
+    document.body.insertAdjacentHTML("beforeend", p);
+  }
+});
+    </script>
+
+</body>
+</html>
+
