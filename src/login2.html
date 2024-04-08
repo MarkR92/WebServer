@@ -74,6 +74,8 @@
             cursor: pointer;
         }
 
+        
+
         /* the create and log into account button  */
         .container button.hidden{
             background-color: transparent;
@@ -221,31 +223,34 @@
 <body>
     <!--ENTIRE CONTAINER -->
     <div class="container" id="container">
+
+
         <!-- SIGN UP CONTAINER -->
         <div class="form-container sign-up">
             <form>
                 <h1>Create Account</h1>
                 <!--The user inputs -->
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+                <input type="text" placeholder="Name" required>
+                <input type="text" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button>Sign up</button>
             </form>
         </div>
+
+
         <!-- SIGN IN CONTAINER -->
         <div class="form-container sign-in">
             <form>
                 <h1>Sign In</h1>
-                <input id="username" type="text" placeholder="Username">
-                <input id="password" type="password" placeholder="Password">
+                <input id="username" type="text" placeholder="Username" required>
+                <input id="pwd" type="password" placeholder="Password"required>
                 <a href="#">Forget Your Password?</a>
-                <!-- button that operate function to sign in -->
-                <!-- <button onclick="checkData()">Sign In</button> -->
-                <input type="button" value="Login" id ="login" onclick="login(document.getElementById('username').value,document.getElementById('pwd').value)"/>
-
+                <button type="button" value="Login" onclick="test(document.getElementById('username').value, document.getElementById('pwd').value)">Sign in</button>
             </form>
+
+
+            <!-- THE CONTAINER WITH MESSAGE FOR CREATE -->
         </div>
-        <!-- THE CONTAINER WITH MESSAGE FOR CREATE -->
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
@@ -264,6 +269,7 @@
     </div>
 
 
+
     <!--START OF INTERNAL JS CODE -->
     <script>
         // decalring vars
@@ -280,12 +286,12 @@
             container.classList.remove("active");
         });
 
-
+//the functioning of the logini button
 const Http = new XMLHttpRequest();
 
 function test(user, pwd)
 {
-    //console.log(user+ " " + pwd);
+    console.log(user+ " " + pwd);
     const url ='http://localhost:8180/login'; 
     Http.open("POST",url);
     Http.send("username="+user+"&password="+pwd);
