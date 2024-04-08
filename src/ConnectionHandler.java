@@ -117,7 +117,7 @@ import java.io.IOException;
                         else if(resource.equals("/Simon"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                         StringBuilder htmlContent = new StringBuilder();
-                        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\khate\\Desktop\\WebServer\\src\\simon.html"))) 
+                        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\khate\\Desktop\\WebServer\\src\\upload.html"))) 
                         {
                             String htmlLine;
                             while((htmlLine = reader.readLine()) != null)

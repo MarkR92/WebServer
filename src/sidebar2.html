@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#side-menu {
+    position: fixed;
+    top: 0;
+    left: -3px;
+    width: 0;
+    font-family: Verdana,sans-serif;
+    background: #333;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   height: 100%;
+   /* box-shadow: none; */
+   box-shadow: 0 5px 5px 3px #555;
+   z-index: 1;
+   overflow: hidden;
+   transition: width 2s; /* the transitioning of the width*/
+}
+
+#closed {
+    display: block;
+    color: #aaa;
+    text-align: right;
+    margin-right: 30px;
+    font-size: 1.5em;
+}
+
+ul {
+ list-style: none;
+ padding: 0;
+}
+
+li{
+    padding: 10px 20px;
+    margin-right: 20px;
+}
+
+li a {
+    color: #aaa;
+    font-size: 1em;
+    white-space: nowrap;
+}
+
+li a:hover, a#closed:hover {
+    color: #fff;
+}
+
+#open {
+    font-size: 1em;
+    margin: 10px 5px;
+    background: #eee;
+    color: #333;
+    padding: 5px 10px;
+    font-weight: 600;
+}
+#main
+{
+    width: 500px;
+    border: 2px solid green;
+    transition: margin-left .20s;
+}
+        </style>
+
+
+
+
+    </head>
+    <body>
+    <button id="open" onclick="slideOutMenu()">&#x2630;</button>
+
+
+    <nav id="side-menu">
+        <a id="closed" onclick="slideInMenu()">&times;</a>
+        <ul>
+            <li><a =href="#">&#x2616;&nbsp;&nbsp;Home</a></li>
+            <li><a =href="#">&#x2618;&nbsp;&nbsp;Our Products</a></li>
+            <li><a =href="#">&#x260E;&nbsp;&nbsp;Contact Us</a></li>
+        </ul>
+    </nav> 
+    
+    
+<div id="main">
+    <h1>HELLLLOOOO</h1>
+</div>    
+    
+    
+    <script>
+    var sideMenu = document.getElementById("side-menu")
+    document.get
+    function slideOutMenu() {
+        sideMenu.style.width = "500px"
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+    
+    function slideInMenu() {
+        sideMenu.style.width = "0"
+        document.getElementById("main").style.marginLeft = "0";
+    }
+    
+document.getElementById("side-menu").addEventListener("click", e=>e.stopPropagation(), false)
+
+document.getElementById("open").addEventListener("click", e=>e.stopPropagation(), false)
+    document.documentElement.addEventListener("click", function(e) {
+        slideInMenu()
+       e.preventDefault() 
+    }, false)
+    </script>
+</body>
+</html>
