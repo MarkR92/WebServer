@@ -52,14 +52,15 @@ import java.net.Socket;
                     {
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
-                            response.findResource();
+                            response.sendResponse("200 OK","C:\\Users\\u230525\\WebServer\\WebServer\\src\\upload.html");
                         }
 
                    
 
                         else {
                    
-                            response.sendResponseNotFound();
+                           // response.sendResponseNotFound();
+                            response.sendResponse("404 Not Found");
                         }
                         
                     }
@@ -80,17 +81,18 @@ import java.net.Socket;
                            Thread t = new Thread(webpage);
                            t.start();
                            
-                           response.findResource2(port);
+                           response.sendResponse("200 OK", port);
+                          // response.findResource2(port);
                         }
                     }
                     else if(request.getMethod().equals("PUT"))
                     {
-                        // System.out.println(request.getResource());
-                        //System.out.println(request.getBody());
-                        // //if(request.getResource().equals("/update"))//check the resource we are looking for
-                        // //{
+                
+                        if(request.getResource().matches("/update/\\d{4}"))//check the resource we are looking for
+                        {
+                           
                             int port = Integer.parseInt(request.getResource().split("/")[2]);
-                            //System.out.println(port);
+                            System.out.println(port);
 
                             for (StaticWebPage staticWebPage : webPageList) {
                                 System.out.println(staticWebPage.getPort());
@@ -103,14 +105,18 @@ import java.net.Socket;
                                     Thread t = new Thread(webpage);
                                     t.start();
                                     
-                                    response.findResource2(port);
+                                    response.sendResponse("200 OK", port);
                                 }
                             }     
-                        
+                        }else{
+                            response.sendResponse("404 Not Found");
+                        }
 
                     }
                     else if(request.getMethod().equals("DELETE"))
                     {
+                        if(request.getResource().matches("/delete/\\d{4}"))//check the resource we are looking for
+                        {
                         int port = Integer.parseInt(request.getResource().split("/")[2]);
                         //System.out.println(port);
 
@@ -121,10 +127,20 @@ import java.net.Socket;
                                 staticWebPage.kill();
                                 
                                 System.out.println("Website deleted on port "+port);
+                                response.sendResponse("200 OK");
+                            }
+                            else{
+                                response.sendResponse("404 Not Found");
                             }
                         }     
                     }                              
-                    socket.close();
+                   
+                } else{
+                    response.sendResponse("404 Not Found");  
+                }
+                
+                socket.close();//do not remove this 
+
                     //get the first line of the request
                     //String firstLine=header.toString().split("\n")[0];
                   

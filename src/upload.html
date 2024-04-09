@@ -44,13 +44,13 @@
                         dataType: "json",
                         contentType: "multipart/form-data",
                         processData: false,
-                        contentType: false,
+                        // contentType: false,
                         headers: {
                         "Accept": "application/json"
                         }
                     })
                     .done(function (data) {
-                        alert("poop");
+                        alert("Post");
                         $('input[name=title]').val('');
                     });
                     e.preventDefault(); // when method is called, the default action of the event will not be triggered.
@@ -67,13 +67,12 @@
                         dataType: "json",
                         contentType: "multipart/form-data",
                         processData: false,
-                        contentType: undefined,
                         headers: {
                         "Accept": "application/json"
                         }
                     })
                     .done(function (data) {
-                        alert("poop");
+                        alert("err");
                         $('input[name=title]').val('');
                     });
                     e.preventDefault(); // when method is called, the default action of the event will not be triggered.
@@ -91,7 +90,7 @@
                         url: myUrl,
                     })
                     .done(function (data) {
-                        alert("poop");
+                        alert("Deleted WebPage on: "+port);
                         $('input[name=title]').val('');
                     });
                     e.preventDefault(); // when method is called, the default action of the event will not be triggered.

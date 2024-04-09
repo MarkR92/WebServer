@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
-//import com.sun.net.httpserver.Headers;
+
 
 public class Request implements HttpHandler {
     

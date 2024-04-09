@@ -4,7 +4,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-
 public class Main {
 
 	private static int port=8000;
@@ -16,7 +15,7 @@ public class Main {
 					ServerSocket socket = new ServerSocket(port)) {
 						System.out.println("Listening on port:"+port);
 						 Socket client;
-						
+						System.out.println("");
 						 while((client=socket.accept())!=null)//while connected (forever)
 						{
 								 System.out.println("Received connection from " + client.getRemoteSocketAddress().toString());

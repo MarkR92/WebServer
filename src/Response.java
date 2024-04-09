@@ -10,25 +10,24 @@ public class Response {
     {
         this.output = output;
     }
-
-    public void sendResponseOk() throws IOException
+    public void sendResponse(String responseString)
     {
-        output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-        output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-        output.write(("\r\n").getBytes());//blank line
-        output.flush();//empty the built up buffer
+       
+        try {
+            output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+            output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
+            output.write(("\r\n").getBytes());//blank line
+            output.flush();// empty the built up buffer
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+     
     }
-    public void sendResponseNotFound() throws IOException
-    {
-        output.write(("HTTP/1.1 404 Not Found\r\n").getBytes());//encode to bytes
-        output.write(("\r\n").getBytes());//blank line
-        output.flush();//empty the built up buffer
-    }
-    
-    public void findResource() throws IOException
+    public void sendResponse(String responseString, String filelocation)
     {
      StringBuilder htmlContent = new StringBuilder();
-        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\src\\upload.html")))
+        try(BufferedReader reader = new BufferedReader(new FileReader(filelocation)))
          {
             String htmlLine;
             while((htmlLine = reader.readLine()) != null)
@@ -39,43 +38,100 @@ public class Response {
          {
             e.printStackTrace();
          }
+         try {
+         output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
+         output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+         output.write(("\r\n").getBytes());//blank line
+         output.write(htmlContent.toString().getBytes());
+         output.flush();// empty the built up buffer
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
 
-      output.write(("HTTP/1.1 200 OK\r\n").getBytes());
-      output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-      output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
-      output.write(("\r\n").getBytes());
-      output.write(htmlContent.toString().getBytes());
-      output.flush();
     }
-   public void findResource2(int port) throws IOException{
+    public void sendResponse(String responseString, int port)
+    {
+    
+         try {
+         output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
+         output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+         output.write(("\r\n").getBytes());//blank line
+         output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
+         output.flush();// empty the built up buffer
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
 
-        output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-        output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-        output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
-        output.write(("\r\n").getBytes());//blank line
-        output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
-        output.flush();
+    }
+    // public void sendResponseOk() throws IOException
+    // {
+    //     output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+    //     output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+    //     output.write(("\r\n").getBytes());//blank line
+    //     output.flush();//empty the built up buffer
+    // }
+    // public void sendResponseNotFound() throws IOException
+    // {
+    //     output.write(("HTTP/1.1 404 Not Found\r\n").getBytes());//encode to bytes
+    //     output.write(("\r\n").getBytes());//blank line
+    //     output.flush();//empty the built up buffer
+    // }
+    
+    // public void findResource() throws IOException
+    // {
+    //  StringBuilder htmlContent = new StringBuilder();
+    //     try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\src\\upload.html")))
+    //      {
+    //         String htmlLine;
+    //         while((htmlLine = reader.readLine()) != null)
+    //          {
+    //         htmlContent.append(htmlLine).append("\n");
+    //          }
+    //      } catch (IOException e)
+    //      {
+    //         e.printStackTrace();
+    //      }
 
-    } 
-   public void findResource3(String body) throws IOException{
+    //   output.write(("HTTP/1.1 200 OK\r\n").getBytes());
+    //   output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+    //   output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+    //   output.write(("\r\n").getBytes());
+    //   output.write(htmlContent.toString().getBytes());
+    //   output.flush();
+    // }
+//    public void findResource2(int port) throws IOException{
+
+//         output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+//         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+//         output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+//         output.write(("\r\n").getBytes());//blank line
+//         output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
+//         output.flush();
+
+//     } 
+//    public void findResource3(String body) throws IOException{
      
-        output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-        output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-        output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+//         output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+//         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+//         output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
 
 
-        output.write(body.getBytes());
-        output.write(("\r\n").getBytes());
-        output.flush();
+//         output.write(body.getBytes());
+//         output.write(("\r\n").getBytes());
+//         output.flush();
  
 
-    } 
-   public void findResource4(String body) throws IOException{
+//     } 
+//    public void findResource4(String body) throws IOException{
      
-    output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
-    output.write(("\r\n").getBytes());//blank line
-    output.flush();
-    } 
+//     output.write(("HTTP/1.1 200 OK\r\n").getBytes());//encode to bytes
+//     output.write(("\r\n").getBytes());//blank line
+//     output.flush();
+//     } 
 
   
     

@@ -12,6 +12,8 @@ public class StaticWebPage implements Runnable{
     private String body;
     //private static Response clientOutput2;
     //Robbo classes should not know about other classes unless they absolutly have to
+    //YES
+    
     private ServerSocket serverSocket2;
     public StaticWebPage(String body) throws IOException
     {
