@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class Response {
     private OutputStream output;
@@ -59,7 +60,27 @@ public class Response {
          output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
+
          output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
+         output.flush();// empty the built up buffer
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+
+    }
+    public void sendResponse(String responseString, ArrayList<Integer> portList)
+    {
+    
+         try {
+         output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
+         output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+         output.write(("\r\n").getBytes());//blank line
+            for (Integer integer : portList) {
+                output.write(("<h1>url:localhost:"+integer+"</h1>").getBytes());//blank line
+            }
+        
          output.flush();// empty the built up buffer
         } catch (IOException e) {
             

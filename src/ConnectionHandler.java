@@ -54,6 +54,16 @@ import java.net.Socket;
                         {
                             response.sendResponse("200 OK","C:\\Users\\u230525\\WebServer\\WebServer\\src\\upload.html");
                         }
+                        else if (request.getResource().equals("/url")) {
+                            System.out.println("here url");
+                            ArrayList<Integer> portList= new ArrayList<>();
+                            for (StaticWebPage staticWebPage : webPageList) {
+
+                                portList.add(staticWebPage.getPort());
+                            }
+                            response.sendResponse("200 OK",portList);
+                            
+                        }
 
                    
 

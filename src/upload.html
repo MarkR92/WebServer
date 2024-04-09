@@ -30,6 +30,10 @@
         <label for="quantity">Delete</label>  
         <button type="submit">Upload</button>
     </form>
+    <form class = "submit4">
+        <label for="quantity">Get</label>  
+        <button type="submit">Retrieve</button>
+    </form>
 
       <script>
             $(document).ready(function(){
@@ -96,6 +100,23 @@
                     e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                                         // meand that clicked submit button will not take the browser to a new URL.
                 });
+                $('.submit4').unbind('submit').submit(function (e) {
+
+                    var port = $('input[name=quantity]').val();
+                    var myUrl = "http://localhost:8000/url";
+
+                    $.ajax({
+                    type: "GET",
+                    url: myUrl,
+                    })
+                    .done(function (data) {
+                          alert("Get: ");
+                         $('input[name=title]').val('');
+                         console.log(data);
+                    });
+                    e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.
+                    });
 
             });
 
