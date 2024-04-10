@@ -29,7 +29,7 @@
             flex-direction: column;
             height: 100vh;
         }
-        /* the main container containing the content */
+        /* ALL THE CONTAINERS */
         .container{
             background-color: #ffffffa0;
             border-radius: 30px;
@@ -76,7 +76,7 @@
             /* border: 2px solid green; */
         }
 
-        /* the upload button */
+        /* ALL THE BUTTONS */
         .container button{
             color: #fff;
             font-size: 12px;
@@ -215,21 +215,26 @@
 <body>
     <h1>DASHBOARD ONE</h1>
 
+    <!-- Main container -->
     <div class="container main">
+        <!-- Upload container -->
         <div class="file-upload">
             <form class = "upload">
                 <h1>Upload Files</h1>
                 <label for="file" class="drop-container" id="dropcontainer">
                     <span class="drop-title">Drop files here</span>or
                 <input id="file" name="file" type="file"/>
+                <!-- UPLOAD BUTTON -->
                 <button type="submit" class="post">Upload</button>
             </form>
         </div>
         <div class="vl"></div>
+        <!-- ports container -->
         <div class="refresh-container">
             <h1>Your Active Ports</h1>
             <p class="ports" id="port"><a href="#"></a> </p>
         </div>
+        <!-- REFRESH BUTTON -->
         <form class="refresh">
             <button type="submit" class="retrieve">Refresh</button>
           </form>
@@ -238,57 +243,53 @@
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script>
+        // POST FUNCTION
+      $(document).ready(function(){
+        $('.upload').unbind('upload').submit(function (e) {
+            console.log("Working");
+            $.ajax({
 
-$(document).ready(function(){
-
-$('.upload').unbind('upload').submit(function (e) {
-    console.log("Working");
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:8000/upload",
-        crossDomain: true,
-        data:  new FormData(this),
-        dataType: "json",
-        contentType: "multipart/form-data",
-        processData: false,
-        // contentType: false,
-        headers: {
-        "Accept": "application/json"
-        }
-    })
-    .done(function (data) {
-        alert("Post");
-        $('input[name=title]').val('');
-    });
-    e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                type: "POST",
+                url: "http://localhost:8000/upload",
+                crossDomain: true,
+                data:  new FormData(this),
+                dataType: "json",
+                contentType: "multipart/form-data",
+                processData: false,
+                // contentType: false,
+                headers: {
+                "Accept": "application/json"
+            }
+        })
+        .done(function (data) {
+            alert("Post");
+            $('input[name=title]').val('');
+        });
+        e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                         // meand that clicked submit button will not take the browser to a new URL.
-});
-
-$('.refresh').unbind('refresh').submit(function (e) {
-
-var port = $('input[name=quantity]').val();
-var myUrl = "http://localhost:8000/url";
-
-$.ajax({
-type: "GET",
-url: myUrl,
-})
-.done(function (data) {
-    //   alert("Get: ");
-    //  $('input[name=title]').val('');
-     console.log(data);
-    let text = data; 
-    document.getElementById('port').innerHTML = text+"\r"; 
-
-});
-e.preventDefault(); // when method is called, the default action of the event will not be triggered.
-                // meand that clicked submit button will not take the browser to a new URL.
-});
-
-
+                    
+                    });
+                    
+    // RETRIEVE FUNCTTON
+    $('.refresh').unbind('refresh').submit(function (e) {
+        var port = $('input[name=quantity]').val();
+        var myUrl = "http://localhost:8000/url";
+        $.ajax({
+            type: "GET",
+            url: myUrl,
+        })
+        .done(function (data) {
+            console.log(data);
+            let text = data; 
+            document.getElementById('port').innerHTML = text+"\r"; 
+        });
+        e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                            // meand that clicked submit button will not take the browser to a new URL.
+        });
 });
 
 
+// DELETE FUNCTION IN HERE TO TRY 0_0
 function open()
 {
     console.log("Hello");
