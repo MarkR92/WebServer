@@ -48,7 +48,7 @@
         }
 
         /* the contents */
-        .upload
+        .file-upload
         {
             position: relative;
             margin-top: 35px;
@@ -94,7 +94,7 @@
         }
         /* vertical line */
         .vl {
-            position: absolute;
+            position: relative;
             border-left: 2px solid #3e3d3d; 
             top: -400px;
             height: 500px;
@@ -190,48 +190,56 @@
 
 
     <div class="container main">
-        <!-- <form method="post" action="http://localhost:8000/upload"enctype="multipart/form-data">
-            <!-- <div class="upload">
-                <h1>Upload Files</h1>
-                <label for="file" class="drop-container" id="dropcontainer">
-                    <span class="drop-title">Drop files here</span>or
+        <form method="post" action="http://localhost:8000/upload"enctype="multipart/form-data">
+            <form class="upload">
+               
+               
+                 <div class="file-upload"> 
+                    <h1>Upload Files</h1>
+                    <label for="file" class="drop-container" id="dropcontainer">
+                        <span class="drop-title">Drop files here</span>or
+    
+                        <!-- CHOOSE FILE BUTTON -->
+                        <input id="file" type="file" name="file" required>
+                      </label>
+    
+                      <div class="vl"></div>
+                
+                     <!-- UPLOAD FILE BUTTON  -->
+                    <button>Upload</button>
+    
+                    <div class="ports">
+                        <h1 id="port">Active Ports</h1>
+                    </div>
+    
+                </div>
 
-                    < CHOOSE FILE BUTTON -
-                    <input id="file" type="file" name="file" required>
-                  </label>
 
-                  <div class="vl"></div>
-            
-                   UPLOAD FILE BUTTON 
-                <button>Upload</button>
+            </form>
+        </form> 
 
-
-
-                <div class="ports">
-                    <h1>Active Ports</h1>
-                  </div>
-            </div>
-        </form>  -->
-        
-        <form class = "upload">
+        <!-- <form class = "upload">
             <h1>Upload Files</h1>
             <label for="file" class="drop-container" id="dropcontainer">
                 <span class="drop-title">Drop files here</span>or
             <input id="file" name="file" type="file"/>
-
-            <button type="submit">Upload</button>
        
        
-        </form>
+        </form> -->
       </div>
 
-      <div class="vl"></div>
+      <form class="refresh">
+        <button type="submit">Refresh</button>
+      </form>
+      
+
+      <!-- <div class="vl"></div>
 
       <form class="refresh">
         <button type="submit">Refresh</button>
       </form>
 
-      <h1 id="port"><a href="#">PORT</a> </h1>
+      <h1 id="port"><a href="#">PORT</a> </h1> -->
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script>
