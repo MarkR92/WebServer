@@ -94,7 +94,7 @@
         }
         /* vertical line */
         .vl {
-            position: relative;
+            position: absolute;
             border-left: 2px solid #3e3d3d; 
             top: -400px;
             height: 500px;
@@ -212,17 +212,20 @@
                   </div>
             </div>
         </form>  -->
+        
         <form class = "upload">
+            <h1>Upload Files</h1>
             <label for="file" class="drop-container" id="dropcontainer">
                 <span class="drop-title">Drop files here</span>or
             <input id="file" name="file" type="file"/>
+
+            <button type="submit">Upload</button>
+       
+       
         </form>
-
-        <button type="submit">Upload</button>
-
       </div>
 
-
+      <div class="vl"></div>
 
       <form class="refresh">
         <button type="submit">Refresh</button>
