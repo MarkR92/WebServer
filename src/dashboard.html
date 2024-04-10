@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Login Page/ Signup page</title>
+
+       <!-- START OF INTERNAL CSS CODE -->
+       <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        /* default style for everything */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* the background */
+        body{
+            background-color: #c9d6ff;
+            background: linear-gradient(to right, #e2e2e2, #c9d6ff); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+        /* the main container containing the content */
+        .container{
+            background-color: #ffffffa0;
+            border-radius: 30px;
+            border: 2px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            position: relative;
+            height: 650px;
+            margin-bottom: 20px;
+        }
+
+        .main
+        {
+            width: 1350px;
+            transform: scale(0.8);
+        }
+
+        /* the contents */
+        .upload
+        {
+            position: relative;
+            margin-top: 35px;
+            height: 600px;
+            width: 700px;
+            left: 65px;
+            /* border: 2px solid green;   */
+        }
+        .refresh-container
+        {
+            position: relative;
+            top: -1098px;
+            left: 970px;
+            width: 350px;
+            height:600px;
+            /* border: 2px solid green; */
+        }
+        .ports
+        {
+            position: relative;
+            top: 40px;
+            /* left: 0px; */
+            width: 350px;
+            height: 350px;
+            /* border: 2px solid green; */
+        }
+
+        /* the upload button */
+        .container button{
+            color: #fff;
+            font-size: 12px;
+            padding: 10px 45px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background .2s ease-in-out;
+        }
+
+        .post
+        {
+            background-color: #664e9fdf;
+            position: relative; 
+            top: 200px;
+            left: 0px; 
+            transform: scale(1.2);
+        }
+        
+        .retrieve
+        {
+            background-color: #664e9fdf;
+            position: relative;
+            top:-1180px;
+            left:1060px;
+            transform: scale(1.2);
+        }
+        .delete
+        {
+            background-color:rgb(233, 45, 45);
+            height: 50px;
+            transform: scale(0.6);
+        }
+
+
+        .post:hover
+        {
+            background: #3304a0df; 
+        }
+        .retrieve:hover
+        {
+            background: #3304a0df; 
+        }
+        .delete:hover
+        {
+            background-color:rgb(172, 32, 32);
+        }
+
+        /* vertical line */
+        .vl {
+            position: relative;
+            border-left: 2px solid #3e3d3d; 
+            top: -550px;
+            height: 500px;
+            left: 900px;
+        }
+
+        /*BASED ON A TUTORIAL*/
+        /*Choose file design*/
+        input[type=file] {
+          width: 350px;
+          max-width: 100%;
+          color: #444;
+          padding: 5px;
+          background: #fff;
+          border-radius: 10px;
+          border: 1px solid #555;
+        }
+
+        input[type=file]::file-selector-button {
+            margin-right: 20px;
+            border: none;
+            background: #664e9fdf;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s ease-in-out;
+        }
+
+        input[type=file]::file-selector-button:hover {
+          background: #3304a0df;
+        }
+
+
+        /* drop files container */
+        .drop-container {
+            position: relative;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            top: 30px;
+            height: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #656464;
+            color: #444;
+            cursor: pointer;
+            transition: background .2s ease-in-out, border .2s ease-in-out;
+        }
+        
+        /* hover feature for dotted line */
+        .drop-container:hover {
+            background: #e9e6e6;
+            border-color: #0e0b0b;
+        }
+
+        /* hover feature for the container itself */
+        .drop-container:hover .drop-title {
+            color: #222;
+        }
+
+        .drop-title {
+            color: #000000;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            transition: color .2s ease-in-out;
+        }
+
+        .drop-container.drag-active {
+            background: #eee;
+            border-color: #111;
+        }
+        
+        .drop-container.drag-active .drop-title {
+            color: #222;
+        }
+        </style>
+</head>
+<body>
+    <h1>DASHBOARD ONE</h1>
+
+    <div class="container main">
+        <div class="file-upload">
+            <form class = "upload">
+                <h1>Upload Files</h1>
+                <label for="file" class="drop-container" id="dropcontainer">
+                    <span class="drop-title">Drop files here</span>or
+                <input id="file" name="file" type="file"/>
+                <button type="submit" class="post">Upload</button>
+            </form>
+        </div>
+        <div class="vl"></div>
+        <div class="refresh-container">
+            <h1>Your Active Ports</h1>
+            <p class="ports" id="port"><a href="#"></a> </p>
+        </div>
+        <form class="refresh">
+            <button type="submit" class="retrieve">Refresh</button>
+          </form>
+      </div>
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script>
+
+$(document).ready(function(){
+
+$('.upload').unbind('upload').submit(function (e) {
+    console.log("Working");
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8000/upload",
+        crossDomain: true,
+        data:  new FormData(this),
+        dataType: "json",
+        contentType: "multipart/form-data",
+        processData: false,
+        // contentType: false,
+        headers: {
+        "Accept": "application/json"
+        }
+    })
+    .done(function (data) {
+        alert("Post");
+        $('input[name=title]').val('');
+    });
+    e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                        // meand that clicked submit button will not take the browser to a new URL.
+});
+
+$('.refresh').unbind('refresh').submit(function (e) {
+
+var port = $('input[name=quantity]').val();
+var myUrl = "http://localhost:8000/url";
+
+$.ajax({
+type: "GET",
+url: myUrl,
+})
+.done(function (data) {
+    //   alert("Get: ");
+    //  $('input[name=title]').val('');
+     console.log(data);
+    let text = data; 
+    document.getElementById('port').innerHTML = text+"\r"; 
+
+});
+e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                // meand that clicked submit button will not take the browser to a new URL.
+});
+
+
+});
+
+
+function open()
+{
+    console.log("Hello");
+}
+
+
+
+
+
+
+
+
+
+        // js script to make the drop functional, im not sure if it works tbh
+      const dropContainer = document.getElementById("dropcontainer")
+      const fileInput = document.getElementById("file")
+
+        dropContainer.addEventListener("dragover", (e) => {
+          // prevent default to allow drop
+          e.preventDefault()
+        }, false)
+    
+        dropContainer.addEventListener("dragenter", () => {
+          dropContainer.classList.add("drag-active")
+        })
+    
+        dropContainer.addEventListener("dragleave", () => {
+          dropContainer.classList.remove("drag-active")
+        })
+    
+        dropContainer.addEventListener("drop", (e) => {
+          e.preventDefault()
+          dropContainer.classList.remove("drag-active")
+          fileInput.files = e.dataTransfer.files
+        })
+
+        </script>
+
+
+</body>
+</html>
