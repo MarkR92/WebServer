@@ -20,7 +20,7 @@ public class Response {
             output.write(("\r\n").getBytes());//blank line
             output.flush();// empty the built up buffer
         } catch (IOException e) {
-            
+            System.out.print(""); 
             e.printStackTrace();
         }
      
@@ -61,7 +61,7 @@ public class Response {
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
 
-         output.write(("<h1>url:localhost:"+port+"</h1>").getBytes());//blank line
+         output.write(("url:localhost:"+port).getBytes());//blank line
          output.flush();// empty the built up buffer
         } catch (IOException e) {
             
@@ -78,7 +78,9 @@ public class Response {
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
             for (Integer integer : portList) {
-                output.write(("<h1>url:localhost:"+integer+"</h1>").getBytes());//blank line
+                String ref = "http://localhost:"+integer;
+                output.write(("<a href="+ref+">"+"http://localhost:"+integer+"</a>"+"<button onclick='open()'>X</button>").getBytes());//blank line
+                output.write(("\r\n").getBytes());//blank line
             }
         
          output.flush();// empty the built up buffer
