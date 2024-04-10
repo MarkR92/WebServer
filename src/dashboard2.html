@@ -55,13 +55,13 @@
             height: 600px;
             width: 700px;
             left: 65px;
-            /* border: 2px solid green;   */
+            border: 2px solid green;  
         }
         .ports
         {
             position: relative;
-            top: 100px;
-            height: 500px;
+            top: -1015px;
+            height: 600px;
             width: 400px;
             left: 840px;
             margin-top: 35px;
@@ -69,7 +69,7 @@
 
         }
 
-        /* the upload button */
+        /* the buttons */
         .container button{
             background-color: #664e9fdf;
             color: #fff;
@@ -81,11 +81,22 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             cursor: pointer;
-            position: relative; 
-            top: -600px;
-            left: 280px;
             transform: scale(1.2);
             transition: background .2s ease-in-out;
+        }
+        /* UPLOAD BTN */
+        .post
+        {
+            position: relative; 
+            top: -430px;
+            left: 280px; 
+        }
+        /* REFRESH BTN */
+        .refresh
+        {
+            position: relative;
+            top: 480px;
+            left:130px;
         }
 
         .container button:hover
@@ -124,9 +135,9 @@
             transition: background .2s ease-in-out;
         }
 
-        /* input[type=file]::file-selector-button:hover {
+        input[type=file]::file-selector-button:hover {
           background: #3304a0df;
-        } */
+        }
 
 
         /* drop files container */
@@ -174,16 +185,6 @@
         .drop-container.drag-active .drop-title {
             color: #222;
         }
-
-        #port
-        {
-            position: absolute;
-            top: 100px;
-            left: 700px;
-            border: 2px solid green;
-            width: 300px;
-            height: 500px;
-        }
         </style>
 </head>
 <body>
@@ -191,10 +192,7 @@
 
     <div class="container main">
         <form method="post" action="http://localhost:8000/upload"enctype="multipart/form-data">
-            <form class="upload">
-               
-               
-                 <div class="file-upload"> 
+                <div class="file-upload">
                     <h1>Upload Files</h1>
                     <label for="file" class="drop-container" id="dropcontainer">
                         <span class="drop-title">Drop files here</span>or
@@ -205,42 +203,31 @@
     
                       <div class="vl"></div>
                 
-                     <!-- UPLOAD FILE BUTTON  -->
-                    <button>Upload</button>
-    
+                      <!-- UPLOAD FILE BUTTON -->
+                      <form class="upload">
+                        <button class="post">Upload</button>
+                      </form>
+
+
                     <div class="ports">
-                        <h1 id="port">Active Ports</h1>
-                    </div>
-    
+                        <h1>Your Active Ports</h1>
+
+                        <!-- REFRESH BUTTON -->
+                        <form class="refresh">
+                            <button>Refresh</button>
+                        </form>
+
+                      </div>
+
+
                 </div>
-
-
-            </form>
-        </form> 
-
-        <!-- <form class = "upload">
-            <h1>Upload Files</h1>
-            <label for="file" class="drop-container" id="dropcontainer">
-                <span class="drop-title">Drop files here</span>or
-            <input id="file" name="file" type="file"/>
-       
-       
-        </form> -->
+        </form>
       </div>
 
-      <form class="refresh">
-        <button type="submit">Refresh</button>
-      </form>
-      <h1>DASHBOARD 1</h1>
-      
+       
 
-      <!-- <div class="vl"></div>
 
-      <form class="refresh">
-        <button type="submit">Refresh</button>
-      </form>
 
-      <h1 id="port"><a href="#">PORT</a> </h1> -->
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script>
@@ -284,7 +271,7 @@ url: myUrl,
     //  $('input[name=title]').val('');
      console.log(data);
     let text = data; 
-    document.getElementById('port').innerHTML = text+"\r"; 
+    document.getElementById('ports').innerHTML = text+"\r"; 
 
 });
 e.preventDefault(); // when method is called, the default action of the event will not be triggered.
@@ -295,10 +282,14 @@ e.preventDefault(); // when method is called, the default action of the event wi
 });
 
 
-function open()
-{
-    console.log("Hello");
-}
+
+
+
+
+
+
+
+
 
 
 
@@ -330,9 +321,6 @@ function open()
           dropContainer.classList.remove("drag-active")
           fileInput.files = e.dataTransfer.files
         })
-
         </script>
-
-
 </body>
 </html>
