@@ -52,7 +52,7 @@ import java.net.Socket;
                     {
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
-                            response.sendResponse("200 OK","C:\\Users\\u230525\\WebServer\\WebServer\\src\\upload.html");
+                            response.sendResponse("200 OK","C:\\Users\\khate\\Desktop\\WebServer\\src\\dashboard.html");
                         }
                         else if (request.getResource().equals("/url")) {
                             System.out.println("here url");
