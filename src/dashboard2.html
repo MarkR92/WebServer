@@ -95,7 +95,7 @@
         .refresh
         {
             position: relative;
-            top: 480px;
+            top: 0px;
             left:130px;
         }
 
@@ -185,18 +185,25 @@
         .drop-container.drag-active .drop-title {
             color: #222;
         }
+        #port
+        {
+            border: 2px solid green;
+            position: relative;
+            width: 500px;
+            height: 300px;
+            top: 0px;
+            left: 0px;
+        }
         </style>
 </head>
 <body>
 
 
     <div class="container main">
-        <form method="post" action="http://localhost:8000/upload"enctype="multipart/form-data">
                 <div class="file-upload">
                     <h1>Upload Files</h1>
                     <label for="file" class="drop-container" id="dropcontainer">
                         <span class="drop-title">Drop files here</span>or
-    
                         <!-- CHOOSE FILE BUTTON -->
                         <input id="file" type="file" name="file" required>
                       </label>
@@ -207,21 +214,20 @@
                       <form class="upload">
                         <button class="post">Upload</button>
                       </form>
+                      
 
-
-                    <div class="ports">
+                      <!-- REFRESH AREA -->
+                      <div class="ports">
                         <h1>Your Active Ports</h1>
+                        <br> 
+                        <p id="port"><a href="#">PORT</a></p> 
 
                         <!-- REFRESH BUTTON -->
                         <form class="refresh">
                             <button>Refresh</button>
                         </form>
-
-                      </div>
-
-
+                    </div>
                 </div>
-        </form>
       </div>
 
        
@@ -271,7 +277,7 @@ url: myUrl,
     //  $('input[name=title]').val('');
      console.log(data);
     let text = data; 
-    document.getElementById('ports').innerHTML = text+"\r"; 
+    document.getElementById('port').innerHTML = text+"\r"; 
 
 });
 e.preventDefault(); // when method is called, the default action of the event will not be triggered.
