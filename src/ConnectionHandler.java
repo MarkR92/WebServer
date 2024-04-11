@@ -13,7 +13,7 @@ import java.net.Socket;
     public class ConnectionHandler implements Runnable  {
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
-    
+        private static final String homeURL="C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\dashboard.html";
        // private static ArrayList<String> people= new ArrayList<>();
         private Socket socket;
 
@@ -52,7 +52,7 @@ import java.net.Socket;
                     {
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
-                            response.sendResponse("200 OK","C:\\Users\\khate\\Desktop\\WebServer\\src\\dashboard.html");
+                            response.sendResponse("200 OK",homeURL);
                         }
                         else if (request.getResource().equals("/url")) {
                             System.out.println("here url");
@@ -135,6 +135,7 @@ import java.net.Socket;
 
                             if(staticWebPage.getPort() == port){
                                 staticWebPage.kill();
+                                webPageList.remove(staticWebPage);
                                 
                                 System.out.println("Website deleted on port "+port);
                                 response.sendResponse("200 OK");

@@ -77,9 +77,9 @@ public class Response {
          output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
-            for (Integer integer : portList) {
-                String ref = "http://localhost:"+integer;
-                output.write(("<a href="+ref+">"+"http://localhost:"+integer+"</a>"+"<button style='font-size:20px;'class='delete' onclick='open()'>x</button>").getBytes());//blank line
+            for (Integer port : portList) {
+                String ref = "http://localhost:"+port;
+                output.write(("<a href="+ref+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete', onclick='test("+port+")'>x</button>").getBytes());//blank line
                 output.write(("\r\n").getBytes());//blank line
             }
         

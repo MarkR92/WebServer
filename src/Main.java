@@ -7,7 +7,7 @@ import java.net.Socket;
 public class Main {
 
 	private static int port=8000;
-	
+	// private int=10;
 	public static void main(String[] args) {
 		
 		
