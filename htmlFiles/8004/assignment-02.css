@@ -1,0 +1,138 @@
+
+
+
+body{
+    background-color: rgb(138, 44, 44);
+}
+/* Used to centre entire scree: */
+#wrapper{
+  min-width: 800px;
+  min-height: 700px;
+  position: absolute;
+  top:0%;
+  left: 50%;
+  transform: translate(-50%,0%);
+  text-align: center;
+}
+/* The title: */
+#head {
+    font-family: Arial, Helvetica, sans-serif;
+    position:relative;
+    top:20px;
+    text-align:center;
+}
+/* The middle dark circle */
+#background
+{
+    position:absolute;
+    width:300px;
+    height:300px;
+    background-image: linear-gradient(rgb(73, 57, 96) ,rgb(25, 16, 28)  );
+    border-radius:50%;
+    border: 10px solid black;
+
+    background-size: 300% auto;
+
+    /* Making the shape centred */
+    left:50%;
+    top:50%; 
+    transform: translate(-50%, -50%);
+
+}
+/* Class for the four buttons */
+.button{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    
+    cursor: pointer;
+    position:relative;
+    top:50%;
+    transform: translate(0%, -50%);
+}
+/* Class for the borders around each button */
+.border{
+    transform: translate(-50%, -50%);
+    position:absolute;
+    width:180px;
+    height:180px;
+    /* color:rgb(40, 91, 146); */
+    background-image: linear-gradient(rgb(73, 57, 96) ,rgb(25, 16, 28)  );
+    border-radius:50%;
+    border: solid;
+ 
+    background-position: top;
+    background-size: 300% auto;
+}
+/* Positions and colours for all the buttons: */
+.green{ 
+    left:32%;
+    top:32%;
+}
+#greenB{
+    border: 2px solid green;
+    background-image: linear-gradient(rgb(111, 244, 107) ,rgb(15, 95, 47)  );
+}
+.red{
+    left:68%;
+    top:32%;
+}
+#redB{
+    border: 2px solid rgb(128, 0, 0);
+    background-image: linear-gradient(rgb(245, 126, 111) ,rgb(125, 5, 37));
+    /* background-color: brown; */
+
+}
+.yellow{
+    left:32%;
+    top:68%; 
+}
+#yellowB{
+    border: 2px solid rgb(117, 128, 0);
+    background-image: linear-gradient(rgb(248, 248, 136) ,rgb(209, 126, 16)  );
+
+}
+.blue{
+    left:68%;
+    top:68%; 
+}
+#blueB{
+    border: 2px solid rgb(0, 15, 128);
+    background-image: linear-gradient(rgb(136, 248, 243) ,rgb(58, 16, 209)  );
+
+}
+/* Button to Start the game: */
+.start{
+    font-family: Orbitron;
+    font-size: 20px;
+    position:relative;
+    width:100px;
+    height:50px;
+    border-radius:15%;
+    top:50%;
+    background-image: linear-gradient(rgb(198, 182, 219) ,rgb(108, 94, 113)  );
+    transform: translate(0%, -50%);
+}
+/* Button on right that keeps track of score from last game: */
+#current
+{
+    width:50px;
+}
+/* Button on left that keeps track of current highest score: */
+#high
+{
+    width:50px;
+}
+/* The signal indicating if the game is running: */
+#signal
+{
+    position:relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, 0%);
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background-color: red;
+
+}

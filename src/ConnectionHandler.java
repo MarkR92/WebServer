@@ -1,14 +1,18 @@
 
     import java.io.BufferedReader;
-
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
     import java.io.InputStreamReader;
-  
-
 import java.net.Socket;
-    import java.util.ArrayList;
-    //import java.util.regex.Matcher;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+//import java.util.regex.Matcher;
     //import java.util.regex.Pattern;
+import java.util.regex.Pattern;
+
     
     public class ConnectionHandler implements Runnable  {
 
@@ -52,7 +56,7 @@ import java.net.Socket;
                     {
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
-                            response.sendResponse("200 OK","C:\\Users\\khate\\Desktop\\WebServer\\src\\dashboard.html");
+                            response.sendResponse("200 OK","C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\src\\dashboard.html");
                         }
                         else if (request.getResource().equals("/url")) {
                             System.out.println("here url");
@@ -81,15 +85,62 @@ import java.net.Socket;
                     {
                         if(request.getResource().equals("/upload"))//check the resource we are looking for
                         {
-                            //response.sendResponseOk();
-
                             
-                           StaticWebPage webpage= new StaticWebPage(request.getBody());
-                           webPageList.add(webpage);
 
-                           int port=webpage.getPort();
-                           Thread t = new Thread(webpage);
-                           t.start();
+                            //response.sendResponseOk();
+                            //System.out.println(request.getBody());
+                            //
+                            String[] content = request.getBody().split("------WebKitFormBoundary");
+                            Pattern filePattern = Pattern.compile("filename=\".*\\/([^\"]+)");
+                            Pattern contentPattern = Pattern.compile("(Content-Type.*\\/.*)");
+
+                            //System.out.println(content[0]);
+                            //System.out.println(content.length);
+                            int port = 8004;
+                            
+                            
+                            for(int i = 1; i< content.length - 1; i++){
+                                //System.out.println(content[i]);
+                                String file = "";
+                                String split = "";
+                                Matcher matcher = filePattern.matcher(content[i]);
+                                while(matcher.find() == true)
+                                {
+                                        file = matcher.group(1);
+                                }
+                                matcher = contentPattern.matcher(content[i]);
+                                while(matcher.find() == true)
+                                {
+                                        split = matcher.group(1);
+                                }
+
+                                content[i] = content[i].split(split)[1]; 
+
+                                //System.out.println(file);
+                                Files.createDirectories(Paths.get("C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\htmlFiles\\"+port));
+                                File myObj = new File("C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\htmlFiles\\"+port+"\\"+file);
+                                //File folder = new File("C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\htmlFiles\\"+port).mkdir();
+
+                                try {
+                                    FileWriter myWriter = new FileWriter(myObj.getAbsolutePath());
+                                    myWriter.write(content[i]);
+                                    myWriter.close();
+                                    System.out.println("Successfully wrote to the file.");
+                                  } catch (IOException e) {
+                                    System.out.println("An error occurred.");
+                                    e.printStackTrace();
+                                  }
+                            }
+
+
+                            StaticWebPage webpage= new StaticWebPage(request.getBody());
+                            webPageList.add(webpage);
+
+                            port=webpage.getPort();
+                            Thread t = new Thread(webpage);
+                            t.start();
+                            
+                           
                            
                            response.sendResponse("200 OK", port);
                           // response.findResource2(port);

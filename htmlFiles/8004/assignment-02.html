@@ -1,0 +1,54 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="assignment-02.css">
+        <title>
+            Simon Game
+        </title>
+
+        <!-- Import the font: Orbitron-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        
+
+        <div id="wrapper">
+            <h1 id = "head">
+                This is the coolest Simon Game >:D
+            </h1>
+            <!-- Middle Buttons for Start, and display of score. -->
+            <div id="background">
+                <button class="start" id="high">00</button>
+                <!-- Starts the game once pushed: -->
+                <button class="start" onClick="start()">START</button>
+                <button class="start" id="current">00</button>
+                <div id="signal"></div>
+            </div>
+
+            <!-- The buttons: -->
+            <!-- On click they push a number from (0-3) into the Javascript so it will know wich button was pushed. -->
+            <div class = "border green"> 
+                <button class="button" id="greenB" onClick="push(0)"></button> 
+            </div>
+            <div class = "border red">
+                <button class="button" id="redB" onClick="push(1)"></button>
+            </div>
+            <div class = "border yellow">
+                <button class="button" id="yellowB" onClick="push(2)"></button>
+            </div>
+            <div class = "border blue">
+                <button class="button" id="blueB" onClick="push(3)"></button>
+            </div>
+        </div>
+
+        <script src="assignment-02.js"></script>
+        
+    </body>
+</html>
+
+

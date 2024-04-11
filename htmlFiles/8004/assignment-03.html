@@ -1,0 +1,36 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Grades Table</title>
+  <link rel="stylesheet" href="assignment-03.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>The Coolest Student Grades Table:</h1>
+
+        <div class="box">
+            <!-- Make all the buttons with different functions: -->
+            <!-- Insert new Row: -->
+            <button onclick="newRow()">newRow</button> 
+            <!-- Insert new column: -->
+            <button onclick="newColumn()">newColumn</button>
+            <!-- Save table data -->
+            <button onclick="save()">Save</button>
+            <!-- Restores saved table -->
+            <button onclick="restore()">Restore</button>
+        </div>
+
+
+    <table id="newTable">
+        <!-- This is where we're going to make the table using javascript -->
+    </table>
+    <!-- Keeps track of occurences of "-" -->
+    <p id="para">Number of unsubmitted assignments: 0</p>
+    </div>
+   
+
+<script src="assignment-03.js"></script>
+</body>
+</html>
