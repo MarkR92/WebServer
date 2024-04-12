@@ -5,7 +5,7 @@
         $.ajax({
 
             type: "POST",
-            url: "http://localhost:8000/upload",
+            url: "http://20.84.89.246:8000/upload",
             crossDomain: true,
             data:  new FormData(this),
             dataType: "json",
@@ -28,7 +28,7 @@
 // RETRIEVE FUNCTTON
 $('.refresh').unbind('refresh').submit(function (e) {
     var port = $('input[name=quantity]').val();
-    var myUrl = "http://localhost:8000/url";
+    var myUrl = "http://20.84.89.246:8000/url";
     $.ajax({
         type: "GET",
         url: myUrl,
@@ -48,7 +48,7 @@ $('.refresh').unbind('refresh').submit(function (e) {
 setInterval(getRegular, 1000);
 function getRegular()
 {
-var myUrl = "http://localhost:8000/url";
+var myUrl = "http://20.84.89.246:8000/url";
     $.ajax({
         type: "GET",
         url: myUrl,
@@ -64,7 +64,7 @@ function test( port)
 
 console.log(port);
 
-                var myUrl = "http://localhost:8000/delete/"+port;
+                var myUrl = "http://20.84.89.246:8000/delete/"+port;
 
                 $.ajax({
                     type: "DELETE",
