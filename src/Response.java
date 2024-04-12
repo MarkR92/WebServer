@@ -79,7 +79,7 @@ public class Response {
          output.write(("\r\n").getBytes());//blank line
             for (Integer integer : portList) {
                 String ref = "http://localhost:"+integer;
-                output.write(("<a href="+ref+">"+"http://localhost:"+integer+"</a>"+"<button style='font-size:20px;'class='delete' onclick='open()'>x</button>").getBytes());//blank line
+                output.write(("<a href="+ref+">"+"http://localhost:"+integer+"</a>"+"<button style='font-size:20px;'class='delete' onclick='open()'>x</button>"+"<button style='font-size:20px;'class='delete' onclick='open()'>x</button>").getBytes());//blank line
                 output.write(("\r\n").getBytes());//blank line
             }
         
