@@ -32,13 +32,17 @@
     </form>
 
       <script>
+
+        var urlname="http://20.84.89.246:8000";
+
+
             $(document).ready(function(){
 
                 $('.submit').unbind('submit').submit(function (e) {
                     
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost:8000/upload",
+                        url: urlname+"/upload",
                         crossDomain: true,
                         data:  new FormData(this),
                         dataType: "json",
@@ -61,7 +65,7 @@
                 $('.submit2').unbind('submit').submit(function (e) {
                     $.ajax({
                         type: "PUT",
-                        url: "http://localhost:8000/update/"+($('#quantity').val()),
+                        url: urlname+"/update/"+($('#quantity').val()),
                         crossDomain: true,
                         data: ((new FormData(this))),
                         dataType: "json",
@@ -84,7 +88,7 @@
                 $('.submit3').unbind('submit').submit(function (e) {
 
                     var port = $('input[name=quantity]').val();
-                    var myUrl = "http://localhost:8000/delete/"+port;
+                    var myUrl =urlname+ "/delete/"+port;
 
                     $.ajax({
                         type: "DELETE",

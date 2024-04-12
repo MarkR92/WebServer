@@ -28,7 +28,7 @@ public class Response {
     public void findResource() throws IOException
     {
      StringBuilder htmlContent = new StringBuilder();
-        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\src\\upload.html")))
+        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\rootadmin\\Documents\\WebServer\\WebServer\\src\\upload.html")))
          {
             String htmlLine;
             while((htmlLine = reader.readLine()) != null)
