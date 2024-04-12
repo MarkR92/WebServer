@@ -14,12 +14,12 @@ public class Database {
 	{
 		connect();
 		//insert
-		try {
-			addUser("Mark2");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// try {
+		// 	//addUser("Mark2");
+		// } catch (SQLException e) {
+		// 	// TODO Auto-generated catch block
+		// 	e.printStackTrace();
+		// }
 		disconnect();
 		
 	}
