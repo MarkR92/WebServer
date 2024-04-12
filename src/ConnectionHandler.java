@@ -13,8 +13,9 @@ import java.net.Socket;
     public class ConnectionHandler implements Runnable  {
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
-        private static final String homeURL="C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\dashboard.html";
+       //private static final String homeURL="C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\dashboard.html";
        // private static ArrayList<String> people= new ArrayList<>();
+       private static final String homeURL= "\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.html";
         private Socket socket;
 
         public ConnectionHandler(Socket socket )
@@ -53,6 +54,22 @@ import java.net.Socket;
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                             response.sendResponse("200 OK",homeURL);
+                            // response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.css");
+                            
+                            // response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.js");
+                            
+                        }
+                        else if (request.getResource().equals("/dashboard.css")) {
+                           
+                          
+                            response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.css");
+                            
+                        }
+                        else if (request.getResource().equals("/dashboard.js")) {
+                            
+                          
+                            response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.js");
+                            
                         }
                         else if (request.getResource().equals("/url")) {
                             System.out.println("here url");
@@ -64,9 +81,6 @@ import java.net.Socket;
                             response.sendResponse("200 OK",portList);
                             
                         }
-
-                   
-
                         else {
                    
                            // response.sendResponseNotFound();
