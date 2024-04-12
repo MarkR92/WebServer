@@ -17,7 +17,7 @@
         }
     })
     .done(function (data) {
-        alert("Post");
+        // alert("Post");
         $('input[name=title]').val('');
     });
     e.preventDefault(); // when method is called, the default action of the event will not be triggered.
