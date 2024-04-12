@@ -7,30 +7,49 @@ import java.net.Socket;
 
 public class StaticWebPage implements Runnable{
 
-    private static int port=9000;
+    private static int port=8000;
+    private int currentPort;
     private String body;
+    //private static Response clientOutput2;
+    //Robbo classes should not know about other classes unless they absolutly have to
+    //YES
     
-
-    public StaticWebPage(String body)
+    private ServerSocket serverSocket2;
+    public StaticWebPage(String body) throws IOException
     {
         
        this.body=body;
         port++;
-        System.out.println("port "+port);
+        currentPort=port;
+        System.out.println("port "+currentPort);
+        serverSocket2 = new ServerSocket(currentPort);
+    }
+    public StaticWebPage(String body, int port) throws IOException
+    {
+        
+       this.body=body;
+        port++;
+        currentPort=port;
+        System.out.println("port "+currentPort);
+        serverSocket2 = new ServerSocket(currentPort);
     }
     public int getPort()
     {
-        return port;
+        return currentPort;
+    }
+    public void kill() throws IOException
+    {
+        serverSocket2.close();
     }
     public void createStaticWebPage() throws IOException
     {
-            try (ServerSocket serverSocket2 = new ServerSocket(port))
-                        {
+            
                             
                             System.out.println("Website hosted on port "+port);
                         
-                
+                            
                             while(true){
+                            
                 
                                 try(Socket client2 = serverSocket2.accept())
                                 {
@@ -41,7 +60,7 @@ public class StaticWebPage implements Runnable{
                                     System.out.println("--REQUEST--");
                                     System.out.println(request2);
 
-                                    // Write the HTML content to the output stream
+                                        // Write the HTML content to the output stream
                                     OutputStream clientOutput2 = client2.getOutputStream();
 
                                     clientOutput2.write(("HTTP/1.1 200 OK\r\n").getBytes());
@@ -50,17 +69,23 @@ public class StaticWebPage implements Runnable{
                                     clientOutput2.write(body.getBytes());
                                     clientOutput2.write(("\r\n").getBytes());
                                     clientOutput2.flush();
+
+                                    // Write the HTML content to the output stream
+                                    // clientOutput2 = client2.getOutputStream();
+
+                                    // clientOutput2.write(("HTTP/1.1 200 OK\r\n").getBytes());
+                                    // clientOutput2.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+                                  
+                                    // clientOutput2.write(body.getBytes());
+                                    // clientOutput2.write(("\r\n").getBytes());
+                                    // clientOutput2.flush();
                                                   
-                                    client2.close();
+                                   // client2.close();
                 
                                 }
                             }
                             
-                        }  
-                        catch (IOException e) 
-                        {              
-                            System.out.println(e);
-                        }    
+                       
     }
 
     @Override
@@ -72,6 +97,20 @@ public class StaticWebPage implements Runnable{
         e.printStackTrace();
     }
       //  throw new UnsupportedOperationException("Unimplemented method 'run'");
+    }
+    public void updateStaticWebpage(String body2) throws IOException{
+        // TODO Auto-generated method stub
+        // System.out.println("poop");
+        // System.out.println(body2);
+        // System.out.println(getPort());
+        // clientOutput2.write(("HTTP/1.1 200 OK\r\n").getBytes());
+        // clientOutput2.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+        
+        // clientOutput2.write(body2.getBytes());
+        // clientOutput2.write(("\r\n").getBytes());
+        // clientOutput2.flush();
+        
+      //  clientOutput2.findResource4(body2);
     }
     
 }

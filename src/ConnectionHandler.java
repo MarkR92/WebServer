@@ -1,18 +1,21 @@
 
-    import java.io.BufferedReader;
+import java.io.BufferedReader;
 
 import java.io.IOException;
     import java.io.InputStreamReader;
   
 
 import java.net.Socket;
- //   import java.util.ArrayList;
+    import java.util.ArrayList;
     //import java.util.regex.Matcher;
     //import java.util.regex.Pattern;
     
     public class ConnectionHandler implements Runnable  {
-    
+
+        private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
+       //private static final String homeURL="C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\dashboard.html";
        // private static ArrayList<String> people= new ArrayList<>();
+       private static final String homeURL= "\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.html";
         private Socket socket;
 
         public ConnectionHandler(Socket socket )
@@ -48,30 +51,40 @@ import java.net.Socket;
     //				*/
                     if(request.getMethod().equals("GET"))
                     {
-                        if(request.getResource().equals("/people"))//check the resource we are looking for
+                        if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
+                            response.sendResponse("200 OK",homeURL);
+                            // response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.css");
+                            
+                            // response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.js");
+                            
+                        }
+                        else if (request.getResource().equals("/dashboard.css")) {
                            
-                            // response.sendResponseOk();
-                            // //people are contained in an arraylist. So when queried we output everyone in the list
-                            // for(int i=0;i<people.size();i++)
-                            // {
-                            //     clientOutput.write((people.get(i)+" \r\n").getBytes());//encode to bytes
-                                
-                            // }
-                                           
-                            // clientOutput.flush();//empty the built up buffer
+                          
+                            response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.css");
+                            
                         }
-                        //I did something here
-                        else if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
-                        {
-                            response.findResource();
+                        else if (request.getResource().equals("/dashboard.js")) {
+                            
+                          
+                            response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.js");
+                            
                         }
+                        else if (request.getResource().equals("/url")) {
+                            System.out.println("here url");
+                            ArrayList<Integer> portList= new ArrayList<>();
+                            for (StaticWebPage staticWebPage : webPageList) {
 
-                   
-
+                                portList.add(staticWebPage.getPort());
+                            }
+                            response.sendResponse("200 OK",portList);
+                            
+                        }
                         else {
                    
-                            response.sendResponseNotFound();
+                           // response.sendResponseNotFound();
+                            response.sendResponse("404 Not Found");
                         }
                         
                     }
@@ -84,31 +97,85 @@ import java.net.Socket;
                         {
                             //response.sendResponseOk();
 
-                           
                             
                            StaticWebPage webpage= new StaticWebPage(request.getBody());
+                           webPageList.add(webpage);
+
                            int port=webpage.getPort();
                            Thread t = new Thread(webpage);
                            t.start();
-                           response.findResource2(port);
+                           
+                           response.sendResponse("200 OK", port);
+                          // response.findResource2(port);
+                        }
+                    }
+                    else if(request.getMethod().equals("PUT"))
+                    {
+                
+                        if(request.getResource().matches("/update/\\d{4}"))//check the resource we are looking for
+                        {
+                           
+                            int port = Integer.parseInt(request.getResource().split("/")[2]);
+                            System.out.println(port);
+
+                            for (StaticWebPage staticWebPage : webPageList) {
+                                System.out.println(staticWebPage.getPort());
+
+                                if(staticWebPage.getPort() == port){
+                                    staticWebPage.kill();
+                                    StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
+                                    webPageList.add(webpage);
+            
+                                    Thread t = new Thread(webpage);
+                                    t.start();
+                                    
+                                    response.sendResponse("200 OK", port);
+                                }
+                            }     
+                        }else{
+                            response.sendResponse("404 Not Found");
                         }
 
                     }
-    //
-                    
-                    
-                    
-                    socket.close();
+                    else if(request.getMethod().equals("DELETE"))
+                    {
+                        if(request.getResource().matches("/delete/\\d{4}"))//check the resource we are looking for
+                        {
+                        int port = Integer.parseInt(request.getResource().split("/")[2]);
+                        //System.out.println(port);
+
+                        for (StaticWebPage staticWebPage : webPageList) {
+                            System.out.println(staticWebPage.getPort());
+
+                            if(staticWebPage.getPort() == port){
+                                staticWebPage.kill();
+                                webPageList.remove(staticWebPage);
+                                
+                                System.out.println("Website deleted on port "+port);
+                                response.sendResponse("200 OK");
+                            }
+                            else{
+                                response.sendResponse("404 Not Found");
+                            }
+                        }     
+                    }                              
+                   
+                } else{
+                    response.sendResponse("404 Not Found");  
+                }
+                
+                socket.close();//do not remove this 
+
                     //get the first line of the request
                     //String firstLine=header.toString().split("\n")[0];
                   
              }
              catch (IOException e) 
-             {              
+             {   
+                         
                  
              }  
     
     }
     }
     
-
