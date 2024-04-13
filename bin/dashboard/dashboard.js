@@ -1,11 +1,16 @@
    // POST FUNCTION
+
+   
+
+   var myurl="http://localhost:8000/"
+   getRegular();
    $(document).ready(function(){
     $('.upload').unbind('upload').submit(function (e) {
         console.log("Working");
         $.ajax({
 
             type: "POST",
-            url: "http://20.84.89.246:8000/upload",
+            url: myurl+"upload",
             crossDomain: true,
             data:  new FormData(this),
             dataType: "json",
@@ -14,24 +19,28 @@
             // contentType: false,
             headers: {
             "Accept": "application/json"
+            
         }
+       
     })
+   
     .done(function (data) {
-        alert("Post");
+      //  alert("Post");
         $('input[name=title]').val('');
     });
     e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                     // meand that clicked submit button will not take the browser to a new URL.
                 
-                });
+                          });
                 
 // RETRIEVE FUNCTTON
+getRegular();  
 $('.refresh').unbind('refresh').submit(function (e) {
     var port = $('input[name=quantity]').val();
-    var myUrl = "http://20.84.89.246:8000/url";
+  //  var myUrl = "http://20.84.89.246:8000/url";
     $.ajax({
         type: "GET",
-        url: myUrl,
+        url: myurl+"url",
     })
     .done(function (data) {
        // console.log(data);
@@ -45,13 +54,13 @@ $('.refresh').unbind('refresh').submit(function (e) {
 
 
 // DELETE FUNCTION IN HERE TO TRY 0_0
-setInterval(getRegular, 1000);
+setInterval(getRegular, 2000);
 function getRegular()
 {
-var myUrl = "http://20.84.89.246:8000/url";
+//var myUrl = "http://20.84.89.246:8000/url";
     $.ajax({
         type: "GET",
-        url: myUrl,
+        url: myurl+"url",
     })
     .done(function (data) {
        // console.log(data);
@@ -64,11 +73,11 @@ function test( port)
 
 console.log(port);
 
-                var myUrl = "http://20.84.89.246:8000/delete/"+port;
+            //    var myUrl = "http://20.84.89.246:8000/delete/"+port;
 
                 $.ajax({
                     type: "DELETE",
-                    url: myUrl,
+                    url: myurl+"delete/"+port,
                 })
                 // .done(function (data) {
                 //     alert("Deleted WebPage on: "+port);

@@ -7,80 +7,70 @@ import java.net.Socket;
 
 public class StaticWebPage implements Runnable{
 
-    private static int port=8000;
-    private int currentPort;
+    private int port;
     private String body;
     //private static Response clientOutput2;
     //Robbo classes should not know about other classes unless they absolutly have to
     //YES
     
-    private ServerSocket serverSocket2;
-    public StaticWebPage(String body) throws IOException
-    {
+    private ServerSocket webpageSocket;
+    // public StaticWebPage(String body) throws IOException
+    // {
         
-       this.body=body;
-        port++;
-        currentPort=port;
-        System.out.println("port "+currentPort);
-        serverSocket2 = new ServerSocket(currentPort);
-    }
+    //    this.body=body;
+     
+    //     currentPort=port;
+    //     System.out.println("port "+currentPort);
+    //     serverSocket2 = new ServerSocket(currentPort);
+    // }
+    //the boday will contain the unedited uploaded files. We will parse them in this class
     public StaticWebPage(String body, int port) throws IOException
     {
         
        this.body=body;
-        port++;
-        currentPort=port;
-        System.out.println("port "+currentPort);
-        serverSocket2 = new ServerSocket(currentPort);
+        this.port=port;
+      
+       webpageSocket = new ServerSocket(port);
     }
     public int getPort()
     {
-        return currentPort;
+        return port;
     }
     public void kill() throws IOException
     {
-        serverSocket2.close();
+        //TO DO need to interupt the thread
+        webpageSocket.close();
     }
     public void createStaticWebPage() throws IOException
     {
             
                             
-                            System.out.println("Website hosted on port "+port);
+                           // System.out.println("Website hosted on port "+port);
                         
                             
                             while(true){
                             
                 
-                                try(Socket client2 = serverSocket2.accept())
+                                try(Socket client = webpageSocket.accept())
                                 {
                                    // System.out.println("Debug: got new message "+client2.toString());
                 
-                                    StringBuilder request2 = new StringBuilder();
+                                    //StringBuilder request = new StringBuilder();
                 
                                     System.out.println("--REQUEST--");
-                                    System.out.println(request2);
+                                    //System.out.println(request);
 
                                         // Write the HTML content to the output stream
-                                    OutputStream clientOutput2 = client2.getOutputStream();
+                                    OutputStream clientOutput = client.getOutputStream();
 
-                                    clientOutput2.write(("HTTP/1.1 200 OK\r\n").getBytes());
-                                    clientOutput2.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
+                                    clientOutput.write(("HTTP/1.1 200 OK\r\n").getBytes());
+                                    clientOutput.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
                                   
-                                    clientOutput2.write(body.getBytes());
-                                    clientOutput2.write(("\r\n").getBytes());
-                                    clientOutput2.flush();
+                                    clientOutput.write(body.getBytes());
+                                    clientOutput.write(("\r\n").getBytes());
+                                    clientOutput.flush();
 
-                                    // Write the HTML content to the output stream
-                                    // clientOutput2 = client2.getOutputStream();
-
-                                    // clientOutput2.write(("HTTP/1.1 200 OK\r\n").getBytes());
-                                    // clientOutput2.write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-                                  
-                                    // clientOutput2.write(body.getBytes());
-                                    // clientOutput2.write(("\r\n").getBytes());
-                                    // clientOutput2.flush();
-                                                  
-                                   // client2.close();
+                                 
                 
                                 }
                             }

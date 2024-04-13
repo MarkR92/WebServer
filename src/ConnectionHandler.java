@@ -15,12 +15,14 @@ import java.net.Socket;
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
        //private static final String homeURL="C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\dashboard.html";
        // private static ArrayList<String> people= new ArrayList<>();
-       private static final String homeURL= "\\Users\\rootadmin\\Documents\\WebServer-1\\WebServer\\src\\dashboard\\dashboard.html";
+       private static final String homeURL= "src//dashboard//";
         private Socket socket;
-
+        private static Database db = new Database();
+       
         public ConnectionHandler(Socket socket )
         {
             this.socket = socket;
+           
             
         }
         @Override
@@ -53,7 +55,7 @@ import java.net.Socket;
                     {
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
-                            response.sendResponse("200 OK",homeURL);
+                            response.sendResponse("200 OK",homeURL+"dashboard.html");
                             // response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.css");
                             
                             // response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.js");
@@ -62,13 +64,13 @@ import java.net.Socket;
                         else if (request.getResource().equals("/dashboard.css")) {
                            
                           
-                            response.sendResponse("200 OK","\\Users\\rootadmin\\Documents\\WebServer-1\\WebServer\\src\\dashboard\\dashboard.css");
+                            response.sendResponse("200 OK",homeURL+"dashboard.css");
                             
                         }
                         else if (request.getResource().equals("/dashboard.js")) {
                             
                           
-                            response.sendResponse("200 OK","\\Users\\rootadmin\\Documents\\WebServer-1\\WebServer\\src\\dashboard\\dashboard.js");
+                            response.sendResponse("200 OK",homeURL+"dashboard.js");
                             
                         }
                         else if (request.getResource().equals("/url")) {
@@ -96,12 +98,18 @@ import java.net.Socket;
                         if(request.getResource().equals("/upload"))//check the resource we are looking for
                         {
                             //response.sendResponseOk();
+                            int port=0;
+                            //search database for a free port
+                            port=(db.findFreePort()); 
+                            db.setPortBound(port);
 
-                            
-                           StaticWebPage webpage= new StaticWebPage(request.getBody());
+                            System.out.println(port);
+
+                            //create a static webpage 
+                           StaticWebPage webpage= new StaticWebPage(request.getBody(),port);
                            webPageList.add(webpage);
 
-                           int port=webpage.getPort();
+                           //int port=webpage.getPort();
                            Thread t = new Thread(webpage);
                            t.start();
                            
@@ -143,6 +151,7 @@ import java.net.Socket;
                         {
                         int port = Integer.parseInt(request.getResource().split("/")[2]);
                         //System.out.println(port);
+                        db.setPortFree(port);
 
                         for (StaticWebPage staticWebPage : webPageList) {
                             System.out.println(staticWebPage.getPort());

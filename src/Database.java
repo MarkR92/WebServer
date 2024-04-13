@@ -2,28 +2,20 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Database {
-	private static final String url = "jdbc:postgresql://db-cs335-webserver.postgres.database.azure.com/test";
-	private static final String user = "rootadmin";
-	private static final String password = "CS335_Project";
-	private static  Connection conn ;
+	private  final String url = "jdbc:postgresql://db-cs335-webserver.postgres.database.azure.com/test";
+	private  final String user = "rootadmin";
+	private  final String password = "CS335_Project";
+	private   Connection conn ;
 	
-	public static void main(String [] arg)
+	public Database()
 	{
 		connect();
-		//insert
-		try {
-			addUser("Mark2");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		disconnect();
-		
 	}
-	public static Connection connect()
+	public  Connection connect()
 	{
 		  conn = null;
 	        try {
@@ -35,8 +27,99 @@ public class Database {
 
 	        return conn;
 	}
+	public int findFreePort() 
+	{
+		//connect();
+		try {
+			String insertSQL="SELECT port from ports where bound = false  Order by port LIMIT 1";//sql
+			PreparedStatement checkStatement=conn.prepareStatement(insertSQL);
+			ResultSet result=checkStatement.executeQuery();
+			result.next();
+		//disconnect();
+
+		return result.getInt(1);
+		//disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		return 0;
+		//disconnect();
+	}
+	public void setPortBound(int port) 
+	{
+		// var sql = "UPDATE personal SET EMAILADDRESS=?, Mobile=? ,Title=? WHERE Name = ? AND Surname =?"
+		// var values=[email,mobile,title, fname,lname];
+		
+		//connect();
+		try {
+			String updateSQL="Update ports SET bound=true where port = ?";//sql
+			PreparedStatement updateStatement=conn.prepareStatement(updateSQL);//prepare
+			updateStatement.setString(1,""+port);
+			updateStatement.executeUpdate(); //insert the new structure into the db
+			updateStatement.close();
+			
+		//disconnect();
+
+		
+		//disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	
+		//disconnect();
+	}
+	public void setPortFree(int port) 
+	{
+		// var sql = "UPDATE personal SET EMAILADDRESS=?, Mobile=? ,Title=? WHERE Name = ? AND Surname =?"
+		// var values=[email,mobile,title, fname,lname];
+		
+		//connect();
+		try {
+			String updateSQL="Update ports SET bound=false where port = ?";//sql
+			PreparedStatement updateStatement=conn.prepareStatement(updateSQL);//prepare
+			updateStatement.setString(1,""+port);
+			updateStatement.executeUpdate(); //insert the new structure into the db
+			updateStatement.close();
+			
+		//disconnect();
+
+		
+		//disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	
+		//disconnect();
+	}
+	public void setAllPortsFree() 
+	{
+		// var sql = "UPDATE personal SET EMAILADDRESS=?, Mobile=? ,Title=? WHERE Name = ? AND Surname =?"
+		// var values=[email,mobile,title, fname,lname];
+		
+		//connect();
+		try {
+			String updateSQL="Update ports SET bound=false";//sql
+			PreparedStatement updateStatement=conn.prepareStatement(updateSQL);//prepare
+			//updateStatement.setString(1,""+port);
+			updateStatement.executeUpdate(); //insert the new structure into the db
+			updateStatement.close();
+			
+		//disconnect();
+
+		
+		//disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	
+		//disconnect();
+	}
 	//insert into users (username) values ('Test');
-	public static void addUser(String name) throws SQLException
+	public  void addUser(String name) throws SQLException
 	{
 		String insertSQL="insert into users (username) values (?)";//sql
 		PreparedStatement insertStatement=conn.prepareStatement(insertSQL);//prepare
@@ -44,7 +127,7 @@ public class Database {
 		insertStatement.executeUpdate(); //insert the new structure into the db
 		insertStatement.close();
 	}
-	public static void disconnect()
+	public  void disconnect()
 	{
 		if(conn!=null)
 		{

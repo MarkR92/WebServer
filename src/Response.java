@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Response {
     private OutputStream output;
-
+    private String url="http://localhost:";
     public Response(OutputStream output) 
     {
         this.output = output;
@@ -78,7 +78,7 @@ public class Response {
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
             for (Integer port : portList) {
-                String ref = "http://20.84.89.246:"+port;
+                String ref = url+port;
                 // String target="_blank";
                 // String rel="noopener noreferrer";
                // <p>Check out <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
