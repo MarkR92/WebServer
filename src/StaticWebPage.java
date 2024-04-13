@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class StaticWebPage implements Runnable{
 
-    private static int port=8000;
+   // private static int port=8000;
     private int currentPort;
     private String body;
     //private static Response clientOutput2;
@@ -15,20 +15,20 @@ public class StaticWebPage implements Runnable{
     //YES
     
     private ServerSocket serverSocket2;
-    public StaticWebPage(String body) throws IOException
-    {
+    // public StaticWebPage(String body) throws IOException
+    // {
         
-       this.body=body;
-        port++;
-        currentPort=port;
-        System.out.println("port "+currentPort);
-        serverSocket2 = new ServerSocket(currentPort);
-    }
+    //    this.body=body;
+    //     port++;
+    //     currentPort=port;
+    //     System.out.println("port "+currentPort);
+    //     serverSocket2 = new ServerSocket(currentPort);
+    // }
     public StaticWebPage(String body, int port) throws IOException
     {
         
        this.body=body;
-        port++;
+        // port++;
         currentPort=port;
         System.out.println("port "+currentPort);
         serverSocket2 = new ServerSocket(currentPort);
@@ -45,7 +45,7 @@ public class StaticWebPage implements Runnable{
     {
             
                             
-                            System.out.println("Website hosted on port "+port);
+                            System.out.println("Website hosted on port "+currentPort);
                         
                             
                             while(true){

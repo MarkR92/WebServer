@@ -93,20 +93,20 @@ public class Request implements HttpHandler {
             
             //System.out.println(body);
         }
-       // System.out.println(body+"out");
+        System.out.println(body+"out");
 
 
         //Split the input into lines
-        String[] lines = body.split("\n");
+        // String[] lines = body.split("\n");
 
-        // Exclude the first 3 lines and the last line
-        String[] result = Arrays.copyOfRange(lines, 3, lines.length - 1);
+        // // Exclude the first 3 lines and the last line
+        // String[] result = Arrays.copyOfRange(lines, 3, lines.length - 1);
 
-        // Join the lines back into a single string
-        String output = String.join("\n", result);
+        // // Join the lines back into a single string
+        // String output = String.join("\n", result);
 
         // System.out.println(body);
-        return output;
+        return body;
     }
 
     @Override
