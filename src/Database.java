@@ -48,21 +48,14 @@ public class Database {
 	}
 	public void setPortBound(int port) 
 	{
-		// var sql = "UPDATE personal SET EMAILADDRESS=?, Mobile=? ,Title=? WHERE Name = ? AND Surname =?"
-		// var values=[email,mobile,title, fname,lname];
-		
-		//connect();
+	
 		try {
 			String updateSQL="Update ports SET bound=true where port = ?";//sql
 			PreparedStatement updateStatement=conn.prepareStatement(updateSQL);//prepare
 			updateStatement.setString(1,""+port);
 			updateStatement.executeUpdate(); //insert the new structure into the db
 			updateStatement.close();
-			
-		//disconnect();
-
-		
-		//disconnect();
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -72,10 +65,7 @@ public class Database {
 	}
 	public void setPortFree(int port) 
 	{
-		// var sql = "UPDATE personal SET EMAILADDRESS=?, Mobile=? ,Title=? WHERE Name = ? AND Surname =?"
-		// var values=[email,mobile,title, fname,lname];
 		
-		//connect();
 		try {
 			String updateSQL="Update ports SET bound=false where port = ?";//sql
 			PreparedStatement updateStatement=conn.prepareStatement(updateSQL);//prepare
@@ -83,23 +73,17 @@ public class Database {
 			updateStatement.executeUpdate(); //insert the new structure into the db
 			updateStatement.close();
 			
-		//disconnect();
-
 		
-		//disconnect();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	
 	
-		//disconnect();
-	}
-	public void setAllPortsFree() 
-	{
-		// var sql = "UPDATE personal SET EMAILADDRESS=?, Mobile=? ,Title=? WHERE Name = ? AND Surname =?"
-		// var values=[email,mobile,title, fname,lname];
 		
-		//connect();
+	}
+	public void setAllPortsFree() //just in case :P
+	{
+		
 		try {
 			String updateSQL="Update ports SET bound=false";//sql
 			PreparedStatement updateStatement=conn.prepareStatement(updateSQL);//prepare
@@ -107,10 +91,7 @@ public class Database {
 			updateStatement.executeUpdate(); //insert the new structure into the db
 			updateStatement.close();
 			
-		//disconnect();
-
-		
-		//disconnect();
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

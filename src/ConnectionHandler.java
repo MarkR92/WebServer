@@ -44,8 +44,8 @@ import java.net.Socket;
                      HTTP method (GET,POST,PUT...etc) and resource and resource root (/people of /people/jobs ...etc)
                       */
                     System.out.println();
-                    System.out.println("--REQUEST--");
-                    System.out.println(request.getHeader());
+                    //System.out.println("--REQUEST--");
+                   // System.out.println(request.getHeader());
     
 
     //				/*when the method in the header is a GET we retrieve the resource. 
@@ -65,6 +65,12 @@ import java.net.Socket;
                            
                           
                             response.sendResponse("200 OK",homeURL+"dashboard.css");
+                            
+                        }
+                        else if (request.getResource().equals("/assignment-01.css")) {
+                           
+                          System.out.println("here");
+                            response.sendResponse("200 OK");
                             
                         }
                         else if (request.getResource().equals("/dashboard.js")) {

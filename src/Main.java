@@ -8,14 +8,14 @@ public class Main {
 
 	private static int port=8000;
 	// private int=10;
-	
+
 	public static void main(String[] args) {
 		
 		
 		try (//	try (//pick a port to connect and listen to.
 					ServerSocket socket = new ServerSocket(port)) {
 						System.out.println("Listening on port:"+port);
-						 Socket client;
+						Socket client;
 						System.out.println("");
 						 while((client=socket.accept())!=null)//while connected (forever)
 						{

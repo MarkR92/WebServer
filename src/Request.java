@@ -105,8 +105,8 @@ public class Request implements HttpHandler {
         // Join the lines back into a single string
         String output = String.join("\n", result);
 
-        // System.out.println(body);
-        return output;
+         //System.out.println(body);
+        return body;
     }
 
     @Override

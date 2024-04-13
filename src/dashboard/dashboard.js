@@ -79,6 +79,7 @@ console.log(port);
                     type: "DELETE",
                     url: myurl+"delete/"+port,
                 })
+                
                 // .done(function (data) {
                 //     alert("Deleted WebPage on: "+port);
                 //     $('input[name=title]').val('');
