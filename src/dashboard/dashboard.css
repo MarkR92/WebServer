@@ -115,21 +115,22 @@ a:hover {
 
 .post
 {
-    background-color: #664e9fdf;
+    background-color: #512da8;
     position: relative; 
     top: 200px;
     left: 0px; 
     transform: scale(1.2);
 }
 
-.retrieve
+/* REFRESH BUTTON DISABLED */
+/* .retrieve
 {
-    background-color: #664e9fdf;
+    background-color: #512da8;
     position: relative;
     top:-1180px;
     left:1060px;
     transform: scale(1.2);
-}
+} */
 
 /* DELETE BUTTON IN PORTS DESIGN */
 .delete
@@ -148,12 +149,14 @@ a:hover {
 }
 .post:hover
 {
-    background: #3304a0df; 
+    background: #270479; 
 }
-.retrieve:hover
+
+/* REFRESH BUTTON DISABLED */
+/* .retrieve:hover
 {
     background: #3304a0df; 
-}
+} */
 .delete:hover
 {
     background-color:rgb(172, 32, 32);
@@ -173,26 +176,25 @@ a:hover {
 input[type=file] {
   width: 350px;
   max-width: 100%;
-  color: #444;
+  color: #fff;
   padding: 5px;
-  background: #fff;
+  background: linear-gradient(to right, #5c6bc0, #522da8);
   border-radius: 10px;
-  border: 1px solid #555;
+  border: 1px solid #fff;
 }
 
 input[type=file]::file-selector-button {
     margin-right: 20px;
-    border: none;
-    background: #664e9fdf;
+    border:1px solid white;
+    background: none;
     padding: 10px 20px;
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
     transition: background .2s ease-in-out;
 }
-
 input[type=file]::file-selector-button:hover {
-  background: #3304a0df;
+  background: #27047998;
 }
 
 
@@ -211,6 +213,7 @@ input[type=file]::file-selector-button:hover {
     border-radius: 10px;
     border: 2px dashed #656464;
     color: #444;
+    font-size: 20px;
     cursor: pointer;
     transition: background .2s ease-in-out, border .2s ease-in-out;
     /* border: 2px solid green; */
