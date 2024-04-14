@@ -231,10 +231,10 @@
             <form>
                 <h1>Create Account</h1>
                 <!--The user inputs -->
-                <input type="text" placeholder="Name" required>
-                <input type="text" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <button>Sign up</button>
+                <input id="user" type="text" placeholder="Username" required>
+                <input id="email" type="text" placeholder="Email" required>
+                <input id="password" type="password" placeholder="Password" required>
+                <button type="submit" value="Login" onclick="sign_up(document.getElementById('user').value, document.getElementById('password').value, document.getElementById('email').value)">Sign up</button>
             </form>
         </div>
 
@@ -246,7 +246,7 @@
                 <input id="username" type="text" placeholder="Username" required>
                 <input id="pwd" type="password" placeholder="Password"required>
                 <a href="#">Forget Your Password?</a>
-                <button type="button" value="Login" onclick="test(document.getElementById('username').value, document.getElementById('pwd').value)">Sign in</button>
+                <button type="submit" value="Login" onclick="login(document.getElementById('username').value, document.getElementById('pwd').value)">Sign in</button>
             </form>
 
 
@@ -287,28 +287,29 @@
             container.classList.remove("active");
         });
 
+        //THIS IS OLD CODE FROM THE FIRST PAIR PROGRAMMING USER: admin PSWD: admin
 //the functioning of the logini button
-const Http = new XMLHttpRequest();
+// const Http = new XMLHttpRequest();
 
-function test(user, pwd)
-{
-    console.log(user+ " " + pwd);
-    const url ='http://localhost:8180/login'; 
-    Http.open("POST",url);
-    Http.send("username="+user+"&password="+pwd);
+// function test(user, pwd)
+// {
+//     console.log(user+ " " + pwd);
+//     const url ='http://localhost:8180/login'; 
+//     Http.open("POST",url);
+//     Http.send("username="+user+"&password="+pwd);
     
-Http.onreadystatechange=(e)=>{
-console.log(Http.responseText);
+// Http.onreadystatechange=(e)=>{
+// console.log(Http.responseText);
 
 
-if(Http.readyState==4 &&Http.status==200)
-{
-    //console.log("here");
-    location.href='Simon';
-}
-}
+// if(Http.readyState==4 &&Http.status==200)
+// {
+//     //console.log("here");
+//     location.href='Simon';
+// }
+// }
 
-}
+// }
 
 // function test(user, pwd, email)
 // {
@@ -329,7 +330,21 @@ if(Http.readyState==4 &&Http.status==200)
 // }
 
 // }
+function login(user, pwd)
+{
+    console.log("You have logged in");
+}
 
+
+
+function sign_up(user, pwd, email)
+{
+    console.log("You have signed in");
+}
+
+//NOTE: if you look at the id names for sign up and log in, they have different class names because I was having a same element error
+//also, type=submit is what triggers the required boolean, originally its type=button. 
+//tho from what I've seen, even if there is required, it doesnt matter, it will still trigger console. 
     </script>
     </body>
 </html>
