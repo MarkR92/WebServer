@@ -82,7 +82,7 @@ public class Response {
                 // String target="_blank";
                 // String rel="noopener noreferrer";
                // <p>Check out <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
-               output.write(("<a href="+ref+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
+               output.write(("<a href="+ref+">"+ref+"</a>"+"<div class='btn-spacing'><button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button></div>").getBytes());//blank line
                //output.write(("<a href="+ref+"target="+target+" rel="+rel+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
 
                // output.write(("<a href="+ref+" target=_blank></a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line

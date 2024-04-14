@@ -55,14 +55,49 @@ body{
     height:600px;
     /* border: 2px solid green; */
 }
+
+
+
+/* PORTS DESIGN */
 .ports
 {
     position: relative;
-    top: 40px;
-    /* left: 0px; */
-    width: 350px;
-    height: 350px;
+    top: 20px;
+    left: -20px;
+    width: 320px;
+    height: 500px;
     /* border: 2px solid green; */
+    border-radius: 10px;
+    /* THE SCROLLBAR */
+    border: 2px dashed #656464;
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    transition: background .2s ease-in-out;
+}
+.ports:hover {
+    background: #dfdddd7e;
+}
+/* editing for the link */
+.ports a
+{
+    position: relative;
+    width: 50px;
+    height: 20px;
+    left: 20px;
+    top: 15px;
+    color:#3304a0df;
+    font-size: 18px;
+    /* border: 2px solid green;  */
+}
+a:link {
+    text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+    color: #a485f3df;
 }
 
 /* ALL THE BUTTONS */
@@ -96,15 +131,22 @@ body{
     left:1060px;
     transform: scale(1.2);
 }
+
+/* DELETE BUTTON IN PORTS DESIGN */
 .delete
 {
     background-color:rgb(233, 45, 45);
     height: 50px;
-    transform: scale(0.6);
-    
+    transform: scale(0.6);  
 }
-
-
+.btn-spacing 
+{
+    position: relative;
+    top: -20px;
+    left: 200px;
+    width:50px;
+    /* border: 2px solid green; */
+}
 .post:hover
 {
     background: #3304a0df; 
@@ -124,7 +166,7 @@ body{
     border-left: 2px solid #3e3d3d; 
     top: -550px;
     height: 500px;
-    left: 900px;
+    left: 850px;
 }
 
 /*BASED ON A TUTORIAL*/
@@ -171,6 +213,7 @@ input[type=file]::file-selector-button:hover {
     color: #444;
     cursor: pointer;
     transition: background .2s ease-in-out, border .2s ease-in-out;
+    /* border: 2px solid green; */
 }
 
 /* hover feature for dotted line */
