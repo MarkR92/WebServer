@@ -54,7 +54,7 @@ $('.refresh').unbind('refresh').submit(function (e) {
 
 
 // DELETE FUNCTION IN HERE TO TRY 0_0
-setInterval(getRegular, 2000);
+setInterval(getRegular, 4000);
 function getRegular()
 {
 //var myUrl = "http://20.84.89.246:8000/url";

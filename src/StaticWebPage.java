@@ -32,11 +32,25 @@ public class StaticWebPage implements Runnable{
         parseFiles();
         webpageSocket = new ServerSocket(port);
     }
+    public StaticWebPage(String html,String css,String js ,int port) throws IOException
+    {
+        
+      
+        this.port=port;
+        this.html=html;
+        this.css=css;
+        this.js=js;
+        // html="";
+        // css="";
+        // js="";
+        // parseFiles();
+        webpageSocket = new ServerSocket(port);
+    }
     public int getPort()
     {
         return port;
     }
-    public void setPort()
+    public void setPort(int port)
     {
         this.port=port;
     }
@@ -99,7 +113,7 @@ public class StaticWebPage implements Runnable{
             }else if(file.matches("^.*\\.html$"))
             {
                 html=content[i];
-                System.out.println(html);
+                //System.out.println(html);
             }
             else if(file.matches("^.*\\.js$"))
             {

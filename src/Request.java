@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -96,14 +95,14 @@ public class Request implements HttpHandler {
        // System.out.println(body+"out");
 
 
-        //Split the input into lines
-        String[] lines = body.split("\n");
+        // //Split the input into lines
+        // String[] lines = body.split("\n");
 
-        // Exclude the first 3 lines and the last line
-        String[] result = Arrays.copyOfRange(lines, 3, lines.length - 1);
+        // // Exclude the first 3 lines and the last line
+        // String[] result = Arrays.copyOfRange(lines, 3, lines.length - 1);
 
-        // Join the lines back into a single string
-        String output = String.join("\n", result);
+        // // Join the lines back into a single string
+        // String output = String.join("\n", result);
 
          //System.out.println(body);
         return body;
