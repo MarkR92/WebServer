@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Login Page/ Signup page</title>
+
+       <!-- START OF INTERNAL CSS CODE -->
+       <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        /* default style for everything */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body{
+            background-color: #c9d6ff;
+            background: linear-gradient(to right, #e2e2e2, #c9d6ff); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* The general container of the sign in and login */
+        .container{
+            background-color: #fff;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            position: relative;
+            overflow: hidden;
+            width: 768px;
+            max-width: 100%;
+            min-height: 480px;
+            transform: scale(1.1);
+        }
+        /* general sizing and coloring of all the texts */
+        .container p{
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.3px;
+            margin: 20px 0;
+        }
+
+        .container span{
+            font-size: 12px;
+        }
+
+        .container a{
+            color: #333;
+            font-size: 13px;
+            text-decoration: none;
+            margin: 15px 0 10px;
+        }
+
+        /* the sign in and sign up button */
+        .container button{
+            background-color: #512da8;
+            color: #fff;
+            font-size: 12px;
+            padding: 10px 45px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        
+
+        /* the create and log into account button  */
+        .container button.hidden{
+            background-color: transparent;
+            border-color: #fff;
+        }
+
+        /* containers for sign in and sign up */
+        .container form{
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            height: 100%;
+        }
+
+        /* the input boxes  */
+        .container input{
+            background-color: #eee;
+            border: none;
+            margin: 8px 0;
+            padding: 10px 15px;
+            font-size: 13px;
+            border-radius: 8px;
+            width: 100%;
+            outline: none;
+        }
+
+        .form-container{
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+
+
+        .sign-in{
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+        /* the moving of the sign in container */
+        .container.active .sign-in{
+            transform: translateX(100%);
+        }
+
+        .sign-up{
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+         /* the moving of the sign up container */
+        .container.active .sign-up{
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+            animation: move 0.6s;
+        }
+
+        /* the animation of the containers */
+        @keyframes move{
+            0%, 49.99%{
+                opacity: 0;
+                z-index: 1;
+            }
+            50%, 100%{
+                opacity: 1;
+                z-index: 5;
+            }
+        }
+
+        /* the style and animation for the containers with the messages */
+        .toggle-container{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: all 0.6s ease-in-out;
+            border-radius: 150px 0 0 100px;
+            z-index: 1000;
+        }
+
+        .container.active .toggle-container{
+            transform: translateX(-100%);
+            border-radius: 0 150px 100px 0;
+        }
+
+        .toggle{
+            background-color: #512da8;
+            height: 100%;
+            background: linear-gradient(to right, #5c6bc0, #512da8);
+            color: #fff;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .container.active .toggle{
+            transform: translateX(50%);
+        }
+
+        .toggle-panel{
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 30px;
+            text-align: center;
+            top: 0;
+            transform: translateX(0);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .toggle-left{
+            transform: translateX(-200%);
+        }
+
+        .container.active .toggle-left{
+            transform: translateX(0);
+        }
+
+        .toggle-right{
+            right: 0;
+            transform: translateX(0);
+        }
+
+        .container.active .toggle-right{
+            transform: translateX(200%);
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!--ENTIRE CONTAINER -->
+    <div class="container" id="container">
+
+
+        <!-- SIGN UP CONTAINER -->
+        <div class="form-container sign-up">
+            <form>
+                <h1>Create Account</h1>
+                <!--The user inputs -->
+                <input type="text" placeholder="Name" required>
+                <input type="text" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button>Sign up</button>
+            </form>
+        </div>
+
+
+        <!-- SIGN IN CONTAINER -->
+        <div class="form-container sign-in">
+            <form>
+                <h1>Sign In</h1>
+                <input id="username" type="text" placeholder="Username" required>
+                <input id="pwd" type="password" placeholder="Password"required>
+                <a href="#">Forget Your Password?</a>
+                <button type="button" value="Login" onclick="test(document.getElementById('username').value, document.getElementById('pwd').value)">Sign in</button>
+            </form>
+
+
+            <!-- THE CONTAINER WITH MESSAGE FOR CREATE -->
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Have an account? Click here and enter your details to access your account</p>
+                    <button class="hidden" id="login">Log into Account</button>
+                </div>
+                <!-- THE CONTAINER WITH MESSAGE FOR LOGIN -->
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>No account? Click here and register with your personal details to create an account</p>
+                    <button class="hidden" id="register">Create Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--START OF INTERNAL JS CODE -->
+    <script>
+        // decalring vars
+        const container = document.getElementById('container');
+        const registerBtn = document.getElementById('register');
+        const loginBtn = document.getElementById('login');
+
+        // the function for the create account/log into account button
+        registerBtn.addEventListener('click', () => {
+            container.classList.add("active");
+        });
+
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove("active");
+        });
+
+//the functioning of the logini button
+const Http = new XMLHttpRequest();
+
+function test(user, pwd)
+{
+    console.log(user+ " " + pwd);
+    const url ='http://localhost:8180/login'; 
+    Http.open("POST",url);
+    Http.send("username="+user+"&password="+pwd);
+    
+Http.onreadystatechange=(e)=>{
+console.log(Http.responseText);
+
+
+if(Http.readyState==4 &&Http.status==200)
+{
+    //console.log("here");
+    location.href='Simon';
+}
+}
+
+}
+
+// function test(user, pwd, email)
+// {
+//     console.log(user+ " " + pwd);
+//     const url ='http://localhost:8180/people'; 
+//     Http.open("POST",url);
+//     Http.send("username="+user+"&password="+pwd);
+    
+// Http.onreadystatechange=(e)=>{
+// console.log(Http.responseText);
+
+
+// if(Http.readyState==4 &&Http.status==200)
+// {
+//     //console.log("here");
+//     //location.href='Simon';
+// }
+// }
+
+// }
+
+    </script>
+    </body>
+</html>
