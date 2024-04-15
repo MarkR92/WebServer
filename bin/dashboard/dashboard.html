@@ -19,7 +19,7 @@
         <!-- Upload container -->
         <div class="file-upload">
             <form class = "upload">
-                <h1>Upload Files</h1>
+                <h1 id="header">Upload Files</h1>
                 <label for="file" class="drop-container" id="dropcontainer">
                     <span class="drop-title">Drop files here</span>or
                 <input id="file" name="file" type="file"/>
@@ -29,8 +29,12 @@
         </div>
         <div class="vl"></div>
         <!-- ports container -->
+        
         <div class="refresh-container">
             <h1>Your Web Pages</h1>
+            <div class="selectPort" id="undefined" onclick='select()'>
+            <h4>Create New Port</h4>
+            </div>
             <p class="ports" id="port"><a href="#"></a> </p>
         </div>
         <!-- REFRESH BUTTON -->

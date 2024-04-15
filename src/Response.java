@@ -82,12 +82,23 @@ public class Response {
                 // String target="_blank";
                 // String rel="noopener noreferrer";
                // <p>Check out <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
-               output.write(("<a href="+ref+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
+
+
+               output.write((
+
+            "<div class='selectPort' onclick='select("+port+")' id='"+port+"'>"+
+            "<h4>Port: "+port+"</h4>"+
+            "<button onclick=\"window.location.href = '"+ref+"';\" class='link'>Open Link</button>"+
+            "<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>"+
+            "</div>"
+               ).getBytes());//blank line
+
+
                //output.write(("<a href="+ref+"target="+target+" rel="+rel+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
 
                // output.write(("<a href="+ref+" target=_blank></a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
                 output.write(("\r\n").getBytes());//blank line
-            }
+           }
         
          output.flush();// empty the built up buffer
         } catch (IOException e) {

@@ -15,7 +15,7 @@ import java.net.Socket;
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
        //private static final String homeURL="C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\dashboard.html";
        // private static ArrayList<String> people= new ArrayList<>();
-       private static final String homeURL= "\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.html";
+       private static final String homeURL= "C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\src\\dashboard\\dashboard.html";
         private Socket socket;
 
         public ConnectionHandler(Socket socket )
@@ -62,13 +62,13 @@ import java.net.Socket;
                         else if (request.getResource().equals("/dashboard.css")) {
                            
                           
-                            response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.css");
+                            response.sendResponse("200 OK","C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\src\\dashboard\\dashboard.css");
                             
                         }
                         else if (request.getResource().equals("/dashboard.js")) {
                             
                           
-                            response.sendResponse("200 OK","\\Users\\MarkR\\OneDrive\\Desktop\\dashboard\\dashboard.js");
+                            response.sendResponse("200 OK","C:\\Users\\Robert\\Documents\\CS335\\Java\\WebServer\\src\\dashboard\\dashboard.js");
                             
                         }
                         else if (request.getResource().equals("/url")) {
@@ -124,7 +124,7 @@ import java.net.Socket;
                                 if(staticWebPage.getPort() == port){
                                     staticWebPage.kill();
                                     StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
-                                    webPageList.add(webpage);
+                                    //webPageList.add(webpage);
             
                                     Thread t = new Thread(webpage);
                                     t.start();

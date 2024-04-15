@@ -1,7 +1,22 @@
+  //**********************GLOBAL VARIABLES:*********************** */ 
+
+
+   var host = "http://localhost:8000";
+   var currentPort;
+
+//**********************JQUERY AJAX SIDE OF THE CODE:*********************** */
+
+   //var elements = document.getElementsByClass("selectPort");
+
    // POST FUNCTION
    $(document).ready(function(){
-    $('.upload').unbind('upload').submit(function (e) {
-        console.log("Working");
+    
+    $('.upload').unbind('submit').submit(function (e) {
+        
+        //-----------POST SECTION----------:
+        if($.isNumeric($('.selectPort').val()) == false)
+        {
+        alert("Website created.");
         $.ajax({
 
             type: "POST",
@@ -15,20 +30,45 @@
             headers: {
             "Accept": "application/json"
         }
+        
     })
     .done(function (data) {
         alert("Post");
         $('input[name=title]').val('');
     });
+    }
+    //-----------PUT SECTION----------:
+    else{
+      alert("Website on port "+currentPort+" updated.");
+      $.ajax({
+
+        type: "PUT",
+        url: "http://localhost:8000/update/"+currentPort,
+        crossDomain: true,
+        data:  new FormData(this),
+        dataType: "json",
+        contentType: "multipart/form-data",
+        processData: false,
+        // contentType: false,
+        headers: {
+        "Accept": "application/json"
+        }
+      })
+      .done(function (data) {
+          alert("Post");
+          $('input[name=title]').val('');
+      });
+
+    }
     e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                     // meand that clicked submit button will not take the browser to a new URL.
                 
-                });
+                }); 
                 
 // RETRIEVE FUNCTTON
 $('.refresh').unbind('refresh').submit(function (e) {
     var port = $('input[name=quantity]').val();
-    var myUrl = "http://localhost:8000/url";
+    var myUrl = host+"/url";
     $.ajax({
         type: "GET",
         url: myUrl,
@@ -37,18 +77,21 @@ $('.refresh').unbind('refresh').submit(function (e) {
        // console.log(data);
         let text = data; 
         document.getElementById('port').innerHTML = text; 
+        //document.createElement(data);
     });
     e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                         // meand that clicked submit button will not take the browser to a new URL.
     });
+
 });
 
+//**********************REGULAR JAVASCRIPT STARTS HERE:*********************** */
 
 // DELETE FUNCTION IN HERE TO TRY 0_0
 setInterval(getRegular, 1000);
 function getRegular()
 {
-var myUrl = "http://localhost:8000/url";
+var myUrl = host+"/url";
     $.ajax({
         type: "GET",
         url: myUrl,
@@ -56,7 +99,9 @@ var myUrl = "http://localhost:8000/url";
     .done(function (data) {
        // console.log(data);
         let text = data; 
+        //var elements = document.getElementsByClass("selectPort");
         document.getElementById('port').innerHTML = text; 
+
     });
 }
 function test( port)
@@ -64,7 +109,7 @@ function test( port)
 
 console.log(port);
 
-                var myUrl = "http://localhost:8000/delete/"+port;
+                var myUrl = host+"/delete/"+port;
 
                 $.ajax({
                     type: "DELETE",
@@ -78,10 +123,20 @@ console.log(port);
                                     // meand that clicked submit button will not take the browser to a new URL.
 }
 
+  function select(port){
+    
+    document.querySelector('.selectPort').style.background = "red";
 
+    currentPort = ""+port+"";
 
+    document.getElementById(port).style.background = "yellow";
+    
+    $(document).ready(function(){
 
-
+      $('.selectPort').val(currentPort);  
+ 
+    });
+  }
 
 
 

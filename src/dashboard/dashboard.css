@@ -7,7 +7,6 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-
 /* the background */
 body{
     background-color: #c9d6ff;
@@ -35,6 +34,9 @@ body{
     width: 1350px;
     transform: scale(0.8);
 }
+.hidden{
+    display:none;
+}
 
 /* the contents */
 .upload
@@ -55,6 +57,22 @@ body{
     height:600px;
     /* border: 2px solid green; */
 }
+h4{
+ padding:20px;
+}
+.selectPort{
+    display:flex;
+    position:relative;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    left:-15%;
+
+   
+    width: 400px; 
+    height: 60px; 
+    background-color: red; 
+}
 .ports
 {
     position: relative;
@@ -69,6 +87,7 @@ body{
 .container button{
     color: #fff;
     font-size: 12px;
+
     padding: 10px 45px;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -103,6 +122,13 @@ body{
     transform: scale(0.6);
     
 }
+.link
+{
+    background-color:rgb(70, 233, 45);
+    height: 50px;
+    transform: scale(0.6);
+    
+}
 
 
 .post:hover
@@ -116,6 +142,10 @@ body{
 .delete:hover
 {
     background-color:rgb(172, 32, 32);
+}
+.update:hover
+{
+    background-color:rgb(14, 135, 62);
 }
 
 /* vertical line */
