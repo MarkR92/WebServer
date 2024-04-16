@@ -14,7 +14,7 @@ import java.util.ArrayList;
         private static final String homeURL= "src//dashboard//";
         private Socket socket;
         private static Database  db = new Database();;
-        private boolean onLoad=true;
+       
        
         public WebServerApp(Socket socket )
         {
@@ -106,7 +106,9 @@ import java.util.ArrayList;
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                             response.sendResponse("200 OK",homeURL+"dashboard.html");
-                          //  db.clearLoadedPortList();
+                           db.clearLoadedPortList();
+                           db.loadPorts() ;
+                           onStartUp();
                             
                            
                      
@@ -191,12 +193,16 @@ import java.util.ArrayList;
                                 System.out.println(staticWebPage.getPort());
 
                                 if(staticWebPage.getPort() == port){
-                                    staticWebPage.kill();
-                                    StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
-                                    webPageList.add(webpage);
+
+                                    
+
+
+                                    // staticWebPage.kill();
+                                    // StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
+                                    // webPageList.add(webpage);
             
-                                    Thread t = new Thread(webpage);
-                                    t.start();
+                                    // Thread t = new Thread(webpage);
+                                    // t.start();
                                     
                                     response.sendResponse("200 OK", port);
                                 }

@@ -3,7 +3,7 @@
    
 
    var myurl="http://localhost:8000/"
-   getRegular();
+  
    $(document).ready(function(){
     $('.upload').unbind('upload').submit(function (e) {
         console.log("Working");
