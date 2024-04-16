@@ -13,20 +13,19 @@
             url: myurl+"upload",
             crossDomain: true,
             data:  new FormData(this),
-            dataType: "json",
             contentType: "multipart/form-data",
             processData: false,
             // contentType: false,
-            headers: {
-            "Accept": "application/json"
+        //     headers: {
+        //     "Accept": "application/json"
             
-        }
+        // }
        
     })
    
     .done(function (data) {
-      //  alert("Post");
-        $('input[name=title]').val('');
+      let text = data; 
+      document.getElementById('port').innerHTML = text; 
     });
     e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                     // meand that clicked submit button will not take the browser to a new URL.
@@ -74,16 +73,17 @@ function test( port)
 console.log(port);
 
             //    var myUrl = "http://20.84.89.246:8000/delete/"+port;
-
-                $.ajax({
-                    type: "DELETE",
-                    url: myurl+"delete/"+port,
-                })
-                
-                // .done(function (data) {
-                //     alert("Deleted WebPage on: "+port);
-                //     $('input[name=title]').val('');
-                // });
+            $.ajax({
+              type: "DELETE",
+              url: myurl+"delete/"+port,
+              //success:getRegular(),
+             
+          })
+          
+          .done(function (data) {
+            let text = data; 
+            document.getElementById('port').innerHTML = text; 
+          });
                // e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                                     // meand that clicked submit button will not take the browser to a new URL.
 }

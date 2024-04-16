@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
     public class WebServerApp implements Runnable  {
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
-        // private static final String homeURL= "src//dashboard//";
-        private static final String homeURL= "src//dashboard_rob//";
+        private static final String homeURL= "src//dashboard//";
+       // private static final String homeURL= "src//dashboard_rob//";
         private Socket socket;
         private static Database  db = new Database();
         String css;
@@ -146,7 +146,7 @@ import java.util.regex.Pattern;
 
                                 portList.add(staticWebPage.getPort());
                             }
-                            response.sendResponse("200 OK",portList, 0);
+                            response.sendResponse("200 OK",portList);
                             
                         }
                         else {
@@ -179,8 +179,12 @@ import java.util.regex.Pattern;
                            Thread t = new Thread(webpage);
                            t.start();
                          
+                           ArrayList<Integer> portList= new ArrayList<>();
+                           for (StaticWebPage staticWebPage : webPageList) {
 
-                           response.sendResponse("200 OK", port);
+                               portList.add(staticWebPage.getPort());
+                           }
+                           response.sendResponse("200 OK", portList);
                          //  db.setFiles( webpage.getPort(),webpage.getHTML(),webpage.getCSS(),webpage.getJavaScript());
                           
                           // response.findResource2(port);
@@ -232,21 +236,42 @@ import java.util.regex.Pattern;
                         db.setPortFree(port);
 
                         for (StaticWebPage staticWebPage : webPageList) {
-                            System.out.println(staticWebPage.getPort());
-
-                            if(staticWebPage.getPort() == port){
-                                
-                                staticWebPage.kill();
-
-                                webPageList.remove(staticWebPage);
-                                
-                                System.out.println("Website deleted on port "+port);
-                                response.sendResponse("200 OK");
+                                System.out.println(staticWebPage.getPort());
+    
+                                if(staticWebPage.getPort() == port){
+                                    
+                                    staticWebPage.kill();
+    
+                                    webPageList.remove(staticWebPage);
+                                    break;
+                                    
+                                    // System.out.println("Website deleted on port "+port);
+                                   // response.sendResponse("200 OK");
+                                }
+                       // response.sendResponse("200 OK");
                             }
-                            else{
-                                response.sendResponse("404 Not Found");
+                            ArrayList<Integer> portList= new ArrayList<>();
+                            for (StaticWebPage staticWebPage : webPageList) {
+
+                                portList.add(staticWebPage.getPort());
                             }
-                        }     
+                            response.sendResponse("200 OK" ,portList);
+                        // for (StaticWebPage staticWebPage : webPageList) {
+                        //     System.out.println(staticWebPage.getPort());
+
+                            // if(staticWebPage.getPort() == port){
+                                
+                            //     // staticWebPage.kill();
+
+                            //     // webPageList.remove(staticWebPage);
+                                
+                            //     // System.out.println("Website deleted on port "+port);
+                            //     response.sendResponse("200 OK");
+                            // }
+                            // else{
+                            //     response.sendResponse("404 Not Found");
+                            // }
+                       // }     
                     }                              
                    
                 } else{
