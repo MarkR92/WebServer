@@ -78,12 +78,13 @@ h4{
        margin-top: 10px;
        margin-left: auto;
        margin-right: auto;
-       left:-15%;
+       left:-10px;
    
       
-       width: 400px; 
+       width: 320px; 
        height: 60px; 
-       background-color: red; 
+       
+       background-color: rgb(122, 136, 177); 
    }
 /* PORTS DESIGN */
 .ports
@@ -132,7 +133,7 @@ a:hover {
 .container button{
     color: #fff;
     font-size: 12px;
-    padding: 10px 45px;
+    padding: 10px 25px;
     border: 1px solid transparent;
     border-radius: 8px;
     font-weight: 600;
@@ -168,11 +169,17 @@ a:hover {
     height: 50px;
     transform: scale(0.6);  
 }
+.link
+{
+    background-color:rgb(45, 233, 79);
+    height: 50px;
+    transform: scale(0.6);  
+}
 .btn-spacing 
 {
     position: relative;
     top: -20px;
-    left: 200px;
+    left: 150px;
     width:50px;
     /* border: 2px solid green; */
 }

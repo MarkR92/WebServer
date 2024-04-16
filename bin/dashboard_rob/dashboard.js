@@ -20,26 +20,26 @@
       //-----------POST SECTION----------:
       if($.isNumeric($('.selectPort').val()) == false)
       {
-        alert("Website created.");
+        //alert("Website created.");
         $.ajax({
 
             type: "POST",
             url: "http://localhost:8000/upload",
             crossDomain: true,
+            async: false,
             data:  new FormData(this),
-            dataType: "json",
+            //dataType: "json",
             contentType: "multipart/form-data",
             processData: false,
             // contentType: false,
             headers: {
             "Accept": "application/json"
-        }
+            }
         
-      })
-      .done(function (data) {
-        alert("Post");
-        $('input[name=title]').val('');
-      });
+      }).done(function (data) {
+        // console.log(data);
+         getRegular();
+     });
      }
   //-----------PUT SECTION----------:
     else{
@@ -50,7 +50,7 @@
         url: "http://localhost:8000/update/"+currentPort,
         crossDomain: true,
         data:  new FormData(this),
-        dataType: "json",
+        //dataType: "json",
         contentType: "multipart/form-data",
         processData: false,
         // contentType: false,
@@ -58,11 +58,6 @@
         "Accept": "application/json"
         }
       })
-      .done(function (data) {
-          alert("Post");
-          $('input[name=title]').val('');
-      });
-
     }
   e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                   // meand that clicked submit button will not take the browser to a new URL.
@@ -114,24 +109,40 @@ console.log(port);
                 $.ajax({
                     type: "DELETE",
                     url: myurl+"delete/"+port,
+                    processData: false,
+        // contentType: false,
+                  headers: {
+                  "Accept": "application/json"
+                  }
+                    // crossDomain: true,
+                    // async: false,
+                    //dataType: "json",
+                    //contentType: "multipart/form-data",
+                    //processData: false,
+                    // contentType: false,
+              
                 })
-                
-                // .done(function (data) {
-                //     alert("Deleted WebPage on: "+port);
-                //     $('input[name=title]').val('');
-                // });
-               // e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                .done(function (data) {
+                    alert("poop");
+                    getRegular();
+                });
+               //e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                                     // meand that clicked submit button will not take the browser to a new URL.
 }
 
 function select(port){
-    alert(port);
+    //alert(port);
   
-  document.querySelector('.selectPort').style.background = "red";
+  var elements = document.getElementsByClassName('selectPort');
+
+  for (var i = 0; i < elements.length; i++) {
+      elements[i].style ="";
+  }
 
   currentPort = ""+port+"";
 
-  document.getElementById(port).style.background = "yellow";
+  document.getElementById(port).style.background = "rgb(223, 194, 107)";
+  document.getElementById(port).style.color = "white";
   
   $(document).ready(function(){
 

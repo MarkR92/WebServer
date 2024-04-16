@@ -19,7 +19,10 @@ public class Response {
         try {
             output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
             output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
-            output.write(("\r\n").getBytes());//blank line
+            output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+            output.write(("\r\n").getBytes());
+            
+            //blank line
             output.flush();// empty the built up buffer
         } catch (IOException e) {
             System.out.print(""); 
@@ -63,7 +66,7 @@ public class Response {
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
 
-         output.write(("url:localhost:"+port).getBytes());//blank line
+         //output.write(("url:localhost:"+port).getBytes());//blank line
          output.flush();// empty the built up buffer
         } catch (IOException e) {
             

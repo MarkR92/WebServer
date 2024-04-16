@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
    
     
     public class WebServerApp implements Runnable  {
@@ -14,7 +16,10 @@ import java.util.ArrayList;
         // private static final String homeURL= "src//dashboard//";
         private static final String homeURL= "src//dashboard_rob//";
         private Socket socket;
-        private static Database  db = new Database();;
+        private static Database  db = new Database();
+        String css;
+        String html;
+        String js;
        
        
         public WebServerApp(Socket socket )
@@ -195,8 +200,8 @@ import java.util.ArrayList;
 
                                 if(staticWebPage.getPort() == port){
 
-                                    
 
+                                    parseFiles(request.getBody());
 
                                     // staticWebPage.kill();
                                     // StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
@@ -204,6 +209,11 @@ import java.util.ArrayList;
             
                                     // Thread t = new Thread(webpage);
                                     // t.start();
+            
+                                    //save web documents into db
+                                    db.setFiles(port,html,css,js);
+                                    //int port=webpage.getPort();
+        
                                     
                                     response.sendResponse("200 OK", port);
                                 }
@@ -254,7 +264,49 @@ import java.util.ArrayList;
                          
                  
              }  
+
     
     }
+    public void parseFiles(String body)
+    {
+        String[] content =body.split("------WebKitFormBoundary");
+        Pattern filePattern = Pattern.compile("filename=\".*\\/([^\"]+)");
+        Pattern contentPattern = Pattern.compile("(Content-Type.*\\/.*)");
+        
+        
+        for(int i = 1; i< content.length - 1; i++){
+            //System.out.println(content[i]);
+            String file = "";
+            String split = "";
+            Matcher matcher = filePattern.matcher(content[i]);
+            while(matcher.find() == true)
+            {
+                    file = matcher.group(1);
+            }
+            matcher = contentPattern.matcher(content[i]);
+            while(matcher.find() == true)
+            {
+                    split = matcher.group(1);
+            }
+
+            content[i] = content[i].split(split)[1]; 
+
+            if(file.matches("^.*\\.css$"))
+            {
+                css=content[i];
+                
+            }else if(file.matches("^.*\\.html$"))
+            {
+                html=content[i];
+                //System.out.println(html);
+            }
+            else if(file.matches("^.*\\.js$"))
+            {
+                js=content[i];
+            }
+           
+
+        }
     }
+}
     
