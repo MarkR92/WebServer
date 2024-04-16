@@ -11,7 +11,8 @@ import java.util.ArrayList;
     public class WebServerApp implements Runnable  {
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
-        private static final String homeURL= "src//dashboard//";
+        // private static final String homeURL= "src//dashboard//";
+        private static final String homeURL= "src//dashboard_rob//";
         private Socket socket;
         private static Database  db = new Database();;
        
@@ -140,7 +141,7 @@ import java.util.ArrayList;
 
                                 portList.add(staticWebPage.getPort());
                             }
-                            response.sendResponse("200 OK",portList);
+                            response.sendResponse("200 OK",portList, 0);
                             
                         }
                         else {
