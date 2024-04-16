@@ -179,18 +179,39 @@ import java.util.ArrayList;
                            
                             int port = Integer.parseInt(request.getResource().split("/")[2]);
                             System.out.println(port);
+                            db.setFiles(8001,"","","");
+                            for (StaticWebPage webpage : webPageList) {
+                                System.out.println(webpage.getPort());
 
-                            for (StaticWebPage staticWebPage : webPageList) {
-                                System.out.println(staticWebPage.getPort());
-
-                                if(staticWebPage.getPort() == port){
-                                    staticWebPage.kill();
-                                    StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
-                                    webPageList.add(webpage);
+                                if(webpage.getPort() == port){
+                                    //staticWebPage.kill();
+                                    // StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
+                                    // webPageList.add(webpage);
             
-                                    Thread t = new Thread(webpage);
-                                    t.start();
+                                    // Thread t = new Thread(webpage);
+                                    // t.start();
                                     
+                                    // response.sendResponse("200 OK", port);
+
+                                    //response.sendResponseOk();
+                                    //int port=0;
+                                    
+                                    
+                                    //search database for a free port
+                                    //port=(db.findFreePort()); 
+                                    //mark free port as bound
+                                    //db.setPortBound(port);
+
+                                    //create a static webpage 
+                                    //StaticWebPage webpage= new StaticWebPage(request.getBody(),port);
+                                    //webPageList.add(webpage);
+                                    //save web documents into db
+                                    
+                                    //int port=webpage.getPort();
+                                    // Thread t = new Thread(webpage);
+                                    // t.start();
+                         
+
                                     response.sendResponse("200 OK", port);
                                 }
                             }     

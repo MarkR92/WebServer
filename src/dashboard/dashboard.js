@@ -1,16 +1,30 @@
-   // POST FUNCTION
 
-   
+
+   //**********************GLOBAL VARIABLES:*********************** */ 
+
+
+   var host = "http://localhost:8000";
+   var currentPort;
+
+//**********************JQUERY AJAX SIDE OF THE CODE:*********************** */
+
+   //var elements = document.getElementsByClass("selectPort");
+  
 
    var myurl="http://localhost:8000/"
    getRegular();
    $(document).ready(function(){
-    $('.upload').unbind('upload').submit(function (e) {
-        console.log("Working");
+   
+    $('.upload').unbind('submit').submit(function (e) {
+        
+      //-----------POST SECTION----------:
+      if($.isNumeric($('.selectPort').val()) == false)
+      {
+        alert("Website created.");
         $.ajax({
 
             type: "POST",
-            url: myurl+"upload",
+            url: "http://localhost:8000/upload",
             crossDomain: true,
             data:  new FormData(this),
             dataType: "json",
@@ -19,19 +33,41 @@
             // contentType: false,
             headers: {
             "Accept": "application/json"
-            
         }
-       
-    })
-   
-    .done(function (data) {
-      //  alert("Post");
+        
+      })
+      .done(function (data) {
+        alert("Post");
         $('input[name=title]').val('');
-    });
-    e.preventDefault(); // when method is called, the default action of the event will not be triggered.
-                    // meand that clicked submit button will not take the browser to a new URL.
-                
-                          });
+      });
+     }
+  //-----------PUT SECTION----------:
+    else{
+      alert("Website on port "+currentPort+" updated.");
+      $.ajax({
+
+        type: "PUT",
+        url: "http://localhost:8000/update/"+currentPort,
+        crossDomain: true,
+        data:  new FormData(this),
+        dataType: "json",
+        contentType: "multipart/form-data",
+        processData: false,
+        // contentType: false,
+        headers: {
+        "Accept": "application/json"
+        }
+      })
+      .done(function (data) {
+          alert("Post");
+          $('input[name=title]').val('');
+      });
+
+    }
+  e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                  // meand that clicked submit button will not take the browser to a new URL.
+              
+    }); 
                 
 // RETRIEVE FUNCTTON
 getRegular();  
@@ -43,7 +79,7 @@ $('.refresh').unbind('refresh').submit(function (e) {
         url: myurl+"url",
     })
     .done(function (data) {
-       // console.log(data);
+        console.log(data);
         let text = data; 
         document.getElementById('port').innerHTML = text; 
     });
@@ -88,12 +124,21 @@ console.log(port);
                                     // meand that clicked submit button will not take the browser to a new URL.
 }
 
+function select(port){
+    alert(port);
+  
+  document.querySelector('.selectPort').style.background = "red";
 
+  currentPort = ""+port+"";
 
+  document.getElementById(port).style.background = "yellow";
+  
+  $(document).ready(function(){
 
+    $('.selectPort').val(currentPort);  
 
-
-
+  });
+}
 
 
     // js script to make the drop functional, im not sure if it works tbh

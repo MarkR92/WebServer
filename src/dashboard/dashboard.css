@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 /* default style for everything */
@@ -20,23 +21,45 @@ body{
 }
 /* ALL THE CONTAINERS */
 .container{
-    background-color: #ffffffa0;
+    background-color: #ffffff;
     border-radius: 30px;
     border: 2px solid white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     overflow: hidden;
     position: relative;
-    height: 650px;
     margin-bottom: 20px;
+    /* border: 2px solid green; */
 }
+
 
 .main
 {
-    width: 1350px;
-    transform: scale(0.8);
+    width: 1190px;
+    height: 800px;
+    min-width: 1190px;
+    min-height: 800px;
+    transform: scale(0.72);
 }
 
 /* the contents */
+.upload
+{
+    position: relative;
+    top: 70px;
+    height: 600px;
+    width: 680px;
+    left: 80px;
+    /* border: 2px solid green;   */
+    transform: scale(1.1);
+}
+
+.web
+{
+    position: relative; 
+    top:-1060px;
+    left: 810px;
+    font-size: 38px;
+}
 .upload
 {
     position: relative;
@@ -46,24 +69,64 @@ body{
     left: 65px;
     /* border: 2px solid green;   */
 }
-.refresh-container
-{
-    position: relative;
-    top: -1098px;
-    left: 970px;
-    width: 350px;
-    height:600px;
-    /* border: 2px solid green; */
-}
+h4{
+    padding:20px;
+   }
+   .selectPort{
+       display:flex;
+       position:relative;
+       margin-top: 10px;
+       margin-left: auto;
+       margin-right: auto;
+       left:-15%;
+   
+      
+       width: 400px; 
+       height: 60px; 
+       background-color: red; 
+   }
+/* PORTS DESIGN */
 .ports
 {
     position: relative;
-    top: 40px;
-    /* left: 0px; */
-    width: 350px;
-    height: 350px;
+    top: -1030px;
+    left: 820px;
+    width: 320px;
+    height: 500px;
     /* border: 2px solid green; */
+    border-radius: 10px;
+    /* THE SCROLLBAR */
+    border: 2px dashed #656464;
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    transition: background .2s ease-in-out;
 }
+.ports:hover {
+    background: #dfdddd7e;
+    border-color: #0e0b0b;
+}
+/* editing for the link */
+
+/* .ports a
+{
+    position: relative;
+    width: 50px;
+    height: 20px;
+    left: 20px;
+    top: 15px;
+    color:#3304a0df;
+    font-size: 18px;
+}
+a:link {
+    text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+    color: #a485f3df;
+} */
 
 /* ALL THE BUTTONS */
 .container button{
@@ -81,38 +144,48 @@ body{
 
 .post
 {
-    background-color: #664e9fdf;
+    background-color: #512da8;
     position: relative; 
     top: 200px;
     left: 0px; 
-    transform: scale(1.2);
+    transform: scale(1.3);
 }
 
-.retrieve
+/* REFRESH BUTTON DISABLED */
+/* .retrieve
 {
-    background-color: #664e9fdf;
+    background-color: #512da8;
     position: relative;
     top:-1180px;
     left:1060px;
     transform: scale(1.2);
-}
+} */
+
+/* DELETE BUTTON IN PORTS DESIGN */
 .delete
 {
     background-color:rgb(233, 45, 45);
     height: 50px;
-    transform: scale(0.6);
-    
+    transform: scale(0.6);  
 }
-
-
+.btn-spacing 
+{
+    position: relative;
+    top: -20px;
+    left: 200px;
+    width:50px;
+    /* border: 2px solid green; */
+}
 .post:hover
 {
-    background: #3304a0df; 
+    background: #270479; 
 }
-.retrieve:hover
+
+/* REFRESH BUTTON DISABLED */
+/* .retrieve:hover
 {
     background: #3304a0df; 
-}
+} */
 .delete:hover
 {
     background-color:rgb(172, 32, 32);
@@ -122,9 +195,9 @@ body{
 .vl {
     position: relative;
     border-left: 2px solid #3e3d3d; 
-    top: -550px;
+    top: -500px;
     height: 500px;
-    left: 900px;
+    left: 770px;
 }
 
 /*BASED ON A TUTORIAL*/
@@ -132,26 +205,25 @@ body{
 input[type=file] {
   width: 350px;
   max-width: 100%;
-  color: #444;
+  color: #fff;
   padding: 5px;
-  background: #fff;
+  background: linear-gradient(to right, #5c6bc0, #522da8);
   border-radius: 10px;
-  border: 1px solid #555;
+  border: 1px solid #fff;
 }
 
 input[type=file]::file-selector-button {
     margin-right: 20px;
-    border: none;
-    background: #664e9fdf;
+    border:1px solid white;
+    background: none;
     padding: 10px 20px;
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
     transition: background .2s ease-in-out;
 }
-
 input[type=file]::file-selector-button:hover {
-  background: #3304a0df;
+  background: #27047998;
 }
 
 
@@ -164,13 +236,16 @@ input[type=file]::file-selector-button:hover {
     justify-content: center;
     align-items: center;
     top: 30px;
-    height: 400px;
+    height: 430px;
+    width: 620px;
     padding: 20px;
     border-radius: 10px;
     border: 2px dashed #656464;
     color: #444;
+    font-size: 20px;
     cursor: pointer;
     transition: background .2s ease-in-out, border .2s ease-in-out;
+    /* border: 2px solid green; */
 }
 
 /* hover feature for dotted line */
@@ -186,7 +261,7 @@ input[type=file]::file-selector-button:hover {
 
 .drop-title {
     color: #000000;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
     transition: color .2s ease-in-out;
@@ -200,3 +275,7 @@ input[type=file]::file-selector-button:hover {
 .drop-container.drag-active .drop-title {
     color: #222;
 }
+
+/* New Changes: */
+
+
