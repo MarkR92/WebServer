@@ -11,8 +11,6 @@ import java.util.ArrayList;
     public class ConnectionHandler implements Runnable  {
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
-       //private static final String homeURL="C:\\Users\\MarkR\\OneDrive\\Documents\\GitHub\\WebServer\\WebServer-1\\src\\dashboard.html";
-       // private static ArrayList<String> people= new ArrayList<>();
        private static final String homeURL= "src//dashboard//";
         private Socket socket;
         private static Database db = new Database();

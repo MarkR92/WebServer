@@ -123,7 +123,7 @@ public class Database {
 	}
 	public void clearLoadedPortList()
 	{
-		 loadedPortList.clear();;
+		 loadedPortList.clear();
 	}
 	public ArrayList<String> getLoadedHTMLList()
 	{

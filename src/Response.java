@@ -5,8 +5,10 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class Response {
+    
     private OutputStream output;
     private final String url="http://localhost:";
+
     public Response(OutputStream output) 
     {
         this.output = output;
