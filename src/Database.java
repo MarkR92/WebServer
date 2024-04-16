@@ -21,8 +21,8 @@ public class Database {
 	
 	public Database()
 	{
-		connect();
-		loadPorts() ;
+		// connect();
+		// loadPorts() ;
 	}
 	public  Connection connect()
 	{
@@ -120,6 +120,10 @@ public class Database {
 	public ArrayList<Integer> getLoadedPortList()
 	{
 		return loadedPortList;
+	}
+	public void clearLoadedPortList()
+	{
+		 loadedPortList.clear();;
 	}
 	public ArrayList<String> getLoadedHTMLList()
 	{

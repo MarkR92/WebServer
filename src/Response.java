@@ -6,16 +6,16 @@ import java.util.ArrayList;
 
 public class Response {
     private OutputStream output;
-    private String url="http://localhost:";
+    private final String url="http://localhost:";
     public Response(OutputStream output) 
     {
         this.output = output;
     }
-    public void sendResponse(String responseString)
+    public void sendResponse(String responseCode)
     {
        
         try {
-            output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+            output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
             output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
             output.write(("\r\n").getBytes());//blank line
             output.flush();// empty the built up buffer
@@ -25,7 +25,7 @@ public class Response {
         }
      
     }
-    public void sendResponse(String responseString, String filelocation)
+    public void sendResponse(String responseCode, String filelocation)
     {
      StringBuilder htmlContent = new StringBuilder();
         try(BufferedReader reader = new BufferedReader(new FileReader(filelocation)))
@@ -40,7 +40,7 @@ public class Response {
             e.printStackTrace();
          }
          try {
-         output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+         output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
@@ -52,11 +52,11 @@ public class Response {
         }
 
     }
-    public void sendResponse(String responseString, int port)
+    public void sendResponse(String responseCode, int port)
     {
     
          try {
-         output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+         output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
@@ -69,11 +69,11 @@ public class Response {
         }
 
     }
-    public void sendResponse(String responseString, ArrayList<Integer> portList)
+    public void sendResponse(String responseCode, ArrayList<Integer> portList)
     {
     
          try {
-         output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+         output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line

@@ -3,11 +3,8 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpExchange;
 
-
-public class Request implements HttpHandler {
+public class Request {
     
     private BufferedReader reader;
     private  StringBuilder header;
@@ -18,21 +15,26 @@ public class Request implements HttpHandler {
         this.header=new StringBuilder();
         
     }
-    public void readHeader() throws IOException
+    public void readHeader()
     {
      
      
+        try {
+            String line="";//temp holding one line of our message
+            line = reader.readLine();//gives us the first line
+             if(!line.isEmpty()) {
+                 while(!line.isBlank())//while the line is not blank continue to read headers end with a blank line
+                 {
+                  header.append(line+"\r\n");//add line to request
+                   line=reader.readLine();//check the next line
+                
+                 }
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
                     
-        String line="";//temp holding one line of our message
-        line = reader.readLine();//gives us the first line
-         if(!line.isEmpty()) {
-             while(!line.isBlank())//while the line is not blank continue to read headers end with a blank line
-             {
-              header.append(line+"\r\n");//add line to request
-               line=reader.readLine();//check the next line
-            
-             }
-    }
+      
 
     }
     public StringBuilder getHeader()
@@ -75,7 +77,7 @@ public class Request implements HttpHandler {
         }
         return contentLength;
     }
-    public String getBody() throws IOException
+    public String getBody()
     {
         String body="";
         int contentLength=getContentLength();
@@ -88,7 +90,12 @@ public class Request implements HttpHandler {
         
             contentLength--;
             
-            body+=""+(char)reader.read();//check the next char
+            try {
+                body+=""+(char)reader.read();
+            } catch (IOException e) {
+               
+                e.printStackTrace();
+            }//check the next char
             
             //System.out.println(body);
         }
@@ -108,15 +115,7 @@ public class Request implements HttpHandler {
         return body;
     }
 
-    @Override
-    public void handle(HttpExchange exchange) throws IOException {
-
-        //TODO get httpexhange working
-      //  Headers headers= exchange.getRequestHeaders();
-
-        //System.out.println(headers.toString());
-       // throw new UnsupportedOperationException("Unimplemented method 'handle'");
-    }
+ 
 
 
 }

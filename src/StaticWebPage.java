@@ -13,15 +13,10 @@ public class StaticWebPage implements Runnable{
     private int port;
     private String body;
     private String html,css,js;
-   // private Socket socket;
-    //private static Response clientOutput2;
-    //Robbo classes should not know about other classes unless they absolutly have to
-    //YES
-    
     private ServerSocket webpageSocket;
   
     //the boday will contain the unedited uploaded files. We will parse them in this class
-    public StaticWebPage(String body, int port) throws IOException
+    public StaticWebPage(String body, int port) 
     {
         
         this.body=body;
@@ -30,7 +25,12 @@ public class StaticWebPage implements Runnable{
         css="";
         js="";
         parseFiles();
-        webpageSocket = new ServerSocket(port);
+        try {
+            webpageSocket = new ServerSocket(port);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     public StaticWebPage(String html,String css,String js ,int port) throws IOException
     {

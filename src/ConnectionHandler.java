@@ -2,13 +2,11 @@
 import java.io.BufferedReader;
 
 import java.io.IOException;
-    import java.io.InputStreamReader;
-  
-
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
 import java.net.Socket;
-    import java.util.ArrayList;
-    //import java.util.regex.Matcher;
-    //import java.util.regex.Pattern;
+import java.util.ArrayList;
+   
     
     public class ConnectionHandler implements Runnable  {
 
@@ -23,9 +21,33 @@ import java.net.Socket;
         public ConnectionHandler(Socket socket )
         {
             this.socket = socket;
+            //db.connect();
+       // db.loadPorts();
            
             
         }
+        public static void main(String[] args) {
+		
+		db.connect();
+        // db.loadPorts();
+            try (//	try (//pick a port to connect and listen to.
+                        ServerSocket socket = new ServerSocket(8000)) {
+                            System.out.println("Listening on port:"+8000);
+                            Socket client;
+                            System.out.println("");
+                             while((client=socket.accept())!=null)//while connected (forever)
+                            {
+                                     System.out.println("Received connection from " + client.getRemoteSocketAddress().toString());
+                                     ConnectionHandler handler = new ConnectionHandler(client);
+                                     Thread t = new Thread(handler);
+                                     t.start();
+    
+                            }
+                        } catch (IOException e) {
+                        
+                            e.printStackTrace();
+                        }
+                        }
         @Override
         public void run() {
             if(onLoad)
@@ -65,11 +87,11 @@ import java.net.Socket;
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                             response.sendResponse("200 OK",homeURL+"dashboard.html");
-
+                            db.clearLoadedPortList();
                             for(int i=0;i<db.getLoadedPortList().size();i++)
                             {
                                 StaticWebPage webpage= new StaticWebPage(db.getLoadedHTMLList().get(i),db.getLoadedCSSList().get(i),db.getLoadedJavaScriptList().get(i),db.getLoadedPortList().get(i));
-                                System.out.println(db.getLoadedHTMLList().get(i));
+                               // System.out.println(db.getLoadedHTMLList().get(i));
 
                                      webPageList.add(webpage);
 
@@ -79,6 +101,7 @@ import java.net.Socket;
           
                                     // response.sendResponse("200 OK", db.getLoadedPortList().get(i));
                             }
+                           
                      
                           
                             
@@ -188,7 +211,9 @@ import java.net.Socket;
                             System.out.println(staticWebPage.getPort());
 
                             if(staticWebPage.getPort() == port){
+                                
                                 staticWebPage.kill();
+
                                 webPageList.remove(staticWebPage);
                                 
                                 System.out.println("Website deleted on port "+port);
