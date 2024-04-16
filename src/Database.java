@@ -21,8 +21,10 @@ public class Database {
 	
 	public Database()
 	{
-		// connect();
-		// loadPorts() ;
+		
+		 connect();
+		// //clearLoadedPortList();
+		 loadPorts() ;
 	}
 	public  Connection connect()
 	{
@@ -43,12 +45,12 @@ public class Database {
 			String insertSQL="SELECT port from ports where bound = true  Order by port";//sql
 			PreparedStatement checkStatement=conn.prepareStatement(insertSQL);
 			ResultSet result=checkStatement.executeQuery();
-			result.next();//first result is col header so go to next result
+			//result.next();//first result is col header so go to next result
 		//disconnect();
 		while(result.next()) //loop thru results... i.e. loop thru each file name found
 		{
 			
-			//System.out.println(result.getString(1));
+			System.out.println(result.getString(1));
 			int port= Integer.parseInt(result.getString(1));
 			loadedPortList.add(port);
 		
@@ -62,7 +64,7 @@ public class Database {
 			String insertSQL="SELECT html from ports where bound = true  Order by port";//sql
 			PreparedStatement checkStatement=conn.prepareStatement(insertSQL);
 			ResultSet result=checkStatement.executeQuery();
-			result.next();//first result is col header so go to next result
+			//result.next();//first result is col header so go to next result
 		//disconnect();
 		while(result.next()) //loop thru results... i.e. loop thru each file name found
 		{
@@ -80,7 +82,7 @@ public class Database {
 			String insertSQL="SELECT css from ports where bound = true  Order by port";//sql
 			PreparedStatement checkStatement=conn.prepareStatement(insertSQL);
 			ResultSet result=checkStatement.executeQuery();
-			result.next();//first result is col header so go to next result
+			//result.next();//first result is col header so go to next result
 		//disconnect();
 		while(result.next()) //loop thru results... i.e. loop thru each file name found
 		{
@@ -98,7 +100,7 @@ public class Database {
 			String insertSQL="SELECT js from ports where bound = true  Order by port";//sql
 			PreparedStatement checkStatement=conn.prepareStatement(insertSQL);
 			ResultSet result=checkStatement.executeQuery();
-			result.next();//first result is col header so go to next result
+			//result.next();//first result is col header so go to next result
 		//disconnect();
 		while(result.next()) //loop thru results... i.e. loop thru each file name found
 		{

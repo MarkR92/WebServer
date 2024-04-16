@@ -8,26 +8,24 @@ import java.net.Socket;
 import java.util.ArrayList;
    
     
-    public class ConnectionHandler implements Runnable  {
+    public class WebServerApp implements Runnable  {
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
-       private static final String homeURL= "src//dashboard//";
+        private static final String homeURL= "src//dashboard//";
         private Socket socket;
-        private static Database db = new Database();
+        private static Database  db = new Database();;
         private boolean onLoad=true;
        
-        public ConnectionHandler(Socket socket )
+        public WebServerApp(Socket socket )
         {
             this.socket = socket;
-            //db.connect();
-       // db.loadPorts();
+      
            
             
         }
         public static void main(String[] args) {
-		
-		db.connect();
-        // db.loadPorts();
+		 //connect to db
+        onStartUp();
             try (//	try (//pick a port to connect and listen to.
                         ServerSocket socket = new ServerSocket(8000)) {
                             System.out.println("Listening on port:"+8000);
@@ -36,7 +34,7 @@ import java.util.ArrayList;
                              while((client=socket.accept())!=null)//while connected (forever)
                             {
                                      System.out.println("Received connection from " + client.getRemoteSocketAddress().toString());
-                                     ConnectionHandler handler = new ConnectionHandler(client);
+                                     WebServerApp handler = new WebServerApp(client);
                                      Thread t = new Thread(handler);
                                      t.start();
     
@@ -45,17 +43,40 @@ import java.util.ArrayList;
                         
                             e.printStackTrace();
                         }
+
+                       
+
+
                         }
+
+        public static void onStartUp()
+        {
+            //connect to db
+           // db = new Database();
+            //load all ports in db
+           // System.out.println(db.getLoadedPortList().size());
+            for(int i=0;i<db.getLoadedPortList().size();i++)
+                {
+                    //create a webpage for every port found in db
+                  
+                    StaticWebPage webpage;
+                    try {
+                        webpage = new StaticWebPage(db.getLoadedHTMLList().get(i),db.getLoadedCSSList().get(i),db.getLoadedJavaScriptList().get(i),db.getLoadedPortList().get(i));
+                        webPageList.add(webpage);
+                       
+                        Thread t = new Thread(webpage);
+                        t.start();
+                    } catch (IOException e) {
+                        
+                        e.printStackTrace();
+                    }
+                  
+                }
+
+        }
         @Override
         public void run() {
-            if(onLoad)
-            {
-               
-                onLoad=false;
-
-            }
-          
-
+        
           
              BufferedReader in = null;
           //   OutputStream clientOutput = null;
@@ -85,20 +106,8 @@ import java.util.ArrayList;
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                             response.sendResponse("200 OK",homeURL+"dashboard.html");
-                            db.clearLoadedPortList();
-                            for(int i=0;i<db.getLoadedPortList().size();i++)
-                            {
-                                StaticWebPage webpage= new StaticWebPage(db.getLoadedHTMLList().get(i),db.getLoadedCSSList().get(i),db.getLoadedJavaScriptList().get(i),db.getLoadedPortList().get(i));
-                               // System.out.println(db.getLoadedHTMLList().get(i));
-
-                                     webPageList.add(webpage);
-
-                                     Thread t = new Thread(webpage);
-                                     t.start();
-                                   
-          
-                                    // response.sendResponse("200 OK", db.getLoadedPortList().get(i));
-                            }
+                          //  db.clearLoadedPortList();
+                            
                            
                      
                           
