@@ -14,9 +14,10 @@ import java.util.regex.Pattern;
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
         // private static final String homeURL= "src//dashboard//";
-       private static final String homeURL= "src//dashboard_rob//";
+        private static final String homeURL= "src//dashboard_rob//";
         private Socket socket;
         private static Database  db = new Database();
+        private static final int homePort=8000;
         String css;
         String html;
         String js;
@@ -30,11 +31,12 @@ import java.util.regex.Pattern;
             
         }
         public static void main(String[] args) {
-		 //connect to db
+		
         onStartUp();
+
             try (//	try (//pick a port to connect and listen to.
-                        ServerSocket socket = new ServerSocket(8000)) {
-                            System.out.println("Listening on port:"+8000);
+                        ServerSocket socket = new ServerSocket(homePort)) {
+                            System.out.println("Listening on port:"+homePort);
                             Socket client;
                             System.out.println("");
                              while((client=socket.accept())!=null)//while connected (forever)
@@ -57,10 +59,7 @@ import java.util.regex.Pattern;
 
         public static void onStartUp()
         {
-            //connect to db
-           // db = new Database();
-            //load all ports in db
-           // System.out.println(db.getLoadedPortList().size());
+            
             for(int i=0;i<db.getLoadedPortList().size();i++)
                 {
                     //create a webpage for every port found in db
@@ -112,14 +111,8 @@ import java.util.regex.Pattern;
                         if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
                         {
                             response.sendResponse("200 OK",homeURL+"dashboard.html");
-                           db.clearLoadedPortList();
-                           db.loadPorts() ;
-                          // onStartUp();
-                        
-                         //   
-                           
-                     
-                          
+                            db.clearLoadedPortList();
+                            db.loadPorts() ;
                             
                         }
                         else if (request.getResource().equals("/dashboard.css")) {

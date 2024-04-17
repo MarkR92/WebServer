@@ -27,6 +27,12 @@ public class StaticWebPage implements Runnable{
         parseFiles();
         try {
             openFirewallPort(port);
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+        try {
+            //openFirewallPort(port);
             webpageSocket = new ServerSocket(port);
         } catch (IOException e) {
             
@@ -59,6 +65,7 @@ public class StaticWebPage implements Runnable{
     // executes system command from within the java code and will print out the
     // commands output to console
     private void executeCommand(String command) throws IOException {
+        //TODD exec(command) is deprecated since version 18
         Process process = Runtime.getRuntime().exec(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
