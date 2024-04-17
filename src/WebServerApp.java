@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
     public class WebServerApp implements Runnable  {
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
-        // private static final String homeURL= "src//dashboard//";
+        //private static final String homeURL= "src//dashboard//";
        private static final String homeURL= "src//dashboard_rob//";
         private Socket socket;
         private static Database  db = new Database();
@@ -218,7 +218,7 @@ import java.util.regex.Pattern;
                                     db.setFiles(port,html,css,js);
                                     //int port=webpage.getPort();
         
-                                    staticWebPage.updateStaticWebPage(html, css, js);
+                                   // staticWebPage.updateStaticWebPage(html, css, js);
                                     
                                     response.sendResponse("200 OK", port);
                                 }
@@ -244,6 +244,7 @@ import java.util.regex.Pattern;
                                     staticWebPage.kill();
     
                                     webPageList.remove(staticWebPage);
+                                    staticWebPage.closeFirewallPort(port);
                                     break;
                                     
                                     // System.out.println("Website deleted on port "+port);

@@ -3,7 +3,7 @@
    //**********************GLOBAL VARIABLES:*********************** */ 
 
 
-   var host = "http://localhost:8000";
+   var host = "http://20.84.89.246:8000";
    var currentPort;
 
 //**********************JQUERY AJAX SIDE OF THE CODE:*********************** */
@@ -11,7 +11,7 @@
    //var elements = document.getElementsByClass("selectPort");
   
 
-   var myurl="http://localhost:8000/"
+  
    getRegular();
    $(document).ready(function(){
    
@@ -24,7 +24,7 @@
         $.ajax({
 
             type: "POST",
-            url: "http://localhost:8000/upload",
+            url: host+"/upload",
             crossDomain: true,
             async: false,
             data:  new FormData(this),
@@ -48,7 +48,7 @@
       $.ajax({
 
         type: "PUT",
-        url: "http://localhost:8000/update/"+currentPort,
+        url: host+"/update/"+currentPort,
         crossDomain: true,
         data:  new FormData(this),
         //dataType: "json",
@@ -72,7 +72,7 @@ $('.refresh').unbind('refresh').submit(function (e) {
   //  var myUrl = "http://20.84.89.246:8000/url";
     $.ajax({
         type: "GET",
-        url: myurl+"url",
+        url: host+"/url",
     })
     .done(function (data) {
         console.log(data);
@@ -92,7 +92,7 @@ function getRegular()
 //var myUrl = "http://20.84.89.246:8000/url";
     $.ajax({
         type: "GET",
-        url: myurl+"url",
+        url: host+"/url",
     })
     .done(function (data) {
        // console.log(data);
@@ -109,7 +109,7 @@ console.log(port);
 
                 $.ajax({
                     type: "DELETE",
-                    url: myurl+"delete/"+port,
+                    url: host+"/delete/"+port,
                     processData: false,
         // contentType: false,
                   headers: {
