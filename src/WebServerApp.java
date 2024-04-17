@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
     public class WebServerApp implements Runnable  {
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
-        private static final String homeURL= "src//dashboard//";
-       // private static final String homeURL= "src//dashboard_rob//";
+       // private static final String homeURL= "src//dashboard//";
+        private static final String homeURL= "src//dashboard_rob//";
         private Socket socket;
         private static Database  db = new Database();
         String css;
@@ -146,7 +146,7 @@ import java.util.regex.Pattern;
 
                                 portList.add(staticWebPage.getPort());
                             }
-                            response.sendResponse("200 OK",portList);
+                            response.sendResponse("200 OK",portList,0);
                             
                         }
                         else {
@@ -184,7 +184,7 @@ import java.util.regex.Pattern;
 
                                portList.add(staticWebPage.getPort());
                            }
-                           response.sendResponse("200 OK", portList);
+                           response.sendResponse("200 OK", portList,0);
                          //  db.setFiles( webpage.getPort(),webpage.getHTML(),webpage.getCSS(),webpage.getJavaScript());
                           
                           // response.findResource2(port);
@@ -192,10 +192,8 @@ import java.util.regex.Pattern;
                     }
                     else if(request.getMethod().equals("PUT"))
                     {
-                
                         if(request.getResource().matches("/update/\\d{4}"))//check the resource we are looking for
                         {
-                           
                             int port = Integer.parseInt(request.getResource().split("/")[2]);
                             System.out.println(port);
 
@@ -207,13 +205,10 @@ import java.util.regex.Pattern;
 
                                     parseFiles(request.getBody());
 
-                                    // staticWebPage.kill();
-                                    // StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
-                                    // webPageList.add(webpage);
-            
-                                    // Thread t = new Thread(webpage);
-                                    // t.start();
-            
+                                  
+                                    staticWebPage.setHTML(html);
+                                    staticWebPage.setCSS(css);
+                                    staticWebPage.setJavaScript(js);
                                     //save web documents into db
                                     db.setFiles(port,html,css,js);
                                     //int port=webpage.getPort();
@@ -255,7 +250,7 @@ import java.util.regex.Pattern;
 
                                 portList.add(staticWebPage.getPort());
                             }
-                            response.sendResponse("200 OK" ,portList);
+                            response.sendResponse("200 OK" ,portList,0);
                         // for (StaticWebPage staticWebPage : webPageList) {
                         //     System.out.println(staticWebPage.getPort());
 

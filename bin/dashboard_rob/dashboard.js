@@ -37,8 +37,8 @@
             }
         
       }).done(function (data) {
-        // console.log(data);
-         getRegular();
+        let text = data; 
+        document.getElementById('port').innerHTML = text; 
      });
      }
   //-----------PUT SECTION----------:
@@ -54,9 +54,9 @@
         contentType: "multipart/form-data",
         processData: false,
         // contentType: false,
-        headers: {
-        "Accept": "application/json"
-        }
+        // headers: {
+        // "Accept": "application/json"
+        // }
       })
     }
   e.preventDefault(); // when method is called, the default action of the event will not be triggered.
@@ -104,28 +104,17 @@ function test( port)
 
 console.log(port);
 
-            //    var myUrl = "http://20.84.89.246:8000/delete/"+port;
+$.ajax({
+  type: "DELETE",
+  url: myurl+"delete/"+port,
+  //success:getRegular(),
+ 
+})
 
-                $.ajax({
-                    type: "DELETE",
-                    url: myurl+"delete/"+port,
-                    processData: false,
-        // contentType: false,
-                  headers: {
-                  "Accept": "application/json"
-                  }
-                    // crossDomain: true,
-                    // async: false,
-                    //dataType: "json",
-                    //contentType: "multipart/form-data",
-                    //processData: false,
-                    // contentType: false,
-              
-                })
-                .done(function (data) {
-                    alert("poop");
-                    getRegular();
-                });
+.done(function (data) {
+let text = data; 
+document.getElementById('port').innerHTML = text; 
+});
                //e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                                     // meand that clicked submit button will not take the browser to a new URL.
 }
