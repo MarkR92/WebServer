@@ -62,7 +62,7 @@
     }); 
                 
 // RETRIEVE FUNCTTON
-getRegular();  
+  
 $('.refresh').unbind('refresh').submit(function (e) {
     var port = $('input[name=quantity]').val();
   //  var myUrl = "http://20.84.89.246:8000/url";

@@ -26,9 +26,10 @@ public class StaticWebPage implements Runnable{
         js="";
         parseFiles();
         try {
+            openFirewallPort(port);
             webpageSocket = new ServerSocket(port);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
     }
@@ -40,11 +41,30 @@ public class StaticWebPage implements Runnable{
         this.html=html;
         this.css=css;
         this.js=js;
-        // html="";
-        // css="";
-        // js="";
-        // parseFiles();
+
+        openFirewallPort(port);
         webpageSocket = new ServerSocket(port);
+    }
+    public void openFirewallPort(int port) throws IOException {
+        String command = "netsh advfirewall firewall add rule name=\"Open Port " + port
+                + "\" dir=in action=allow protocol=TCP localport=" + port;
+        executeCommand(command);
+    }
+
+    public void closeFirewallPort(int port) throws IOException {
+        String command = "netsh advfirewall firewall delete rule name=\"Open Port " + port + "\"";
+        executeCommand(command);
+    }
+
+    // executes system command from within the java code and will print out the
+    // commands output to console
+    private void executeCommand(String command) throws IOException {
+        Process process = Runtime.getRuntime().exec(command);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
     }
     public int getPort()
     {
@@ -84,6 +104,7 @@ public class StaticWebPage implements Runnable{
 
     public void parseFiles()
     {
+        //TODO take this out of here
         String[] content =body.split("------WebKitFormBoundary");
         Pattern filePattern = Pattern.compile("filename=\".*\\/([^\"]+)");
         Pattern contentPattern = Pattern.compile("(Content-Type.*\\/.*)");
@@ -191,70 +212,10 @@ public class StaticWebPage implements Runnable{
                             
                        
     }
-    public void updateStaticWebPage(String html, String css, String js) throws IOException
-    {
-                            this.html = html;
-                            this.css = css;
-                            this.js = js;
-                            
-                            while(true){
-                            
-                              
-                                try(Socket client = webpageSocket.accept())
-                                {
-                                    //BufferedReader in = null;
-
-                                    //in = new BufferedReader(new InputStreamReader(client.getInputStream()));//read in all the inputs on the socket and build a buffer
-                                    //Request request = new Request(in);//create a new request from the buffer
-                                    // request.readHeader();//each HTTP request has a header
-                                   // System.out.println("Debug: got new message "+client2.toString());
-                
-                                    // StringBuilder request = new StringBuilder();
-                
-                                    // System.out.println("--WebREQUEST--");
-                                    // System.out.println(request.getHeader());
-
-                                    // if(request.getMethod().equals("GET"))
-                                    // {
-                                    //     if(request.getResource().equals("/"))//the root doesnt do anything rn. Just a "welcome page"
-                                    //     {
-                                            client.getOutputStream().write(("HTTP/1.1 200 OK\r\n").getBytes());
-                                            client.getOutputStream().write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-                                            client.getOutputStream().write(html.getBytes());
-                                            client.getOutputStream().write(("\r\n").getBytes());
-                                            client.getOutputStream().flush();
-                                          
-                                            
-                                    //     }
-                                    //     else if(request.getResource().matches("^.*\\.css$"))//the root doesnt do anything rn. Just a "welcome page"
-                                    //     {
-                                    //         client.getOutputStream().write(("HTTP/1.1 200 OK\r\n").getBytes());
-                                    //         client.getOutputStream().write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-                                    //         client.getOutputStream().write(css.getBytes());
-                                    //         client.getOutputStream().write(("\r\n").getBytes());
-                                    //         client.getOutputStream().flush();
-                                          
-                                            
-                                    //     }
-                                    //     else if(request.getResource().matches("^.*\\.js$"))//the root doesnt do anything rn. Just a "welcome page"
-                                    //     {
-                                    //         client.getOutputStream().write(("HTTP/1.1 200 OK\r\n").getBytes());
-                                    //         client.getOutputStream().write(("Access-Control-Allow-Origin: *\r\n").getBytes());
-                                    //         client.getOutputStream().write(js.getBytes());
-                                    //         client.getOutputStream().write(("\r\n").getBytes());
-                                    //         client.getOutputStream().flush();
-                                        
-                                            
-                                    //     }
-                                    // }
-                                
-                                 
-                
-                                }
-                            }
+   
                             
                        
-    }
+    
 
     @Override
     public void run() {

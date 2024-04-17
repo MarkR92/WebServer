@@ -114,8 +114,9 @@ import java.util.regex.Pattern;
                             response.sendResponse("200 OK",homeURL+"dashboard.html");
                            db.clearLoadedPortList();
                            db.loadPorts() ;
-                           onStartUp();
-                            
+                          // onStartUp();
+                        
+                         //   
                            
                      
                           
@@ -146,7 +147,7 @@ import java.util.regex.Pattern;
 
                                 portList.add(staticWebPage.getPort());
                             }
-                            response.sendResponse("200 OK",portList, 0);
+                            response.sendResponse("200 OK",portList);
                             
                         }
                         else {
@@ -184,7 +185,7 @@ import java.util.regex.Pattern;
 
                                portList.add(staticWebPage.getPort());
                            }
-                           response.sendResponse("200 OK", portList,0);
+                           response.sendResponse("200 OK", portList);
                          //  db.setFiles( webpage.getPort(),webpage.getHTML(),webpage.getCSS(),webpage.getJavaScript());
                           
                           // response.findResource2(port);
@@ -207,12 +208,6 @@ import java.util.regex.Pattern;
 
                                     parseFiles(request.getBody());
 
-                                    // staticWebPage.kill();
-                                    // StaticWebPage webpage= new StaticWebPage(request.getBody(),port - 1);
-                                    // webPageList.add(webpage);
-            
-                                    // Thread t = new Thread(webpage);
-                                    // t.start();
                                     staticWebPage.setHTML(html);
                                     staticWebPage.setCSS(css);
                                     staticWebPage.setJavaScript(js);
@@ -220,7 +215,7 @@ import java.util.regex.Pattern;
                                     db.setFiles(port,html,css,js);
                                     //int port=webpage.getPort();
         
-                                    staticWebPage.updateStaticWebPage(html, css, js);
+                                    
                                     
                                     response.sendResponse("200 OK", port);
                                 }
@@ -246,35 +241,20 @@ import java.util.regex.Pattern;
                                     staticWebPage.kill();
     
                                     webPageList.remove(staticWebPage);
+                                    staticWebPage.closeFirewallPort(port);
                                     break;
                                     
-                                    // System.out.println("Website deleted on port "+port);
-                                   // response.sendResponse("200 OK");
+                                
                                 }
-                       // response.sendResponse("200 OK");
+                    
                             }
                             ArrayList<Integer> portList= new ArrayList<>();
                             for (StaticWebPage staticWebPage : webPageList) {
 
                                 portList.add(staticWebPage.getPort());
                             }
-                            response.sendResponse("200 OK" ,portList,0);
-                        // for (StaticWebPage staticWebPage : webPageList) {
-                        //     System.out.println(staticWebPage.getPort());
-
-                            // if(staticWebPage.getPort() == port){
-                                
-                            //     // staticWebPage.kill();
-
-                            //     // webPageList.remove(staticWebPage);
-                                
-                            //     // System.out.println("Website deleted on port "+port);
-                            //     response.sendResponse("200 OK");
-                            // }
-                            // else{
-                            //     response.sendResponse("404 Not Found");
-                            // }
-                       // }     
+                            response.sendResponse("200 OK" ,portList);
+                    
                     }                              
                    
                 } else{
@@ -282,14 +262,11 @@ import java.util.regex.Pattern;
                 }
                 
                 socket.close();//do not remove this 
-
-                    //get the first line of the request
-                    //String firstLine=header.toString().split("\n")[0];
                   
              }
              catch (IOException e) 
              {   
-                         
+                      e.printStackTrace();   
                  
              }  
 

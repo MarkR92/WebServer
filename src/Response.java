@@ -74,34 +74,34 @@ public class Response {
         }
 
     }
-    public void sendResponse(String responseCode, ArrayList<Integer> portList)
-    {
+    // public void sendResponse(String responseCode, ArrayList<Integer> portList)
+    // {
     
-         try {
-         output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
-         output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
-         output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
-         output.write(("\r\n").getBytes());//blank line
-            for (Integer port : portList) {
-                String ref = url+port;
-                // String target="_blank";
-                // String rel="noopener noreferrer";
-               // <p>Check out <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
-               output.write(("<a href="+ref+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
-               //output.write(("<a href="+ref+"target="+target+" rel="+rel+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
+    //      try {
+    //      output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
+    //      output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
+    //      output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+    //      output.write(("\r\n").getBytes());//blank line
+    //         for (Integer port : portList) {
+    //             String ref = url+port;
+    //             // String target="_blank";
+    //             // String rel="noopener noreferrer";
+    //            // <p>Check out <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
+    //            output.write(("<a href="+ref+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
+    //            //output.write(("<a href="+ref+"target="+target+" rel="+rel+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
 
-               // output.write(("<a href="+ref+" target=_blank></a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
-                output.write(("\r\n").getBytes());//blank line
-            }
+    //            // output.write(("<a href="+ref+" target=_blank></a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
+    //             output.write(("\r\n").getBytes());//blank line
+    //         }
         
-         output.flush();// empty the built up buffer
-        } catch (IOException e) {
+    //      output.flush();// empty the built up buffer
+    //     } catch (IOException e) {
             
-            e.printStackTrace();
-        }
+    //         e.printStackTrace();
+    //     }
 
-    }
-    public void sendResponse(String responseCode, ArrayList<Integer> portList, int check)
+    // }
+    public void sendResponse(String responseCode, ArrayList<Integer> portList)
     {
     
          try {
