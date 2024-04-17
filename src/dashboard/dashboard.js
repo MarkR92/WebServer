@@ -2,7 +2,7 @@
 
    
 
-   var myurl="http://localhost:8000/"
+   var myurl="http://20.84.89.246:8000/"
   
    $(document).ready(function(){
     $('.upload').unbind('upload').submit(function (e) {
