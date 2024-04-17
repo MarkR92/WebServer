@@ -213,7 +213,9 @@ import java.util.regex.Pattern;
             
                                     // Thread t = new Thread(webpage);
                                     // t.start();
-            
+                                    staticWebPage.setHTML(html);
+                                    staticWebPage.setCSS(css);
+                                    staticWebPage.setJavaScript(js);
                                     //save web documents into db
                                     db.setFiles(port,html,css,js);
                                     //int port=webpage.getPort();

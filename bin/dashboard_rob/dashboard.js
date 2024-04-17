@@ -11,7 +11,7 @@
    //var elements = document.getElementsByClass("selectPort");
   
 
-   var myurl="http://localhost:8000/"
+   //var myurl="http://localhost:8000/"
    getRegular();
    $(document).ready(function(){
    
@@ -24,17 +24,13 @@
         $.ajax({
 
             type: "POST",
-            url: "http://localhost:8000/upload",
+            url: host+"/upload",
             crossDomain: true,
             async: false,
             data:  new FormData(this),
-            //dataType: "json",
             contentType: "multipart/form-data",
             processData: false,
-            // contentType: false,
-            headers: {
-            "Accept": "application/json"
-            }
+          
         
       }).done(function (data) {
         // console.log(data);
@@ -48,7 +44,7 @@
       $.ajax({
 
         type: "PUT",
-        url: "http://localhost:8000/update/"+currentPort,
+        url: host+"/update/"+currentPort,
         crossDomain: true,
         data:  new FormData(this),
         //dataType: "json",
@@ -72,7 +68,7 @@ $('.refresh').unbind('refresh').submit(function (e) {
   //  var myUrl = "http://20.84.89.246:8000/url";
     $.ajax({
         type: "GET",
-        url: myurl+"url",
+        url: host+"/url",
     })
     .done(function (data) {
         console.log(data);
@@ -92,7 +88,7 @@ function getRegular()
 //var myUrl = "http://20.84.89.246:8000/url";
     $.ajax({
         type: "GET",
-        url: myurl+"url",
+        url: host+"/url",
     })
     .done(function (data) {
        // console.log(data);
@@ -109,7 +105,7 @@ console.log(port);
 
                 $.ajax({
                     type: "DELETE",
-                    url: myurl+"delete/"+port,
+                    url: host+"/delete/"+port,
                     processData: false,
         // contentType: false,
                   headers: {
@@ -124,7 +120,7 @@ console.log(port);
               
                 })
                 .done(function (data) {
-                    //alert("poop");
+                  
                     let text = data; 
                     document.getElementById('port').innerHTML = text; 
                     
