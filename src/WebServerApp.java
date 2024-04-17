@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
     public class WebServerApp implements Runnable  {
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
-        private static final String homeURL= "src//dashboard//";
-       // private static final String homeURL= "src//dashboard_rob//";
+        // private static final String homeURL= "src//dashboard//";
+       private static final String homeURL= "src//dashboard_rob//";
         private Socket socket;
         private static Database  db = new Database();
         String css;
@@ -146,7 +146,7 @@ import java.util.regex.Pattern;
 
                                 portList.add(staticWebPage.getPort());
                             }
-                            response.sendResponse("200 OK",portList);
+                            response.sendResponse("200 OK",portList, 0);
                             
                         }
                         else {
@@ -184,7 +184,7 @@ import java.util.regex.Pattern;
 
                                portList.add(staticWebPage.getPort());
                            }
-                           response.sendResponse("200 OK", portList);
+                           response.sendResponse("200 OK", portList,0);
                          //  db.setFiles( webpage.getPort(),webpage.getHTML(),webpage.getCSS(),webpage.getJavaScript());
                           
                           // response.findResource2(port);
@@ -218,6 +218,7 @@ import java.util.regex.Pattern;
                                     db.setFiles(port,html,css,js);
                                     //int port=webpage.getPort();
         
+                                    staticWebPage.updateStaticWebPage(html, css, js);
                                     
                                     response.sendResponse("200 OK", port);
                                 }
@@ -255,7 +256,7 @@ import java.util.regex.Pattern;
 
                                 portList.add(staticWebPage.getPort());
                             }
-                            response.sendResponse("200 OK" ,portList);
+                            response.sendResponse("200 OK" ,portList,0);
                         // for (StaticWebPage staticWebPage : webPageList) {
                         //     System.out.println(staticWebPage.getPort());
 

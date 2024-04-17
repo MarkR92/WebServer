@@ -38,7 +38,8 @@
         
       }).done(function (data) {
         // console.log(data);
-         getRegular();
+        let text = data; 
+        document.getElementById('port').innerHTML = text; 
      });
      }
   //-----------PUT SECTION----------:
@@ -123,8 +124,10 @@ console.log(port);
               
                 })
                 .done(function (data) {
-                    alert("poop");
-                    getRegular();
+                    //alert("poop");
+                    let text = data; 
+                    document.getElementById('port').innerHTML = text; 
+                    
                 });
                //e.preventDefault(); // when method is called, the default action of the event will not be triggered.
                                     // meand that clicked submit button will not take the browser to a new URL.
