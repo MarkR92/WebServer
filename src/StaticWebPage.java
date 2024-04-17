@@ -109,9 +109,9 @@ public class StaticWebPage implements Runnable{
         this.js=js;
     }
 
-    public void parseFiles()
+    public void parseFiles() //TODO take this out of here
     {
-        //TODO take this out of here
+        
         String[] content =body.split("------WebKitFormBoundary");
         Pattern filePattern = Pattern.compile("filename=\".*\\/([^\"]+)");
         Pattern contentPattern = Pattern.compile("(Content-Type.*\\/.*)");
