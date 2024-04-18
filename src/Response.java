@@ -5,19 +5,25 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class Response {
+    
     private OutputStream output;
+    //private final String url="http://localhost:";
+    private final String url="http://20.84.89.246:";
 
     public Response(OutputStream output) 
     {
         this.output = output;
     }
-    public void sendResponse(String responseString)
+    public void sendResponse(String responseCode)
     {
        
         try {
-            output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+            output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
             output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
-            output.write(("\r\n").getBytes());//blank line
+            output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+            output.write(("\r\n").getBytes());
+            
+            //blank line
             output.flush();// empty the built up buffer
         } catch (IOException e) {
             System.out.print(""); 
@@ -25,7 +31,7 @@ public class Response {
         }
      
     }
-    public void sendResponse(String responseString, String filelocation)
+    public void sendResponse(String responseCode, String filelocation)
     {
      StringBuilder htmlContent = new StringBuilder();
         try(BufferedReader reader = new BufferedReader(new FileReader(filelocation)))
@@ -40,7 +46,7 @@ public class Response {
             e.printStackTrace();
          }
          try {
-         output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+         output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
@@ -52,16 +58,16 @@ public class Response {
         }
 
     }
-    public void sendResponse(String responseString, int port)
+    public void sendResponse(String responseCode, int port)
     {
     
          try {
-         output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+         output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
 
-         output.write(("url:localhost:"+port).getBytes());//blank line
+         //output.write(("url:localhost:"+port).getBytes());//blank line
          output.flush();// empty the built up buffer
         } catch (IOException e) {
             
@@ -69,20 +75,54 @@ public class Response {
         }
 
     }
-    public void sendResponse(String responseString, ArrayList<Integer> portList)
+    // public void sendResponse(String responseCode, ArrayList<Integer> portList)
+    // {
+    
+    //      try {
+    //      output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
+    //      output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
+    //      output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
+    //      output.write(("\r\n").getBytes());//blank line
+    //         for (Integer port : portList) {
+    //             String ref = url+port;
+    //             // String target="_blank";
+    //             // String rel="noopener noreferrer";
+    //            // <p>Check out <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
+    //            output.write(("<a href="+ref+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
+    //            //output.write(("<a href="+ref+"target="+target+" rel="+rel+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
+
+    //            // output.write(("<a href="+ref+" target=_blank></a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
+    //             output.write(("\r\n").getBytes());//blank line
+    //         }
+        
+    //      output.flush();// empty the built up buffer
+    //     } catch (IOException e) {
+            
+    //         e.printStackTrace();
+    //     }
+
+    // }
+    public void sendResponse(String responseCode, ArrayList<Integer> portList)
     {
     
          try {
-         output.write(("HTTP/1.1 "+responseString+"\r\n").getBytes());//encode to bytes
+         output.write(("HTTP/1.1 "+responseCode+"\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Origin: *\r\n").getBytes());//encode to bytes
          output.write(("Access-Control-Allow-Headers: *\r\n").getBytes());
          output.write(("\r\n").getBytes());//blank line
             for (Integer port : portList) {
-                String ref = "http://localhost:"+port;
+                String ref = url+port;
                 // String target="_blank";
                 // String rel="noopener noreferrer";
                // <p>Check out <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
-               output.write(("<a href="+ref+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
+               output.write((
+                "<div class='selectPort' onclick='select("+port+")' id='"+port+"'>"+
+                "<h4>Port: "+port+"</h4>"+
+                "<button onclick=\"window.location.href = '"+ref+"';\" class='link'>Open Link</button>"+
+                "<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>"+
+                "</div>"
+                ).getBytes());
+              
                //output.write(("<a href="+ref+"target="+target+" rel="+rel+">"+ref+"</a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
 
                // output.write(("<a href="+ref+" target=_blank></a>"+"<button style='font-size:20px;'class='delete' onclick='test("+port+")'>x</button>").getBytes());//blank line
