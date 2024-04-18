@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +8,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Dashboard</title>
 
-       <!-- START OF INTERNAL CSS CODE -->
-       <link rel="stylesheet" href="dashboard.css">
-      
+    <!-- START OF INTERNAL CSS CODE -->
+    <link rel="stylesheet" href="dashboard.css">
+
 </head>
+
 <body>
     <!-- <h1>DASHBOARD ONE</h1> -->
 
@@ -19,49 +20,51 @@
     <div class="container main">
         <!-- Upload container -->
         <div class="file-upload">
-            <form class = "upload">
+            <form class="upload">
                 <h1 style="font-size:38px;">Upload Files</h1>
 
                 <label for="file" class="drop-container" id="dropcontainer">
                     <span class="drop-title">Drop files here</span>or
-                <!-- <input id="file" name="file" type="file" required/> -->
-                <input type="file" id="folderInput" name="files" webkitdirectory directory multiple required><br><br>
+                    <!-- <input id="file" name="file" type="file" required/> -->
+                    <input type="file" id="folderInput" name="files" webkitdirectory directory multiple
+                        required><br><br>
 
-                <!-- UPLOAD BUTTON -->
-                <button type="submit" class="post">Upload</button>
+                    <!-- UPLOAD BUTTON -->
+                    <button type="submit" class="post">Upload</button>
             </form>
 
         </div>
         <div class="vl"></div>
         <!-- ports container -->
-            
-            <h1 class="web">Your Web Pages</h1>
 
-            
+        <h1 class="web">Your Web Pages</h1>
 
-            
 
-            <div class="ports" >
-                
-                <div class="selectPort" id="undefined" onclick='select()'>
+
+
+
+        <div class="ports">
+
+            <div class="selectPort" id="undefined" onclick='select()'>
                 <h4>Create New Port</h4>
-                </div>
-                <p id="port"></p>
-                
-                <!-- <a href="#"></a>  -->
             </div>
+            <p id="port"></p>
+
+            <!-- <a href="#"></a>  -->
+        </div>
 
         <!-- DISABLED REFRESH BUTTON -->
         <!-- <form class="refresh">
             <button type="submit" class="retrieve">Refresh</button>
           </form> -->
 
-     
-      
-      <script src="dashboard.js"></script>
-      
+
+
+        <script src="dashboard.js"></script>
+
     </div>
 
 
 </body>
+
 </html>
