@@ -4,7 +4,7 @@
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "c:\\Users\\rootadmin\\Downloads\\postgresql-42.7.3.jar"
+        "c:\\Users\\khate\\Downloads\\postgresql-42.7.1.jar"
     ],
     "liveServer.settings.port": 5501
 }
