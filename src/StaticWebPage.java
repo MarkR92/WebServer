@@ -25,12 +25,12 @@ public class StaticWebPage implements Runnable{
         css="";
         js="";
         parseFiles();
-        try {
-            openFirewallPort(port);
-        } catch (IOException e) {
+        // try {
+        //     openFirewallPort(port);
+        // } catch (IOException e) {
             
-            e.printStackTrace();
-        }
+        //     e.printStackTrace();
+        // }
         try {
             //openFirewallPort(port);
             webpageSocket = new ServerSocket(port);
@@ -48,7 +48,7 @@ public class StaticWebPage implements Runnable{
         this.css=css;
         this.js=js;
 
-        openFirewallPort(port);
+        // openFirewallPort(port);
         webpageSocket = new ServerSocket(port);
     }
     public void openFirewallPort(int port) throws IOException {

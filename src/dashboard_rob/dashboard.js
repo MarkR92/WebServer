@@ -3,8 +3,8 @@
    //**********************GLOBAL VARIABLES:*********************** */ 
 
 
-   //var host = "http://localhost:8000";
-   var host = "http://20.84.89.246:8000";
+   var host = "http://localhost:8000";
+   //var host = "http://20.84.89.246:8000";
    var currentPort;
 
 //**********************JQUERY AJAX SIDE OF THE CODE:*********************** */

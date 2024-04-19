@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
         private static ArrayList<StaticWebPage> webPageList = new ArrayList<>();
         // private static final String homeURL= "src//dashboard//";
-        private static final String homeURL= "src//dashboard_rob//";
+        private static final String homeURL= "dashboard_rob//";
         private Socket socket;
         private static Database  db = new Database();
         private static final int homePort=8000;
@@ -234,7 +234,7 @@ import java.util.regex.Pattern;
                                     staticWebPage.kill();
     
                                     webPageList.remove(staticWebPage);
-                                    staticWebPage.closeFirewallPort(port);
+                                   // staticWebPage.closeFirewallPort(port);
                                     break;
                                     
                                 

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class Response {
     
     private OutputStream output;
-    //private final String url="http://localhost:";
-    private final String url="http://20.84.89.246:";
+    private final String url="http://localhost:";
+    //private final String url="http://20.84.89.246:";
 
     public Response(OutputStream output) 
     {
