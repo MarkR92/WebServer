@@ -7,14 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Dashboard</title>
-
        <!-- START OF INTERNAL CSS CODE -->
        <link rel="stylesheet" href="dashboard.css">
-      
 </head>
 <body>
-    <!-- <h1>DASHBOARD ONE</h1> -->
-
     <!-- Main container -->
     <div class="container main">
         <!-- Upload container -->
@@ -34,34 +30,16 @@
         </div>
         <div class="vl"></div>
         <!-- ports container -->
-            
             <h1 class="web">Your Web Pages</h1>
-
-            
-
-            
-
             <div class="ports" >
-                
+                <!-- button to create new port -->
                 <div class="selectPort" id="undefined" onclick='select()'>
-                <h4>Create New Port</h4>
+                <div class="create-box"><h4 class="create">Create New Port</h4></div>
+                <span class="tip">Choose and click upload to post!</span>
                 </div>
                 <p id="port"></p>
-                
-                <!-- <a href="#"></a>  -->
             </div>
-
-        <!-- DISABLED REFRESH BUTTON -->
-        <!-- <form class="refresh">
-            <button type="submit" class="retrieve">Refresh</button>
-          </form> -->
-
-     
-      
       <script src="dashboard.js"></script>
-      
     </div>
-
-
 </body>
 </html>

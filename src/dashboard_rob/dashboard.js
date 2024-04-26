@@ -141,8 +141,9 @@ function select(port){
 
   currentPort = ""+port+"";
 
-  document.getElementById(port).style.background = "rgb(223, 194, 107)";
-  document.getElementById(port).style.color = "white";
+  document.getElementById(port).style.background = "#939bc8";
+  document.getElementById(port).style.border = "1px solid grey";
+  document.getElementById(port).style.color = "#19034d";
   
   $(document).ready(function(){
 
