@@ -85,7 +85,7 @@ public class ConnectionHandler implements Runnable {
         //the rest are put into "headers" which is a list of KeyValue Pairs
         List<Map.Entry<String, String>> headers = request.headers;
 
-        String rootFolder = "/Users/danieljr/Desktop/Projects/Java WebServer/WebServer/src/WebSites"; // change this to point to websites folder
+        String rootFolder = "./WebSites"; // change this to point to websites folder
 
         String statusCode = "200 OK";
         String fileName = path;
